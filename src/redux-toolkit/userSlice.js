@@ -16,6 +16,21 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const loginUser = createAsyncThunk(
+  "user/login",
+  async (payload, thunkAPI) => {
+    try {
+      const response = await axios.post(API_URL + "login", payload);
+
+      localStorage.setItem("user", response.data);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getUsers = createAsyncThunk(
   "user/getUser",
   async (_, thunkAPI) => {
@@ -29,8 +44,10 @@ export const getUsers = createAsyncThunk(
   }
 );
 
+const user = localStorage.getItem("user");
+
 const initialState = {
-  user: null,
+  user: user ? user : null,
   isLoading: false,
   error: false,
 };
@@ -55,6 +72,19 @@ const userSlice = createSlice({
       state.error = false;
     },
     [registerUser.rejected]: (state) => {
+      state.isLoading = false;
+      state.user = null;
+      state.error = true;
+    },
+    [loginUser.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [loginUser.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.user = action.payload;
+      state.error = false;
+    },
+    [loginUser.rejected]: (state) => {
       state.isLoading = false;
       state.user = null;
       state.error = true;
