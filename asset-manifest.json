@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/dong-geon-Lee/Market-Green-Frontend/static/css/main.31d6cfe0.css",
-    "main.js": "/dong-geon-Lee/Market-Green-Frontend/static/js/main.167e5e23.js",
-    "index.html": "/dong-geon-Lee/Market-Green-Frontend/index.html",
-    "main.167e5e23.js.map": "/dong-geon-Lee/Market-Green-Frontend/static/js/main.167e5e23.js.map"
+    "main.css": "/Market_Green-Frontend/static/css/main.31d6cfe0.css",
+    "main.js": "/Market_Green-Frontend/static/js/main.167e5e23.js",
+    "index.html": "/Market_Green-Frontend/index.html",
+    "main.167e5e23.js.map": "/Market_Green-Frontend/static/js/main.167e5e23.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
