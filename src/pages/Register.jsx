@@ -1,9 +1,73 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { getUsers, registerUser } from "../redux-toolkit/userSlice";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../redux-toolkit/userSlice";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.3)
+    ),
+    url("https://images.unsplash.com/photo-1506543730435-e2c1d4553a84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Wrapper = styled.div`
+  max-width: 120rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+`;
+
+export const Form = styled.form`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 3.2rem;
+  row-gap: 4.8rem;
+  min-width: 60rem;
+`;
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Label = styled.label`
+  display: block;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: #4ba87d;
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.8rem;
+  font-family: inherit;
+  border: 1px solid #9f9f9f;
+`;
+
+const Button = styled.button`
+  display: block;
+  grid-column: 1 / -1;
+  padding: 1.6rem;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: inherit;
+  margin: 1.2rem 0;
+  color: #fff;
+  background-color: #4ba87d;
+  text-transform: uppercase;
+`;
 
 const Register = () => {
   const [userData, setUserData] = useState({
@@ -45,50 +109,52 @@ const Register = () => {
 
   return (
     <Container>
-      <form onSubmit={onSubmit}>
-        <div>
-          <label>name</label>
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={onChange}
-            placeholder="Enter name..."
-          />
-        </div>
-        <div>
-          <label>email</label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={onChange}
-            placeholder="Enter email..."
-          />
-        </div>
-        <div>
-          <label>password</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={onChange}
-            placeholder="Enter password..."
-          />
-        </div>
-        <div>
-          <label>password Confirm</label>
-          <input
-            type="password"
-            name="password2"
-            value={password2}
-            onChange={onChange}
-            placeholder="password confirm..."
-          />
-        </div>
+      <Wrapper>
+        <Form onSubmit={onSubmit}>
+          <Box>
+            <Label>Name</Label>
+            <Input
+              type="text"
+              name="name"
+              value={name}
+              onChange={onChange}
+              placeholder="Enter name..."
+            />
+          </Box>
+          <Box>
+            <Label>E-mail</Label>
+            <Input
+              type="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+              placeholder="Enter email..."
+            />
+          </Box>
+          <Box>
+            <Label>Password</Label>
+            <Input
+              type="password"
+              name="password"
+              value={password}
+              onChange={onChange}
+              placeholder="Enter password..."
+            />
+          </Box>
+          <Box>
+            <Label>Password Confirm</Label>
+            <Input
+              type="password"
+              name="password2"
+              value={password2}
+              onChange={onChange}
+              placeholder="password confirm..."
+            />
+          </Box>
 
-        <button type="submit">Submit</button>
-      </form>
+          <Button type="submit">Submit</Button>
+        </Form>
+      </Wrapper>
     </Container>
   );
 };

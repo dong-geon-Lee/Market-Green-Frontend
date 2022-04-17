@@ -20,9 +20,9 @@ export const loginUser = createAsyncThunk(
   "user/login",
   async (payload, thunkAPI) => {
     try {
-      const response = await axios.post(API_URL + "login", payload);
+      const response = await axios.post(API_URL + "/login", payload);
 
-      localStorage.setItem("user", response.data);
+      localStorage.setItem("user", JSON.stringify(response.data));
 
       return response.data;
     } catch (error) {
@@ -44,7 +44,7 @@ export const getUsers = createAsyncThunk(
   }
 );
 
-const user = localStorage.getItem("user");
+const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
   user: user ? user : null,
