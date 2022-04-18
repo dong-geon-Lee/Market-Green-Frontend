@@ -5,13 +5,12 @@ import { registerUser } from "../redux-toolkit/userSlice";
 
 export const Container = styled.div`
   background: linear-gradient(
-      rgba(255, 255, 255, 0.3),
-      rgba(255, 255, 255, 0.3)
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
     ),
-    url("https://images.unsplash.com/photo-1506543730435-e2c1d4553a84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80");
+    url("https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=713&q=80");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -30,7 +29,7 @@ export const Form = styled.form`
   grid-template-columns: repeat(2, 1fr);
   column-gap: 3.2rem;
   row-gap: 4.8rem;
-  min-width: 60rem;
+  width: 60rem;
 `;
 
 export const Box = styled.div`
@@ -40,18 +39,20 @@ export const Box = styled.div`
 
 export const Label = styled.label`
   display: block;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 1.2rem;
   color: #4ba87d;
+  letter-spacing: 1px;
 `;
 
 export const Input = styled.input`
   width: 100%;
   padding: 1.2rem;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-family: inherit;
   border: 1px solid #9f9f9f;
+  border-radius: 9px;
 `;
 
 const Button = styled.button`
@@ -60,13 +61,14 @@ const Button = styled.button`
   padding: 1.6rem;
   border: none;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   font-family: inherit;
   margin: 1.2rem 0;
   color: #fff;
   background-color: #4ba87d;
   text-transform: uppercase;
+  letter-spacing: 1.75px;
 `;
 
 const Register = () => {
@@ -148,11 +150,11 @@ const Register = () => {
               name="password2"
               value={password2}
               onChange={onChange}
-              placeholder="password confirm..."
+              placeholder="Password Confirm..."
             />
           </Box>
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit">회원가입</Button>
         </Form>
       </Wrapper>
     </Container>
