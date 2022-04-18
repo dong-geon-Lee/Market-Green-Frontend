@@ -1,15 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import img from "../assets/img1.jpg";
-import img2 from "../assets/img2.jpg";
-import img3 from "../assets/img3.jpg";
-import img4 from "../assets/img4.jpg";
-import img5 from "../assets/img5.jpg";
 
 export const Container = styled.div`
   background-image: url("https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1452&q=80");
   background-position: center;
-  background-size: 100% 100%;
+  background-size: 100% 110%;
   background-repeat: no-repeat;
 `;
 
@@ -18,16 +13,20 @@ export const Wrapper = styled.div`
   padding: 0 3.2rem;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 0.8fr 1fr;
   padding: 8rem 4.8rem 8rem 4.8rem;
   gap: 3.2rem;
 `;
 
 export const InfoBox = styled.div`
+  padding: 0 4.8rem;
+  display: flex;
+  flex-direction: column;
+
   & h1 {
     color: #495057;
     font-weight: 700;
-    font-size: 4.8rem;
+    font-size: 7.4rem;
     margin-bottom: 2rem;
     line-height: 1.6;
     letter-spacing: 1px;
@@ -70,9 +69,7 @@ const Hero = () => {
         <BlankBox></BlankBox>
 
         <InfoBox>
-          <h1>
-            Freshen the Air <br></br> in Your House
-          </h1>
+          <h1>Freshen the Air in Your House</h1>
 
           <h3>
             we help realize your dreams in making a garden, let's start with
@@ -82,6 +79,7 @@ const Hero = () => {
 
           <BtnBox>
             <button>Start find plant</button>
+
             <button>Learn more</button>
           </BtnBox>
         </InfoBox>

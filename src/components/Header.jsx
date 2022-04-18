@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/logo2.png";
 
@@ -8,8 +9,13 @@ export const Container = styled.nav`
   align-items: center;
   background-color: #fff;
   height: 9.6rem;
-  padding: 0 4.8rem;
+  padding: 0 3.2rem;
   position: relative;
+
+  & a {
+    text-decoration: none;
+    color: #212529;
+  }
 `;
 
 export const LogoBox = styled.div`
@@ -40,7 +46,7 @@ export const Items = styled.li`
   align-items: center;
 `;
 
-export const Link = styled.a`
+export const ItemLink = styled.a`
   color: #333;
   font-size: 1.8rem;
   font-weight: 500;
@@ -67,28 +73,34 @@ export const BtnBox = styled.div`
 const Header = () => {
   return (
     <Container>
-      <LogoBox>
-        <Logo src={logo} alt="logo-img" />
-        <LogoTitle>MarketGreen</LogoTitle>
-      </LogoBox>
+      <Link to="/">
+        <LogoBox>
+          <Logo src={logo} alt="logo-img" />
+          <LogoTitle>MarketGreen</LogoTitle>
+        </LogoBox>
+      </Link>
 
       <NavList>
         <Items>
-          <Link>하는 일</Link>
+          <ItemLink>하는 일</ItemLink>
         </Items>
         <Items>
-          <Link>제품</Link>
+          <ItemLink>제품</ItemLink>
         </Items>
         <Items>
-          <Link>평가 후기</Link>
+          <ItemLink>평가 후기</ItemLink>
         </Items>
         <Items>
-          <Link>가격</Link>
+          <ItemLink>가격</ItemLink>
         </Items>
 
         <BtnBox>
-          <Button>로그인</Button>
-          <Button>회원가입</Button>
+          <Link to="/login">
+            <Button>로그인</Button>
+          </Link>
+          <Link to="/register">
+            <Button>회원가입</Button>
+          </Link>
         </BtnBox>
       </NavList>
     </Container>
