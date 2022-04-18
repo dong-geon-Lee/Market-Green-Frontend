@@ -75,10 +75,9 @@ const Login = () => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
-    password2: "",
   });
 
-  const { email, password, password2 } = userData;
+  const { email, password } = userData;
 
   const onChange = (e) => {
     setUserData((prevState) => ({
@@ -92,8 +91,9 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (password !== password2) {
-      alert("not corrent password!");
+    if (!email || !password) {
+      alert("add email or password");
+      return;
     }
 
     const newUser = {
@@ -106,7 +106,6 @@ const Login = () => {
     setUserData({
       email: "",
       password: "",
-      password2: "",
     });
   };
 
