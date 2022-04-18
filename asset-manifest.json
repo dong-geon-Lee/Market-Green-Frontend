@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Market-Green-Frontend/static/css/main.28df568f.css",
-    "main.js": "/Market-Green-Frontend/static/js/main.7ee89b3c.js",
+    "main.js": "/Market-Green-Frontend/static/js/main.1c87cafb.js",
     "index.html": "/Market-Green-Frontend/index.html",
     "main.28df568f.css.map": "/Market-Green-Frontend/static/css/main.28df568f.css.map",
-    "main.7ee89b3c.js.map": "/Market-Green-Frontend/static/js/main.7ee89b3c.js.map"
+    "main.1c87cafb.js.map": "/Market-Green-Frontend/static/js/main.1c87cafb.js.map"
   },
   "entrypoints": [
     "static/css/main.28df568f.css",
-    "static/js/main.7ee89b3c.js"
+    "static/js/main.1c87cafb.js"
   ]
 }
