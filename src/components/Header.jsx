@@ -118,7 +118,7 @@ const Header = () => {
                   <Button>관리자페이지</Button>
                 </Link>
               )}
-              <Link to="/">
+              <Link to="/profile">
                 <Button>마이페이지</Button>
               </Link>
 
