@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../redux-toolkit/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -89,6 +90,7 @@ const Register = () => {
   };
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -107,6 +109,8 @@ const Register = () => {
       password: "",
       password2: "",
     });
+
+    navigate("/login");
   };
 
   return (

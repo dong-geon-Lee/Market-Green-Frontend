@@ -3,6 +3,16 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5000/api/users";
 
+const TOKEN = JSON.parse(localStorage.getItem("user"))?.accessToken;
+console.log(typeof TOKEN);
+const config = {
+  headers: {
+    token: `Bearer ${TOKEN}`,
+  },
+};
+
+console.log(config, "config");
+
 export const registerUser = createAsyncThunk(
   "user/register",
   async (payload, thunkAPI) => {
@@ -23,6 +33,19 @@ export const loginUser = createAsyncThunk(
       const response = await axios.post(API_URL + "/login", payload);
 
       localStorage.setItem("user", JSON.stringify(response.data));
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  "user/update",
+  async (payload, thunkAPI) => {
+    try {
+      const response = await axios.put("/:id", payload, config);
 
       return response.data;
     } catch (error) {

@@ -1,7 +1,9 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/logo2.png";
+import { reset } from "../redux-toolkit/userSlice";
 
 export const Container = styled.nav`
   display: flex;
@@ -71,6 +73,20 @@ export const BtnBox = styled.div`
 `;
 
 const Header = () => {
+  const user = useSelector((state) => state.user.user);
+  const admin = useSelector((state) => state.user.user?.isAdmin);
+  const token = useSelector((state) => state.user.user?.accessToken);
+
+  console.log(user);
+  console.log(token);
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    localStorage.removeItem("user");
+
+    dispatch(reset());
+  };
+
   return (
     <Container>
       <Link to="/">
@@ -95,12 +111,29 @@ const Header = () => {
         </Items>
 
         <BtnBox>
-          <Link to="/login">
-            <Button>로그인</Button>
-          </Link>
-          <Link to="/register">
-            <Button>회원가입</Button>
-          </Link>
+          {user && token ? (
+            <>
+              {admin && (
+                <Link to="/">
+                  <Button>관리자페이지</Button>
+                </Link>
+              )}
+              <Link to="/">
+                <Button>마이페이지</Button>
+              </Link>
+
+              <Button onClick={() => logout()}>로그아웃</Button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button>로그인</Button>
+              </Link>
+              <Link to="/register">
+                <Button>회원가입</Button>
+              </Link>
+            </>
+          )}
         </BtnBox>
       </NavList>
     </Container>
