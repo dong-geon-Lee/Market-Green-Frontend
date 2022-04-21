@@ -4,14 +4,12 @@ import axios from "axios";
 const API_URL = "http://localhost:5000/api/users";
 
 const TOKEN = JSON.parse(localStorage.getItem("user"))?.accessToken;
-console.log(typeof TOKEN);
+
 const config = {
   headers: {
     token: `Bearer ${TOKEN}`,
   },
 };
-
-console.log(config, "config");
 
 export const registerUser = createAsyncThunk(
   "user/register",
@@ -44,9 +42,14 @@ export const loginUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   "user/update",
   async (payload, thunkAPI) => {
-    try {
-      const response = await axios.put("/:id", payload, config);
+    console.log(payload, "목록");
 
+    const { id } = payload;
+
+    try {
+      const response = await axios.put(API_URL + `/${id}`, payload, config);
+
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -54,8 +57,21 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+export const deleteUser = createAsyncThunk(
+  "user/delete",
+  async (payload, thunkAPI) => {
+    const { id } = payload;
+
+    try {
+      await axios.delete(API_URL + `/${id}`, config);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getUsers = createAsyncThunk(
-  "user/getUser",
+  "user/getUsers",
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(API_URL);
@@ -110,6 +126,35 @@ const userSlice = createSlice({
     [loginUser.rejected]: (state) => {
       state.isLoading = false;
       state.user = null;
+      state.error = true;
+    },
+    [updateUser.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [updateUser.fulfilled]: (state, action) => {
+      localStorage.setItem("user", JSON.stringify(action.payload));
+
+      state.isLoading = false;
+      state.user = action.payload;
+      state.error = false;
+    },
+    [updateUser.rejected]: (state) => {
+      state.isLoading = false;
+      state.user = null;
+      state.error = true;
+    },
+    [deleteUser.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [deleteUser.fulfilled]: (state) => {
+      localStorage.removeItem("user");
+      
+      state.isLoading = false;
+      state.user = null;
+      state.error = false;
+    },
+    [deleteUser.rejected]: (state) => {
+      state.isLoading = false;
       state.error = true;
     },
     [getUsers.pending]: (state) => {

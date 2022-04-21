@@ -3,3 +3,7 @@
 
 // FONT SIZE SYSTEM (px)
 // 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+"homepage": "https://dong-geon-lee.github.io/Market-Green-Frontend/",
+"predeploy": "npm run build",
+"deploy": "gh-pages -d build"

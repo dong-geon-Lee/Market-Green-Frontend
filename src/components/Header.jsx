@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -77,8 +77,6 @@ const Header = () => {
   const admin = useSelector((state) => state.user.user?.isAdmin);
   const token = useSelector((state) => state.user.user?.accessToken);
 
-  console.log(user);
-  console.log(token);
   const dispatch = useDispatch();
 
   const logout = () => {

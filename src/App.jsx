@@ -11,9 +11,11 @@ import Login from "./pages/Login";
 import Header from "./components/Header";
 import Profile from "./pages/Profile";
 import { useSelector } from "react-redux";
+import ProfileEdit from "./pages/ProfileEdit";
 
 const App = () => {
-  const auth = useSelector((state) => state.user.user?.accessToken);
+  // const auth = useSelector((state) => state.user.user?.accessToken);
+  const auth = useSelector((state) => state.user.user);
 
   return (
     <Router>
@@ -25,6 +27,10 @@ const App = () => {
         <Route
           path="/profile"
           element={auth ? <Profile /> : <Navigate replace to="/" />}
+        ></Route>
+        <Route
+          path="/profileEdit"
+          element={auth ? <ProfileEdit /> : <Navigate replace to="/" />}
         ></Route>
       </Routes>
     </Router>

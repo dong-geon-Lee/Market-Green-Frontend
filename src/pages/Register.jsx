@@ -70,6 +70,7 @@ const Button = styled.button`
   background-color: #4ba87d;
   text-transform: uppercase;
   letter-spacing: 1.75px;
+  border-radius: 9px;
 `;
 
 const Register = () => {

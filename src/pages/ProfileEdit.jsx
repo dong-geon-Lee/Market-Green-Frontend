@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../redux-toolkit/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../redux-toolkit/userSlice";
 import { useNavigate } from "react-router-dom";
 
 export const Container = styled.div`
@@ -9,7 +9,7 @@ export const Container = styled.div`
       rgba(255, 255, 255, 0.6),
       rgba(255, 255, 255, 0.6)
     ),
-    url("https://images.unsplash.com/photo-1534054950205-cb5a7f00180a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80");
+    url("https://images.unsplash.com/photo-1459156212016-c812468e2115?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1305&q=80");
   background-size: cover;
   background-position: center;
   width: 100vw;
@@ -50,36 +50,54 @@ export const Label = styled.label`
 export const Input = styled.input`
   width: 100%;
   padding: 1.2rem;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-family: inherit;
   border: 1px solid #9f9f9f;
   border-radius: 9px;
 `;
 
-const Button = styled.button`
+export const BtnBox = styled.div`
+  display: flex;
+  gap: 3.2rem;
+`;
+
+export const Button = styled.button`
   display: block;
   grid-column: 1 / -1;
   padding: 1.6rem;
   border: none;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   font-family: inherit;
   margin: 1.2rem 0;
   color: #fff;
-  background-color: #4ba87d;
+  background-color: #fa5252;
   text-transform: uppercase;
   letter-spacing: 1.75px;
+  width: 100%;
   border-radius: 9px;
+
+  & + button {
+    background-color: #4ba87d;
+  }
 `;
 
-const Login = () => {
+const ProfileEdit = () => {
+  const { user } = useSelector((state) => state.user);
+  const { _id } = useSelector((state) => state.user.user);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
-    email: "",
+    name: user.name,
+    email: user.email,
     password: "",
+    password2: "",
   });
 
-  const { email, password } = userData;
+  const { name, email, password, password2 } = userData;
 
   const onChange = (e) => {
     setUserData((prevState) => ({
@@ -88,36 +106,47 @@ const Login = () => {
     }));
   };
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      alert("add email or password");
+    if (password !== password2) {
+      alert("password not correct!");
       return;
     }
 
     const newUser = {
+      id: _id,
+      name,
       email,
       password,
     };
 
-    dispatch(loginUser(newUser));
+    dispatch(updateUser(newUser));
 
     setUserData({
+      name: "",
       email: "",
       password: "",
+      password2: "",
     });
 
-    navigate("/");
+    navigate("/profile");
   };
 
   return (
     <Container>
       <Wrapper>
         <Form onSubmit={onSubmit}>
+          <Box>
+            <Label>Name</Label>
+            <Input
+              type="text"
+              name="name"
+              value={name}
+              onChange={onChange}
+              placeholder="Enter name..."
+            />
+          </Box>
           <Box>
             <Label>E-mail</Label>
             <Input
@@ -138,12 +167,26 @@ const Login = () => {
               placeholder="Enter password..."
             />
           </Box>
-
-          <Button type="submit">로그인</Button>
+          <Box>
+            <Label>Password Confirm</Label>
+            <Input
+              type="password"
+              name="password2"
+              value={password2}
+              onChange={onChange}
+              placeholder="Password Confirm..."
+            />
+          </Box>
+          <BtnBox>
+            <Button type="submit">변경하기</Button>
+            <Button type="button" onClick={() => navigate(-1)}>
+              뒤로가기
+            </Button>
+          </BtnBox>
         </Form>
       </Wrapper>
     </Container>
   );
 };
 
-export default Login;
+export default ProfileEdit;

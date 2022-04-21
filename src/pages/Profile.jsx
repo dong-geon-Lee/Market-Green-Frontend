@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { deleteUser } from "../redux-toolkit/userSlice";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -64,13 +65,31 @@ const Button = styled.button`
   font-family: inherit;
   margin: 1.2rem 0;
   color: #fff;
-  background-color: #4ba87d;
   text-transform: uppercase;
   letter-spacing: 1.75px;
   width: 100%;
+  background-color: #fa5252;
+  border-radius: 9px;
+`;
 
-  & + button {
-    background-color: #fa5252;
+export const LinkBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.6rem;
+  cursor: pointer;
+  margin: 1.2rem 0;
+  background-color: #4ba87d;
+  width: 100%;
+  border-radius: 9px;
+
+  & a {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: inherit;
+    text-decoration: none;
+    letter-spacing: 1.75px;
+    color: #fff;
   }
 `;
 
@@ -81,34 +100,17 @@ export const UserText = styled.p`
 `;
 
 const Profile = () => {
-  const { name, email, password } = useSelector((state) => state.user.user);
-
-  const onChange = (e) => {
-    // setUserData((prevState) => ({
-    //   ...prevState,
-    //   [e.target.name]: e.target.value,
-    // }));
-  };
+  const { _id, name, email } = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
-    // e.preventDefault();
-    // if (!email || !password) {
-    //   alert("add email or password");
-    //   return;
-    // }
-    // const newUser = {
-    //   email,
-    //   password,
-    // };
-    // dispatch(loginUser(newUser));
-    // setUserData({
-    //   email: "",
-    //   password: "",
-    // });
-    // navigate("/");
+    e.preventDefault();
+
+    dispatch(deleteUser({ id: _id }));
+
+    navigate("/");
   };
 
   return (
@@ -126,7 +128,9 @@ const Profile = () => {
           </Box>
 
           <BtnBox>
-            <Button type="submit">프로필 변경</Button>
+            <LinkBox>
+              <Link to="/profileEdit">프로필 변경</Link>
+            </LinkBox>
             <Button type="submit">회원 탈퇴</Button>
           </BtnBox>
         </Form>
