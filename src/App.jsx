@@ -12,9 +12,9 @@ import Header from "./components/Header";
 import Profile from "./pages/Profile";
 import { useSelector } from "react-redux";
 import ProfileEdit from "./pages/ProfileEdit";
+import Product from "./pages/Product";
 
 const App = () => {
-  // const auth = useSelector((state) => state.user.user?.accessToken);
   const auth = useSelector((state) => state.user.user);
 
   return (
@@ -32,6 +32,7 @@ const App = () => {
           path="/profileEdit"
           element={auth ? <ProfileEdit /> : <Navigate replace to="/" />}
         ></Route>
+        <Route path="/product/:id" element={<Product />}></Route>
       </Routes>
     </Router>
   );
