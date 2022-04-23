@@ -112,7 +112,7 @@ const Header = () => {
           {user && token ? (
             <>
               {admin && (
-                <Link to="/">
+                <Link to="/admin">
                   <Button>관리자페이지</Button>
                 </Link>
               )}

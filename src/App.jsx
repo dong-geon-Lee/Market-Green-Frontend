@@ -12,8 +12,9 @@ import Header from "./components/Header";
 import Profile from "./pages/Profile";
 import { useSelector } from "react-redux";
 import ProfileEdit from "./pages/ProfileEdit";
-import Product from "./pages/Product";
 import ProductForm from "./admin/pages/ProductForm";
+import Admin from "./admin/pages/Admin";
+import Product from "./pages/Product";
 
 const App = () => {
   // const auth = useSelector((state) => state.user.user);
@@ -27,6 +28,7 @@ const App = () => {
         <Route index path="/" element={<Home />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        {/* <Route path="/product/:id" element={<Product />}></Route> */}
         <Route
           path="/profile"
           element={user ? <Profile /> : <Navigate replace to="/" />}
@@ -35,7 +37,10 @@ const App = () => {
           path="/profileEdit"
           element={user ? <ProfileEdit /> : <Navigate replace to="/" />}
         ></Route>
-        <Route path="/product/:id" element={<Product />}></Route>
+        <Route
+          path="/admin"
+          element={admin ? <Admin /> : <Navigate replace to="/" />}
+        ></Route>
         <Route
           path="/productForm"
           element={admin ? <ProductForm /> : <Navigate replace to="/" />}

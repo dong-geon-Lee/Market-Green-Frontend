@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setProduct } from "../../redux-toolkit/productSlice";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -26,10 +27,10 @@ export const Wrapper = styled.div`
 
 export const Form = styled.form`
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   column-gap: 3.2rem;
   row-gap: 4.8rem;
-  width: 40rem;
+  width: 60rem;
 `;
 
 export const Box = styled.div`
@@ -55,14 +56,9 @@ export const Input = styled.input`
   border-radius: 9px;
 `;
 
-export const BtnBox = styled.div`
-  display: flex;
-  gap: 3.2rem;
-`;
-
-export const Button = styled.button`
+const Button = styled.button`
   display: block;
-  grid-column: 1 / -1;
+  grid-column: 1 / 2;
   padding: 1.6rem;
   border: none;
   cursor: pointer;
@@ -71,32 +67,29 @@ export const Button = styled.button`
   font-family: inherit;
   margin: 1.2rem 0;
   color: #fff;
-  background-color: #fa5252;
+  background-color: #4ba87d;
   text-transform: uppercase;
   letter-spacing: 1.75px;
-  width: 100%;
   border-radius: 9px;
 
   & + button {
-    background-color: #4ba87d;
+    grid-row: 4 / 5;
+    grid-column: 2 / 3;
+    background-color: #fa5252;
   }
 `;
 
 const ProductForm = () => {
-  const { user } = useSelector((state) => state.user);
-  const { _id } = useSelector((state) => state.user.user);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const [userData, setUserData] = useState({
-    name: user.name,
-    email: user.email,
-    password: "",
-    password2: "",
+    img: "",
+    title: "",
+    desc: "",
+    price: "",
+    categories: "",
+    inStock: "",
   });
 
-  const { name, email, password, password2 } = userData;
+  const { img, title, desc, price, categories, inStock } = userData;
 
   const onChange = (e) => {
     setUserData((prevState) => ({
@@ -105,83 +98,103 @@ const ProductForm = () => {
     }));
   };
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (password !== password2) {
-      alert("password not correct!");
-      return;
-    }
+    const formData = new FormData();
 
-    const newUser = {
-      id: _id,
-      name,
-      email,
-      password,
-    };
+    formData.append("img", img);
+    formData.append("title", title);
+    formData.append("desc", desc);
+    formData.append("price", price);
+    formData.append("categories", categories);
+    formData.append("inStock", inStock);
 
-    // dispatch(updateUser(newUser));
+    dispatch(setProduct(formData));
 
-    setUserData({
-      name: "",
-      email: "",
-      password: "",
-      password2: "",
-    });
+    // setUserData({
+    //   img: "",
+    //   email: "",
+    //   password: "",
+    //   password2: "",
+    // });
+  };
 
-    navigate("/profile");
+  const handleImage = (e) => {
+    setUserData({ ...userData, img: e.target.files[0] });
   };
 
   return (
     <Container>
       <Wrapper>
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={onSubmit} encType="multipart/form-data">
           <Box>
-            <Label>Name</Label>
+            <Label>이미지</Label>
+            <Input
+              type="file"
+              name="img"
+              accept=".png, .jpg, .jpeg"
+              onChange={handleImage}
+            />
+          </Box>
+          <Box>
+            <Label>상품명</Label>
             <Input
               type="text"
-              name="name"
-              value={name}
+              name="title"
+              value={title}
               onChange={onChange}
-              placeholder="Enter name..."
+              placeholder="Add title"
             />
           </Box>
           <Box>
-            <Label>E-mail</Label>
+            <Label>설명</Label>
             <Input
-              type="email"
-              name="email"
-              value={email}
+              type="text"
+              name="desc"
+              value={desc}
               onChange={onChange}
-              placeholder="Enter email..."
+              placeholder="Add desc"
             />
           </Box>
           <Box>
-            <Label>Password</Label>
+            <Label>가격</Label>
             <Input
-              type="password"
-              name="password"
-              value={password}
+              type="number"
+              name="price"
+              value={price}
               onChange={onChange}
-              placeholder="Enter password..."
+              placeholder="Add price"
             />
           </Box>
           <Box>
-            <Label>Password Confirm</Label>
+            <Label>분류</Label>
             <Input
-              type="password"
-              name="password2"
-              value={password2}
+              type="text"
+              name="categories"
+              value={categories}
               onChange={onChange}
-              placeholder="Password Confirm..."
+              placeholder="Add categories"
             />
           </Box>
-          <BtnBox>
-            <Button type="submit">변경하기</Button>
-            <Button type="button" onClick={() => navigate(-1)}>
-              뒤로가기
-            </Button>
-          </BtnBox>
+          <Box>
+            <Label>재고</Label>
+            <Input
+              type="number"
+              name="inStock"
+              value={inStock}
+              onChange={onChange}
+              placeholder="Add inStock"
+            />
+          </Box>
+
+          <Button type="submit">등록하기</Button>
+          <Button type="button" onClick={() => navigate(-1)}>
+            뒤로가기
+          </Button>
         </Form>
       </Wrapper>
     </Container>

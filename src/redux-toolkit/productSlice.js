@@ -29,6 +29,18 @@ export const setProduct = createAsyncThunk(
   }
 );
 
+export const deleteProduct = createAsyncThunk(
+  "product/delete",
+  async (payload, thunkAPI) => {
+    const { id } = payload;
+    try {
+      await axios.delete(API_URL + `/${id}`);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   products: [],
   isLoading: false,
@@ -55,6 +67,19 @@ const productSlice = createSlice({
       state.error = false;
     },
     [getProducts.rejected]: (state) => {
+      state.isLoading = false;
+      state.products = null;
+      state.error = true;
+    },
+    [setProduct.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [setProduct.fulfilled]: (state) => {
+      state.isLoading = false;
+      // state.products.push(action.payload)
+      state.error = false;
+    },
+    [setProduct.rejected]: (state) => {
       state.isLoading = false;
       state.products = null;
       state.error = true;

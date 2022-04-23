@@ -76,9 +76,14 @@ export const InfoBox = styled.div`
     margin: 0;
     padding: 0;
   }
+
+  & h2 {
+    grid-column: 4 / 6;
+    grid-row: 3 / 4;
+  }
 `;
 
-const ProductItems = ({ title, desc, price, rating, like, img }) => {
+const ProductItems = ({ title, desc, price, img, inStock }) => {
   return (
     <Container>
       <Left>
@@ -90,8 +95,7 @@ const ProductItems = ({ title, desc, price, rating, like, img }) => {
           <h1>제품명: {title}</h1>
           <h3>{desc}</h3>
           <p>가격: {price}원</p>
-          <h2>{rating}</h2>
-          <h4>Like: {like}</h4>
+          <h2>재고: {inStock}개</h2>
         </InfoBox>
       </Left>
     </Container>
