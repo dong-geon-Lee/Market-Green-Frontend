@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 import ProductItems from "./ProductItems";
 import { productDummy } from "../data/productDummy";
+import { getProducts, productReset } from "../redux-toolkit/productSlice";
 
 export const Container = styled.div`
   max-width: 130rem;
@@ -11,17 +13,31 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   gap: 2.4rem;
 `;
 
 const Products = () => {
+  const { products } = useSelector((state) => state.product);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts());
+
+    return () => {
+      dispatch(productReset());
+    };
+  }, [dispatch]);
+
+  console.log(products);
+
   return (
     <Container>
       <Wrapper>
-        {productDummy.map((data) => (
-          <ProductItems key={data.id} {...data}></ProductItems>
+        {products?.map((data) => (
+          <ProductItems key={data._id} {...data}></ProductItems>
         ))}
       </Wrapper>
     </Container>

@@ -13,9 +13,12 @@ import Profile from "./pages/Profile";
 import { useSelector } from "react-redux";
 import ProfileEdit from "./pages/ProfileEdit";
 import Product from "./pages/Product";
+import ProductForm from "./admin/pages/ProductForm";
 
 const App = () => {
-  const auth = useSelector((state) => state.user.user);
+  // const auth = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.user?.accessToken);
+  const admin = useSelector((state) => state.user.user?.isAdmin);
 
   return (
     <Router>
@@ -26,13 +29,17 @@ const App = () => {
         <Route path="/login" element={<Login />}></Route>
         <Route
           path="/profile"
-          element={auth ? <Profile /> : <Navigate replace to="/" />}
+          element={user ? <Profile /> : <Navigate replace to="/" />}
         ></Route>
         <Route
           path="/profileEdit"
-          element={auth ? <ProfileEdit /> : <Navigate replace to="/" />}
+          element={user ? <ProfileEdit /> : <Navigate replace to="/" />}
         ></Route>
         <Route path="/product/:id" element={<Product />}></Route>
+        <Route
+          path="/productForm"
+          element={admin ? <ProductForm /> : <Navigate replace to="/" />}
+        ></Route>
       </Routes>
     </Router>
   );
