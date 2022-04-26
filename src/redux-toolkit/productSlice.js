@@ -4,7 +4,7 @@ import axios from "axios";
 const API_URL = "http://localhost:5000/api/products";
 
 export const getProducts = createAsyncThunk(
-  "product/get",
+  "product/GET",
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(API_URL);
@@ -17,7 +17,7 @@ export const getProducts = createAsyncThunk(
 );
 
 export const setProduct = createAsyncThunk(
-  "product/add",
+  "product/POST",
   async (payload, thunkAPI) => {
     try {
       const response = await axios.post(API_URL, payload);
@@ -29,12 +29,30 @@ export const setProduct = createAsyncThunk(
   }
 );
 
-export const deleteProduct = createAsyncThunk(
-  "product/delete",
+export const updateProduct = createAsyncThunk(
+  "product/PUT",
   async (payload, thunkAPI) => {
     const { id } = payload;
+
     try {
-      await axios.delete(API_URL + `/${id}`);
+      const response = await axios.put(API_URL + `/${id}`);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  "product/DELETE",
+  async (payload, thunkAPI) => {
+    const { id } = payload;
+    console.log(id, "id 맞지?");
+    try {
+      const response = await axios.delete(API_URL + `/${id}`);
+      console.log(response.data, "action payload 체크");
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -82,6 +100,47 @@ const productSlice = createSlice({
     [setProduct.rejected]: (state) => {
       state.isLoading = false;
       state.products = null;
+      state.error = true;
+    },
+    [updateProduct.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [updateProduct.fulfilled]: (state, action) => {
+      const { title, desc, price, categories, inStock } = action.payload;
+      console.log(
+        title,
+        desc,
+        price,
+        categories,
+        inStock,
+        "콘솔 찍히는지 여부 "
+      );
+      state.isLoading = false;
+      state.products.map((data) => {
+        data.title = title;
+        data.desc = desc;
+        data.price = price;
+        data.categories = categories;
+        data.inStock = inStock;
+      });
+      state.error = false;
+    },
+    [updateProduct.rejected]: (state) => {
+      state.isLoading = false;
+      state.error = true;
+    },
+    [deleteProduct.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [deleteProduct.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.products = state.products.filter(
+        (data) => data._id !== action.payload.id
+      );
+      state.error = false;
+    },
+    [deleteProduct.rejected]: (state) => {
+      state.isLoading = false;
       state.error = true;
     },
   },

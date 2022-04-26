@@ -1,5 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { deleteProduct } from "../redux-toolkit/productSlice";
 
 export const Container = styled.div`
   display: flex;
@@ -81,9 +83,24 @@ export const InfoBox = styled.div`
     grid-column: 4 / 6;
     grid-row: 3 / 4;
   }
+
+  & button {
+    border: none;
+    color: red;
+    padding: 0.8rem 1.2rem;
+    background-color: #fff;
+    display: flex;
+    border-radius: 6px;
+    grid-row: 1 / 2;
+    grid-column: 5 / 6;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
 `;
 
-const ProductItems = ({ title, desc, price, img, inStock }) => {
+const ProductItems = ({ _id, title, desc, price, img, inStock }) => {
+  const dispatch = useDispatch();
+
   return (
     <Container>
       <Left>
@@ -96,6 +113,9 @@ const ProductItems = ({ title, desc, price, img, inStock }) => {
           <h3>{desc}</h3>
           <p>가격: {price}원</p>
           <h2>재고: {inStock}개</h2>
+          <button onClick={() => dispatch(deleteProduct({ id: _id }))}>
+            x
+          </button>
         </InfoBox>
       </Left>
     </Container>

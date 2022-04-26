@@ -115,12 +115,13 @@ const ProductForm = () => {
 
     dispatch(setProduct(formData));
 
-    // setUserData({
-    //   img: "",
-    //   email: "",
-    //   password: "",
-    //   password2: "",
-    // });
+    setUserData({
+      title: "",
+      desc: "",
+      price: "",
+      categories: "",
+      inStock: "",
+    });
   };
 
   const handleImage = (e) => {
