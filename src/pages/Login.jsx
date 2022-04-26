@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux-toolkit/userSlice";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -17,6 +18,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 `;
 
 export const Wrapper = styled.div`
@@ -74,12 +76,18 @@ const Button = styled.button`
 `;
 
 const Login = () => {
+  const { isLoading } = useSelector((state) => state.user);
+
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
 
   const { email, password } = userData;
+
+  useEffect(() => {
+    console.log("로딩");
+  }, []);
 
   const onChange = (e) => {
     setUserData((prevState) => ({
@@ -113,6 +121,10 @@ const Login = () => {
 
     navigate("/");
   };
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
 
   return (
     <Container>

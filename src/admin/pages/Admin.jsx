@@ -9,9 +9,9 @@ const Admin = () => {
       <Link to="/productForm">
         <h1>상품 등록하기</h1>
       </Link>
-      <Link to="/productEdit">
+      {/* <Link to="/productEdit">
         <h1>상품 수정하기</h1>
-      </Link>
+      </Link> */}
     </>
   );
 };

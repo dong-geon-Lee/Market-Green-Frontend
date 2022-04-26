@@ -33,7 +33,7 @@ export const updateProduct = createAsyncThunk(
   "product/PUT",
   async (payload, thunkAPI) => {
     const { id } = payload;
-
+    console.log(payload, "img blob");
     try {
       const response = await axios.put(API_URL + `/${id}`, payload);
 
@@ -110,16 +110,17 @@ const productSlice = createSlice({
         action.payload;
 
       state.isLoading = false;
-      state.products.map((data) => {
-        if (data._id === id) {
-          data.img = img;
-          data.title = title;
-          data.desc = desc;
-          data.price = price;
-          data.categories = categories;
-          data.inStock = inStock;
-        }
-      });
+      state.products &&
+        state.products.map((data) => {
+          if (data._id === id) {
+            data.img = img;
+            data.title = title;
+            data.desc = desc;
+            data.price = price;
+            data.categories = categories;
+            data.inStock = inStock;
+          }
+        });
       state.error = false;
     },
     [updateProduct.rejected]: (state) => {

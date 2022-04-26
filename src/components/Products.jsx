@@ -25,10 +25,10 @@ const Products = () => {
   useEffect(() => {
     dispatch(getProducts());
 
-    // return () => {
-    //   dispatch(productReset());
-    // };
-  }, [dispatch]);
+    return () => {
+      dispatch(productReset());
+    };
+  }, []);
 
   console.log(products);
 
