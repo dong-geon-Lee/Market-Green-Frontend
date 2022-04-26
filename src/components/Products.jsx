@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import ProductItems from "./ProductItems";
-import { productDummy } from "../data/productDummy";
 import { getProducts, productReset } from "../redux-toolkit/productSlice";
 
 export const Container = styled.div`
@@ -26,9 +25,9 @@ const Products = () => {
   useEffect(() => {
     dispatch(getProducts());
 
-    return () => {
-      dispatch(productReset());
-    };
+    // return () => {
+    //   dispatch(productReset());
+    // };
   }, [dispatch]);
 
   console.log(products);

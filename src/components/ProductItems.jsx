@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { deleteProduct } from "../redux-toolkit/productSlice";
 
@@ -95,11 +96,26 @@ export const InfoBox = styled.div`
     grid-column: 5 / 6;
     font-size: 1.4rem;
     cursor: pointer;
+
+    & + button {
+      grid-row: 1 / 2;
+      grid-column: 4 / 5;
+      color: green;
+    }
   }
 `;
 
-const ProductItems = ({ _id, title, desc, price, img, inStock }) => {
+const ProductItems = ({
+  _id,
+  title,
+  desc,
+  price,
+  img,
+  inStock,
+  categories,
+}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -114,7 +130,24 @@ const ProductItems = ({ _id, title, desc, price, img, inStock }) => {
           <p>가격: {price}원</p>
           <h2>재고: {inStock}개</h2>
           <button onClick={() => dispatch(deleteProduct({ id: _id }))}>
-            x
+            삭제
+          </button>
+          <button
+            onClick={() =>
+              navigate("/productEdit", {
+                state: {
+                  id: _id,
+                  title,
+                  desc,
+                  price,
+                  inStock,
+                  img,
+                  categories,
+                },
+              })
+            }
+          >
+            수정
           </button>
         </InfoBox>
       </Left>

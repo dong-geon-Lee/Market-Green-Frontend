@@ -15,9 +15,9 @@ import ProfileEdit from "./pages/ProfileEdit";
 import ProductForm from "./admin/pages/ProductForm";
 import Admin from "./admin/pages/Admin";
 import Product from "./pages/Product";
+import ProductEdit from "./admin/pages/ProductEdit";
 
 const App = () => {
-  // const auth = useSelector((state) => state.user.user);
   const user = useSelector((state) => state.user.user?.accessToken);
   const admin = useSelector((state) => state.user.user?.isAdmin);
 
@@ -44,6 +44,10 @@ const App = () => {
         <Route
           path="/productForm"
           element={admin ? <ProductForm /> : <Navigate replace to="/" />}
+        ></Route>
+        <Route
+          path="/productEdit"
+          element={admin ? <ProductEdit /> : <Navigate replace to="/" />}
         ></Route>
       </Routes>
     </Router>

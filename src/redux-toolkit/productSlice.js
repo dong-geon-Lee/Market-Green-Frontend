@@ -35,7 +35,7 @@ export const updateProduct = createAsyncThunk(
     const { id } = payload;
 
     try {
-      const response = await axios.put(API_URL + `/${id}`);
+      const response = await axios.put(API_URL + `/${id}`, payload);
 
       return response.data;
     } catch (error) {
@@ -48,10 +48,10 @@ export const deleteProduct = createAsyncThunk(
   "product/DELETE",
   async (payload, thunkAPI) => {
     const { id } = payload;
-    console.log(id, "id 맞지?");
+
     try {
       const response = await axios.delete(API_URL + `/${id}`);
-      console.log(response.data, "action payload 체크");
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -106,22 +106,19 @@ const productSlice = createSlice({
       state.isLoading = true;
     },
     [updateProduct.fulfilled]: (state, action) => {
-      const { title, desc, price, categories, inStock } = action.payload;
-      console.log(
-        title,
-        desc,
-        price,
-        categories,
-        inStock,
-        "콘솔 찍히는지 여부 "
-      );
+      const { id, title, desc, price, categories, inStock, img } =
+        action.payload;
+
       state.isLoading = false;
       state.products.map((data) => {
-        data.title = title;
-        data.desc = desc;
-        data.price = price;
-        data.categories = categories;
-        data.inStock = inStock;
+        if (data._id === id) {
+          data.img = img;
+          data.title = title;
+          data.desc = desc;
+          data.price = price;
+          data.categories = categories;
+          data.inStock = inStock;
+        }
       });
       state.error = false;
     },

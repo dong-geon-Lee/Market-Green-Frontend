@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setProduct } from "../../redux-toolkit/productSlice";
+import { useLocation, useNavigate } from "react-router-dom";
+import { updateProduct } from "../../redux-toolkit/productSlice";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -79,22 +79,26 @@ const Button = styled.button`
   }
 `;
 
-const ProductForm = () => {
-  const [userData, setUserData] = useState({
-    img: "",
-    title: "",
-    desc: "",
-    price: "",
-    categories: "",
-    inStock: "",
-  });
+const ProductEdit = () => {
+  const { state } = useLocation();
 
-  const { img, title, desc, price, categories, inStock } = userData;
+  const [userData, setUserData] = useState(state);
+
+  console.log(userData);
+
+  const { id, title, desc, price, categories, inStock, img } = userData;
 
   const onChange = (e) => {
     setUserData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleImage = (e) => {
+    setUserData((prevState) => ({
+      ...prevState,
+      img: URL.createObjectURL(e.target.files[0]),
     }));
   };
 
@@ -104,16 +108,17 @@ const ProductForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-
-    formData.append("img", img);
-    formData.append("title", title);
-    formData.append("desc", desc);
-    formData.append("price", price);
-    formData.append("categories", categories);
-    formData.append("inStock", inStock);
-
-    dispatch(setProduct(formData));
+    dispatch(
+      updateProduct({
+        id,
+        title,
+        desc,
+        price,
+        categories,
+        inStock,
+        img,
+      })
+    );
 
     setUserData({
       title: "",
@@ -122,13 +127,6 @@ const ProductForm = () => {
       categories: "",
       inStock: "",
     });
-  };
-
-  const handleImage = (e) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      img: e.target.files[0],
-    }));
   };
 
   return (
@@ -195,7 +193,7 @@ const ProductForm = () => {
             />
           </Box>
 
-          <Button type="submit">등록하기</Button>
+          <Button type="submit">업데이트</Button>
           <Button type="button" onClick={() => navigate(-1)}>
             뒤로가기
           </Button>
@@ -205,4 +203,4 @@ const ProductForm = () => {
   );
 };
 
-export default ProductForm;
+export default ProductEdit;
