@@ -128,7 +128,7 @@ const ProductEdit = () => {
 
     setTimeout(() => {
       dispatch(offSpinner(false));
-    }, 2000);
+    }, 1500);
 
     setUserData({
       title: "",

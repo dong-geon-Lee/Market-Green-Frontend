@@ -120,7 +120,7 @@ const Register = () => {
     setTimeout(() => {
       dispatch(offSpinner(false));
       navigate("/login");
-    }, 2000);
+    }, 1500);
   };
 
   return (

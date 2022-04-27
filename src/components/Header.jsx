@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/logo2.png";
 import { reset } from "../redux-toolkit/userSlice";
+import { BsFillCartFill } from "react-icons/bs";
 
 export const Container = styled.nav`
   display: flex;
@@ -67,9 +68,38 @@ export const Button = styled.button`
 `;
 
 export const BtnBox = styled.div`
+  display: flex;
+  align-items: center;
+
   &:last-child button {
     margin-left: 1.2rem;
   }
+`;
+
+export const CartBox = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  & svg {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 0rem 0 1.5rem;
+  }
+`;
+
+export const CartText = styled.span`
+  display: inline-block;
+  font-weight: 500;
+  font-size: 2rem;
+  position: absolute;
+  top: 0%;
+  right: -40%;
+  transform: translate(-50%, -50%);
+  background-color: beige;
+  padding: 0.6rem;
+  border-radius: 50%;
 `;
 
 const Header = () => {
@@ -119,8 +149,12 @@ const Header = () => {
               <Link to="/profile">
                 <Button>마이페이지</Button>
               </Link>
-
               <Button onClick={() => logout()}>로그아웃</Button>
+
+              <CartBox>
+                <BsFillCartFill />
+                <CartText>1</CartText>
+              </CartBox>
             </>
           ) : (
             <>

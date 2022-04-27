@@ -121,7 +121,7 @@ const Login = () => {
     setTimeout(() => {
       dispatch(offSpinner(false));
       navigate("/");
-    }, 2000);
+    }, 1500);
   };
 
   return (
