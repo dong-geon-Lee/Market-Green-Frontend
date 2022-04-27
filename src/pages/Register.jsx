@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../redux-toolkit/userSlice";
 import { useNavigate } from "react-router-dom";
+import { offSpinner, onSpinner } from "../redux-toolkit/spinnerSlice";
+import Spinner from "../components/Spinner";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -74,6 +76,8 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const isLoading = useSelector((state) => state.spinner.isLoading);
+
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -111,12 +115,18 @@ const Register = () => {
       password2: "",
     });
 
-    navigate("/login");
+    dispatch(onSpinner(true));
+
+    setTimeout(() => {
+      dispatch(offSpinner(false));
+      navigate("/login");
+    }, 2000);
   };
 
   return (
     <Container>
       <Wrapper>
+        {isLoading && <Spinner></Spinner>}
         <Form onSubmit={onSubmit}>
           <Box>
             <Label>Name</Label>

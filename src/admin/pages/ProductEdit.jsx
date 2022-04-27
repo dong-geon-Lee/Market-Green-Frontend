@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { updateProduct } from "../../redux-toolkit/productSlice";
+import Spinner from "../../components/Spinner";
+import { offSpinner, onSpinner } from "../../redux-toolkit/spinnerSlice";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -80,6 +82,8 @@ const Button = styled.button`
 `;
 
 const ProductEdit = () => {
+  const isLoading = useSelector((state) => state.spinner.isLoading);
+
   const { state } = useLocation();
 
   const [userData, setUserData] = useState(state);
@@ -120,6 +124,12 @@ const ProductEdit = () => {
       })
     );
 
+    dispatch(onSpinner(true));
+
+    setTimeout(() => {
+      dispatch(offSpinner(false));
+    }, 2000);
+
     setUserData({
       title: "",
       desc: "",
@@ -132,6 +142,7 @@ const ProductEdit = () => {
   return (
     <Container>
       <Wrapper>
+        {isLoading && <Spinner></Spinner>}
         <Form onSubmit={onSubmit} encType="multipart/form-data">
           <Box>
             <Label>이미지</Label>
