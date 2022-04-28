@@ -16,6 +16,7 @@ import ProductForm from "./admin/pages/ProductForm";
 import Admin from "./admin/pages/Admin";
 import Product from "./pages/Product";
 import ProductEdit from "./admin/pages/ProductEdit";
+import Carts from "./pages/Carts";
 
 const App = () => {
   const user = useSelector((state) => state.user.user?.accessToken);
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/product/:id" element={<Product />}></Route>
+        <Route path="/carts" element={<Carts />}></Route>
         <Route
           path="/profile"
           element={user ? <Profile /> : <Navigate replace to="/" />}

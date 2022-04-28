@@ -1,4 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+const API_URL = "http://localhost:5000/api/carts";
+
+export const addProductCart = createAsyncThunk(
+  "carts/POST",
+  async (payload, thunkAPI) => {
+    try {
+      const response = await axios.post(API_URL, payload);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 const initialState = {
   products: [],
@@ -11,6 +27,13 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addCartProduct: (state, action) => {
+      state.quantity += 1;
+      state.products.push(action.payload);
+      state.total += action.payload.price * action.payload.quantity;
+    },
+  },
+  extraReducers: {
+    [addProductCart.fulfilled]: (state, action) => {
       state.quantity += 1;
       state.products.push(action.payload);
       state.total += action.payload.price * action.payload.quantity;

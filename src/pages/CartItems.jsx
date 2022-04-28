@@ -1,9 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addCartProduct } from "../redux-toolkit/cartSlice";
-import { getCarts } from "../redux-toolkit/cartSlice";
 
 export const Container = styled.div`
   display: flex;
@@ -104,56 +100,47 @@ export const OrderBtn = styled.button`
   }
 `;
 
-const Product = () => {
-  const { state: userData } = useLocation();
-  const dispatch = useDispatch();
-
-  const [quantity, setQuantity] = useState(1);
-
-  console.log("why?", userData);
-  const { img } = userData;
-  const handleClick = () => {
-    console.log(userData);
-
-    dispatch(
-      addCartProduct({
-        ...userData,
-        quantity,
-      })
-    );
-  };
-
+const CartItems = ({
+  title,
+  desc,
+  price,
+  inStock,
+  img,
+  categories,
+  qty,
+  total,
+}) => {
   return (
     <Container>
       <Wrapper>
         <ImgBox>
-          <Image
-            src={img.startsWith("blob") ? `${img}` : `/${img}`}
-            alt={userData.categories}
-          />
+          <Image src={img} alt={categories} />
         </ImgBox>
+
         <ProductGroup>
           <InfoBox>
-            <Title>제목: {userData.title}</Title>
-            <Desc>설명: {userData.desc}</Desc>
-            <Price>가격: {userData.price}</Price>
-            <Stock>재고: {userData.inStock}</Stock>
+            <Title>제목: {title}</Title>
+            <Desc>설명: {desc}</Desc>
+            <Price>가격: {price}</Price>
+            <Stock>재고: {inStock}</Stock>
           </InfoBox>
 
           <CartBtnBox>
-            <CartBtn onClick={() => setQuantity(quantity - 1)}>-</CartBtn>
-            <CartText>{quantity}</CartText>
-            <CartBtn onClick={() => setQuantity(quantity + 1)}>+</CartBtn>
+            <CartBtn>-</CartBtn>
+            <CartText>{qty}</CartText>
+            <CartBtn>+</CartBtn>
           </CartBtnBox>
 
           <OrderBtnBox>
             <OrderBtn>취소하기</OrderBtn>
-            <OrderBtn onClick={handleClick}>장바구니에 담기</OrderBtn>
+            <OrderBtn>장바구니에 담기</OrderBtn>
           </OrderBtnBox>
         </ProductGroup>
+
+        <h1>{total}</h1>
       </Wrapper>
     </Container>
   );
 };
 
-export default Product;
+export default CartItems;

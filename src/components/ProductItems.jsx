@@ -96,11 +96,20 @@ export const InfoBox = styled.div`
     grid-column: 5 / 6;
     font-size: 1.4rem;
     cursor: pointer;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    cursor: pointer;
 
     & + button {
       grid-row: 1 / 2;
       grid-column: 4 / 5;
       color: green;
+    }
+
+    & + button + button {
+      grid-row: 2 / 3;
+      grid-column: 5 / 6;
+      color: black;
     }
   }
 `;
@@ -148,6 +157,23 @@ const ProductItems = ({
             }
           >
             수정
+          </button>
+          <button
+            onClick={() =>
+              navigate(`/product/${_id}`, {
+                state: {
+                  id: _id,
+                  title,
+                  desc,
+                  price,
+                  inStock,
+                  img,
+                  categories,
+                },
+              })
+            }
+          >
+            정보
           </button>
         </InfoBox>
       </Left>

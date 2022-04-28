@@ -98,7 +98,7 @@ export const CartText = styled.span`
   right: -40%;
   transform: translate(-50%, -50%);
   background-color: beige;
-  padding: 0.6rem;
+  padding: 0.5rem;
   border-radius: 50%;
 `;
 
@@ -114,6 +114,8 @@ const Header = () => {
 
     dispatch(reset());
   };
+
+  const { quantity } = useSelector((state) => state.cart);
 
   return (
     <Container>
@@ -151,10 +153,12 @@ const Header = () => {
               </Link>
               <Button onClick={() => logout()}>로그아웃</Button>
 
-              <CartBox>
-                <BsFillCartFill />
-                <CartText>1</CartText>
-              </CartBox>
+              <Link to="/carts">
+                <CartBox>
+                  <BsFillCartFill />
+                  <CartText>{quantity}</CartText>
+                </CartBox>
+              </Link>
             </>
           ) : (
             <>
