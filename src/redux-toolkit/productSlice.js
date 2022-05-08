@@ -19,8 +19,17 @@ export const getProducts = createAsyncThunk(
 export const setProduct = createAsyncThunk(
   "product/POST",
   async (payload, thunkAPI) => {
+    const TOKEN = thunkAPI.getState().user.user?.accessToken;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
+
     try {
-      const response = await axios.post(API_URL, payload);
+      const response = await axios.post(API_URL, payload, config);
 
       return response.data;
     } catch (error) {
@@ -33,9 +42,20 @@ export const updateProduct = createAsyncThunk(
   "product/PUT",
   async (payload, thunkAPI) => {
     const { id } = payload;
+
     console.log(payload, "img blob");
+
+    const TOKEN = thunkAPI.getState().user.user?.accessToken;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
+
     try {
-      const response = await axios.put(API_URL + `/${id}`, payload);
+      const response = await axios.put(API_URL + `/${id}`, payload, config);
 
       return response.data;
     } catch (error) {
@@ -49,8 +69,17 @@ export const deleteProduct = createAsyncThunk(
   async (payload, thunkAPI) => {
     const { id } = payload;
 
+    const TOKEN = thunkAPI.getState().user.user?.accessToken;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
+
     try {
-      const response = await axios.delete(API_URL + `/${id}`);
+      const response = await axios.delete(API_URL + `/${id}`, config);
 
       return response.data;
     } catch (error) {

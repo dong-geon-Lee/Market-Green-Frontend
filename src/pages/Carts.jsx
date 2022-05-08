@@ -5,13 +5,14 @@ import CartItems from "./CartItems";
 const Carts = () => {
   const { products, total } = useSelector((state) => state.cart);
 
-  console.log(products, "?");
-  console.log(products.price);
-  console.log(products.quantity);
+  // const item = JSON.parse(localStorage.getItem("item"));
 
+  // console.log(item);
+
+  console.log(JSON.parse(localStorage.getItem("item")));
   return (
     <>
-      {products.map((cart, index) => (
+      {products?.map((cart, index) => (
         <CartItems key={index} {...cart} qty={cart.quantity}></CartItems>
       ))}
 

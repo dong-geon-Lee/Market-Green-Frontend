@@ -3,13 +3,13 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5000/api/users";
 
-const TOKEN = JSON.parse(localStorage.getItem("user"))?.accessToken;
+// const TOKEN = JSON.parse(localStorage.getItem("user"))?.accessToken;
 
-const config = {
-  headers: {
-    token: `Bearer ${TOKEN}`,
-  },
-};
+// const config = {
+//   headers: {
+//     Authorization: `Bearer ${TOKEN}`,
+//   },
+// };
 
 export const registerUser = createAsyncThunk(
   "user/register",
@@ -45,6 +45,14 @@ export const updateUser = createAsyncThunk(
     console.log(payload, "목록");
 
     const { id } = payload;
+    const TOKEN = thunkAPI.getState().user.user?.accessToken;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
 
     try {
       const response = await axios.put(API_URL + `/${id}`, payload, config);
@@ -61,6 +69,14 @@ export const deleteUser = createAsyncThunk(
   "user/delete",
   async (payload, thunkAPI) => {
     const { id } = payload;
+
+    const TOKEN = thunkAPI.getState().user.user.accessToken;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
 
     try {
       await axios.delete(API_URL + `/${id}`, config);
@@ -83,10 +99,12 @@ export const getUsers = createAsyncThunk(
   }
 );
 
-const user = JSON.parse(localStorage.getItem("user"));
+const userToken = JSON.parse(localStorage.getItem("user"))
+  ? JSON.parse(localStorage.getItem("user"))
+  : null;
 
 const initialState = {
-  user: user ? user : null,
+  user: userToken,
   isLoading: false,
   error: false,
 };
@@ -108,12 +126,10 @@ const userSlice = createSlice({
     [registerUser.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.user = action.payload;
-      state.error = false;
     },
-    [registerUser.rejected]: (state) => {
+    [registerUser.rejected]: (state, action) => {
       state.isLoading = false;
-      state.user = null;
-      state.error = true;
+      state.error = action.payload;
     },
     [loginUser.pending]: (state) => {
       state.isLoading = true;
@@ -121,34 +137,29 @@ const userSlice = createSlice({
     [loginUser.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.user = action.payload;
-      state.error = false;
     },
-    [loginUser.rejected]: (state) => {
+    [loginUser.rejected]: (state, action) => {
       state.isLoading = false;
-      state.user = null;
-      state.error = true;
+      state.error = action.payload;
     },
     [updateUser.pending]: (state) => {
       state.isLoading = true;
     },
     [updateUser.fulfilled]: (state, action) => {
-      localStorage.setItem("user", JSON.stringify(action.payload));
-
       state.isLoading = false;
       state.user = action.payload;
-      state.error = false;
+      localStorage.setItem("user", JSON.stringify(action.payload));
     },
-    [updateUser.rejected]: (state) => {
+    [updateUser.rejected]: (state, action) => {
       state.isLoading = false;
-      state.user = null;
-      state.error = true;
+      state.error = action.payload;
     },
     [deleteUser.pending]: (state) => {
       state.isLoading = true;
     },
     [deleteUser.fulfilled]: (state) => {
       localStorage.removeItem("user");
-      
+
       state.isLoading = false;
       state.user = null;
       state.error = false;

@@ -87,6 +87,8 @@ const ProfileEdit = () => {
   const { user } = useSelector((state) => state.user);
   const { _id } = useSelector((state) => state.user.user);
 
+  console.log(user);
+  console.log(_id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

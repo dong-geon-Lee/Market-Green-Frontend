@@ -3,11 +3,25 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5000/api/carts";
 
-export const addProductCart = createAsyncThunk(
-  "carts/POST",
+export const addToCart = createAsyncThunk(
+  "ADD/cart",
   async (payload, thunkAPI) => {
+    const { id } = payload;
+
     try {
-      const response = await axios.post(API_URL, payload);
+      const { data } = await axios.get(`/api/products/${id}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getProducts = createAsyncThunk(
+  "carts/GET",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(API_URL);
 
       return response.data;
     } catch (error) {
@@ -16,28 +30,31 @@ export const addProductCart = createAsyncThunk(
   }
 );
 
+const cartItemStorage = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+
+const shippingAddressStorage = localStorage.getItem("shippingAddress")
+  ? JSON.parse(localStorage.getItem("shippingAddress"))
+  : {};
+
 const initialState = {
-  products: [],
-  quantity: 0,
-  total: 0,
+  cartItems: cartItemStorage,
+  shippingAddress: shippingAddressStorage,
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addCartProduct: (state, action) => {
-      state.quantity += 1;
-      state.products.push(action.payload);
-      state.total += action.payload.price * action.payload.quantity;
+    removeFromCart: (state, action) => {
+      state.cartItems = state.cartItems.filter(
+        (cart) => cart.product !== action.payload
+      );
     },
   },
   extraReducers: {
-    [addProductCart.fulfilled]: (state, action) => {
-      state.quantity += 1;
-      state.products.push(action.payload);
-      state.total += action.payload.price * action.payload.quantity;
-    },
+    [addToCart.fulfilled]: (state, action) => {},
   },
 });
 

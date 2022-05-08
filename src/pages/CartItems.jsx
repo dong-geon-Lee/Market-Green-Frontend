@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 `;
 
 export const ImgBox = styled.div``;
@@ -121,7 +121,7 @@ const CartItems = ({
           <InfoBox>
             <Title>제목: {title}</Title>
             <Desc>설명: {desc}</Desc>
-            <Price>가격: {price}</Price>
+            <Price>가격: {price * qty}</Price>
             <Stock>재고: {inStock}</Stock>
           </InfoBox>
 
@@ -131,10 +131,10 @@ const CartItems = ({
             <CartBtn>+</CartBtn>
           </CartBtnBox>
 
-          <OrderBtnBox>
+          {/* <OrderBtnBox>
             <OrderBtn>취소하기</OrderBtn>
             <OrderBtn>장바구니에 담기</OrderBtn>
-          </OrderBtnBox>
+          </OrderBtnBox> */}
         </ProductGroup>
 
         <h1>{total}</h1>

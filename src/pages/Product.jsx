@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addCartProduct } from "../redux-toolkit/cartSlice";
+import { addCartProduct, addProductCart } from "../redux-toolkit/cartSlice";
 import { getCarts } from "../redux-toolkit/cartSlice";
 
 export const Container = styled.div`
@@ -106,12 +106,14 @@ export const OrderBtn = styled.button`
 
 const Product = () => {
   const { state: userData } = useLocation();
-  const dispatch = useDispatch();
+  const { img } = userData;
 
   const [quantity, setQuantity] = useState(1);
 
+  const dispatch = useDispatch();
+
   console.log("why?", userData);
-  const { img } = userData;
+
   const handleClick = () => {
     console.log(userData);
 
@@ -121,6 +123,7 @@ const Product = () => {
         quantity,
       })
     );
+    // dispatch(addProductCart({ ...userData, quantity }));
   };
 
   return (
