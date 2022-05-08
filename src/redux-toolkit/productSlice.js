@@ -4,7 +4,7 @@ import axios from "axios";
 const API_URL = "http://localhost:5000/api/products";
 
 export const getProducts = createAsyncThunk(
-  "product/GET",
+  "products/GET",
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(API_URL);
@@ -16,6 +16,23 @@ export const getProducts = createAsyncThunk(
   }
 );
 
+export const getProduct = createAsyncThunk(
+  "product/GET",
+  async (payload, thunkAPI) => {
+    const productId = payload;
+    const TOKEN = thunkAPI.getState().user.user?.accessToken;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
+
+    const { data } = await axios.get(API_URL + `/${productId}`, config);
+    return data;
+  }
+);
+
 export const setProduct = createAsyncThunk(
   "product/POST",
   async (payload, thunkAPI) => {
@@ -23,7 +40,6 @@ export const setProduct = createAsyncThunk(
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${TOKEN}`,
       },
     };
@@ -49,7 +65,6 @@ export const updateProduct = createAsyncThunk(
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${TOKEN}`,
       },
     };
@@ -73,7 +88,6 @@ export const deleteProduct = createAsyncThunk(
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${TOKEN}`,
       },
     };
@@ -90,6 +104,7 @@ export const deleteProduct = createAsyncThunk(
 
 const initialState = {
   products: [],
+  product: "",
   isLoading: false,
   error: false,
 };
@@ -116,6 +131,19 @@ const productSlice = createSlice({
     [getProducts.rejected]: (state) => {
       state.isLoading = false;
       state.products = null;
+      state.error = true;
+    },
+    [getProduct.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getProduct.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.product = action.payload;
+      state.error = false;
+    },
+    [getProduct.rejected]: (state) => {
+      state.isLoading = false;
+      state.product = null;
       state.error = true;
     },
     [setProduct.pending]: (state) => {

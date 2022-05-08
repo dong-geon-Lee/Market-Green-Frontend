@@ -115,7 +115,7 @@ const Header = () => {
     dispatch(reset());
   };
 
-  const { quantity } = useSelector((state) => state.cart);
+  const { cartItems } = useSelector((state) => state.cart);
 
   return (
     <Container>
@@ -153,10 +153,10 @@ const Header = () => {
               </Link>
               <Button onClick={() => logout()}>로그아웃</Button>
 
-              <Link to="/carts">
+              <Link to="/cart">
                 <CartBox>
                   <BsFillCartFill />
-                  <CartText>{quantity}</CartText>
+                  <CartText>{cartItems.length}</CartText>
                 </CartBox>
               </Link>
             </>

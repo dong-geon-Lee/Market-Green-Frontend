@@ -1,22 +1,37 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation, useParams } from "react-router-dom";
+import { addToCart } from "../redux-toolkit/cartSlice";
 import CartItems from "./CartItems";
 
 const Carts = () => {
-  const { products, total } = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
 
-  // const item = JSON.parse(localStorage.getItem("item"));
+  const id = useParams();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
-  // console.log(item);
+  const quantity = location.search ? Number(location.search.split("=")[1]) : 1;
 
-  console.log(JSON.parse(localStorage.getItem("item")));
+  useEffect(() => {
+    if (id) {
+      dispatch(addToCart({ id, quantity }));
+    }
+  }, [dispatch, id, quantity]);
+
+  // useEffect(() => {
+  //   if (id) {
+  //     dispatch(addToCart({ id, quantity }));
+  //   }
+  // }, []);
+
   return (
     <>
-      {products?.map((cart, index) => (
+      {cartItems?.map((cart, index) => (
         <CartItems key={index} {...cart} qty={cart.quantity}></CartItems>
       ))}
-
-      <h1>{total}</h1>
+      <h1>what render list</h1>
     </>
   );
 };

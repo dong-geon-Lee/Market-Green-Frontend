@@ -1,16 +1,36 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/carts";
+const API_URL = "http://localhost:5000/api/products";
 
 export const addToCart = createAsyncThunk(
   "ADD/cart",
   async (payload, thunkAPI) => {
-    const { id } = payload;
+    const {
+      id: { id },
+      quantity,
+    } = payload;
+
+    const TOKEN = thunkAPI.getState().user.user?.accessToken;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
 
     try {
-      const { data } = await axios.get(`/api/products/${id}`);
-      return data;
+      const { data } = await axios.get(API_URL + `/${id}`, config);
+      console.log(data);
+
+      return {
+        product: data._id,
+        title: data.title,
+        img: data.img,
+        price: data.price,
+        inStock: data.inStock,
+        quantity,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -39,7 +59,8 @@ const shippingAddressStorage = localStorage.getItem("shippingAddress")
   : {};
 
 const initialState = {
-  cartItems: cartItemStorage,
+  // cartItems: cartItemStorage ? cartItemStorage : [],
+  cartItems: [],
   shippingAddress: shippingAddressStorage,
 };
 
@@ -54,7 +75,22 @@ const cartSlice = createSlice({
     },
   },
   extraReducers: {
-    [addToCart.fulfilled]: (state, action) => {},
+    [addToCart.fulfilled]: (state, action) => {
+      const existItem = state.cartItems.find(
+        (x) => x.product === action.payload.product
+      );
+
+      if (existItem) {
+        state.cartItems.map((x) =>
+          x.product === existItem.product ? action.payload : x
+        );
+      } else {
+        state.cartItems = [...state.cartItems, action.payload];
+      }
+      // localStorage.setItem("cartItems", JSON.stringify(action.payload));
+      console.log(action.payload, "내 생각이 맞나?");
+      // state.cartItems = [...state.cartItems, action.payload];
+    },
   },
 });
 

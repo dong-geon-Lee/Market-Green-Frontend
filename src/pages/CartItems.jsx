@@ -100,21 +100,12 @@ export const OrderBtn = styled.button`
   }
 `;
 
-const CartItems = ({
-  title,
-  desc,
-  price,
-  inStock,
-  img,
-  categories,
-  qty,
-  total,
-}) => {
+const CartItems = ({ title, desc, price, inStock, img, qty, total }) => {
   return (
     <Container>
       <Wrapper>
         <ImgBox>
-          <Image src={img} alt={categories} />
+          <Image src={img} />
         </ImgBox>
 
         <ProductGroup>

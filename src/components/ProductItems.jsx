@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { deleteProduct } from "../redux-toolkit/productSlice";
 
@@ -158,23 +158,24 @@ const ProductItems = ({
           >
             수정
           </button>
-          <button
-            onClick={() =>
-              navigate(`/product/${_id}`, {
-                state: {
-                  id: _id,
-                  title,
-                  desc,
-                  price,
-                  inStock,
-                  img,
-                  categories,
-                },
-              })
-            }
-          >
-            정보
-          </button>
+          <Link to={`/product/${_id}`}>
+            <div
+            // onClick={() =>
+            //   navigate(`/product/${_id}`, {
+            //     state: {
+            //       id: _id,
+            //       title,
+            //       desc,
+            //       price,
+            //       inStock,
+            //       img,
+            //     },
+            //   })
+            // }
+            >
+              정보
+            </div>
+          </Link>
         </InfoBox>
       </Left>
     </Container>

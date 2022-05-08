@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addCartProduct, addProductCart } from "../redux-toolkit/cartSlice";
-import { getCarts } from "../redux-toolkit/cartSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getProduct } from "../redux-toolkit/productSlice";
 
 export const Container = styled.div`
   display: flex;
@@ -104,55 +103,74 @@ export const OrderBtn = styled.button`
   }
 `;
 
+export const Select = styled.select`
+  padding: 1rem 1.2rem;
+  font-family: inherit;
+  border: none;
+  outline: none;
+`;
+
 const Product = () => {
-  const { state: userData } = useLocation();
-  const { img } = userData;
-
   const [quantity, setQuantity] = useState(1);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
 
+  const userData = useSelector((state) => state.product);
+  const { loading, error, product } = userData;
+
+  const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log("why?", userData);
+  console.log("why?", product);
 
-  const handleClick = () => {
-    console.log(userData);
-
-    dispatch(
-      addCartProduct({
-        ...userData,
-        quantity,
-      })
-    );
-    // dispatch(addProductCart({ ...userData, quantity }));
+  const AddCartHandler = () => {
+    navigate(`/cart/${id}?quantity=${quantity}`);
   };
+
+  useEffect(() => {
+    dispatch(getProduct(id));
+  }, [dispatch, id]);
+
+  const isStockNum = [...Array(product?.inStock).keys()];
 
   return (
     <Container>
       <Wrapper>
         <ImgBox>
-          <Image
-            src={img.startsWith("blob") ? `${img}` : `/${img}`}
-            alt={userData.categories}
-          />
+          <Image src={`/${product.img}`} alt={product.id} />
         </ImgBox>
         <ProductGroup>
           <InfoBox>
-            <Title>제목: {userData.title}</Title>
-            <Desc>설명: {userData.desc}</Desc>
-            <Price>가격: {userData.price}</Price>
-            <Stock>재고: {userData.inStock}</Stock>
+            <Title>제목: {product.title}</Title>
+            <Desc>설명: {product.desc}</Desc>
+            <Price>가격: {product.price}</Price>
+            {product.inStock > 0 ? (
+              <Stock>In Stock</Stock>
+            ) : (
+              <Stock>unavailable</Stock>
+            )}
           </InfoBox>
 
-          <CartBtnBox>
-            <CartBtn onClick={() => setQuantity(quantity - 1)}>-</CartBtn>
-            <CartText>{quantity}</CartText>
-            <CartBtn onClick={() => setQuantity(quantity + 1)}>+</CartBtn>
-          </CartBtnBox>
+          {product.inStock > 0 ? (
+            <>
+              <CartText>Quantity</CartText>
+              <Select
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+              >
+                {isStockNum.map((x) => (
+                  <option key={x + 1} value={x + 1}>
+                    {x + 1}
+                  </option>
+                ))}
+              </Select>
 
-          <OrderBtnBox>
-            <OrderBtn>취소하기</OrderBtn>
-            <OrderBtn onClick={handleClick}>장바구니에 담기</OrderBtn>
-          </OrderBtnBox>
+              <OrderBtnBox>
+                <OrderBtn onClick={AddCartHandler}>장바구니에 담기</OrderBtn>
+              </OrderBtnBox>
+            </>
+          ) : null}
         </ProductGroup>
       </Wrapper>
     </Container>

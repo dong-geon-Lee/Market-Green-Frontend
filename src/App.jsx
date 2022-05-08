@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/product/:id" element={<Product />}></Route>
-        <Route path="/carts" element={<Carts />}></Route>
+        <Route path="/cart/:id" element={<Carts />}></Route>
         <Route
           path="/profile"
           element={user ? <Profile /> : <Navigate replace to="/" />}
