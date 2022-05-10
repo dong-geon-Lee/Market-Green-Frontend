@@ -124,6 +124,12 @@ const Product = () => {
 
   console.log("why?", product);
 
+ // Good
+// "/users/:id" => <Users /> // useParams().id
+
+// Good
+// "/search?keyword=something" : <Search /> // useLocation().search
+  
   const AddCartHandler = () => {
     navigate(`/cart/${id}?quantity=${quantity}`);
   };

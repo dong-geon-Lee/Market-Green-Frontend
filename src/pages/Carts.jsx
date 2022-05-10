@@ -15,16 +15,10 @@ const Carts = () => {
   const quantity = location.search ? Number(location.search.split("=")[1]) : 1;
 
   useEffect(() => {
-    if (id) {
+    if (id && location.search) {
       dispatch(addToCart({ id, quantity }));
     }
   }, [dispatch, id, quantity]);
-
-  // useEffect(() => {
-  //   if (id) {
-  //     dispatch(addToCart({ id, quantity }));
-  //   }
-  // }, []);
 
   return (
     <>

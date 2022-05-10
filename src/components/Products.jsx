@@ -23,14 +23,10 @@ const Products = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProducts());
-
-    return () => {
-      dispatch(productReset());
-    };
-  }, []);
-
-  console.log(products);
+    if (products) {
+      dispatch(getProducts());
+    }
+  }, [dispatch]);
 
   return (
     <Container>

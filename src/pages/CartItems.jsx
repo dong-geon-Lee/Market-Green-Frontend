@@ -1,5 +1,7 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { removeFromCart } from "../redux-toolkit/cartSlice";
 
 export const Container = styled.div`
   display: flex;
@@ -100,7 +102,13 @@ export const OrderBtn = styled.button`
   }
 `;
 
-const CartItems = ({ title, desc, price, inStock, img, qty, total }) => {
+const CartItems = ({ product, title, desc, price, img, qty }) => {
+  const dispatch = useDispatch();
+
+  const removeItemCart = (product) => {
+    dispatch(removeFromCart(product));
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -113,22 +121,10 @@ const CartItems = ({ title, desc, price, inStock, img, qty, total }) => {
             <Title>제목: {title}</Title>
             <Desc>설명: {desc}</Desc>
             <Price>가격: {price * qty}</Price>
-            <Stock>재고: {inStock}</Stock>
+            <Stock>개수: {qty}</Stock>
+            <OrderBtn onClick={() => removeItemCart(product)}>x</OrderBtn>
           </InfoBox>
-
-          <CartBtnBox>
-            <CartBtn>-</CartBtn>
-            <CartText>{qty}</CartText>
-            <CartBtn>+</CartBtn>
-          </CartBtnBox>
-
-          {/* <OrderBtnBox>
-            <OrderBtn>취소하기</OrderBtn>
-            <OrderBtn>장바구니에 담기</OrderBtn>
-          </OrderBtnBox> */}
         </ProductGroup>
-
-        <h1>{total}</h1>
       </Wrapper>
     </Container>
   );

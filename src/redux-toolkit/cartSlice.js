@@ -21,7 +21,6 @@ export const addToCart = createAsyncThunk(
 
     try {
       const { data } = await axios.get(API_URL + `/${id}`, config);
-      console.log(data);
 
       return {
         product: data._id,
@@ -37,19 +36,6 @@ export const addToCart = createAsyncThunk(
   }
 );
 
-export const getProducts = createAsyncThunk(
-  "carts/GET",
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get(API_URL);
-
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 const cartItemStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
@@ -59,8 +45,7 @@ const shippingAddressStorage = localStorage.getItem("shippingAddress")
   : {};
 
 const initialState = {
-  // cartItems: cartItemStorage ? cartItemStorage : [],
-  cartItems: [],
+  cartItems: cartItemStorage,
   shippingAddress: shippingAddressStorage,
 };
 
@@ -72,28 +57,36 @@ const cartSlice = createSlice({
       state.cartItems = state.cartItems.filter(
         (cart) => cart.product !== action.payload
       );
+
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
   },
   extraReducers: {
     [addToCart.fulfilled]: (state, action) => {
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+
       const existItem = state.cartItems.find(
         (x) => x.product === action.payload.product
       );
 
       if (existItem) {
-        state.cartItems.map((x) =>
+        state.cartItems = state.cartItems.map((x) =>
           x.product === existItem.product ? action.payload : x
         );
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       } else {
-        state.cartItems = [...state.cartItems, action.payload];
+        state.cartItems.push(action.payload);
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       }
-      // localStorage.setItem("cartItems", JSON.stringify(action.payload));
-      console.log(action.payload, "내 생각이 맞나?");
-      // state.cartItems = [...state.cartItems, action.payload];
     },
   },
 });
 
-export const { addCartProduct } = cartSlice.actions;
+export const { removeFromCart } = cartSlice.actions;
 
 export const cartReducer = cartSlice.reducer;
+
+// localStorage.setItem(
+//   "cartItems",
+//   JSON.stringify(thunkAPI.getState().cart.cartItems)
+// );

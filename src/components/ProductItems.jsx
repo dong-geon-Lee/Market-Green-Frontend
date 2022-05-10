@@ -44,12 +44,11 @@ export const InfoBox = styled.div`
   }
 
   & h3 {
-    grid-column: 1 / 6;
+    grid-column: 1 / 5;
     grid-row: 2 / 3;
     width: 100%;
     color: green;
     font-size: 1.6rem;
-
     margin: 0;
     padding: 0;
   }
@@ -106,10 +105,13 @@ export const InfoBox = styled.div`
       color: green;
     }
 
-    & + button + button {
+    & + button + a {
       grid-row: 2 / 3;
       grid-column: 5 / 6;
       color: black;
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 600;
     }
   }
 `;
@@ -158,24 +160,7 @@ const ProductItems = ({
           >
             수정
           </button>
-          <Link to={`/product/${_id}`}>
-            <div
-            // onClick={() =>
-            //   navigate(`/product/${_id}`, {
-            //     state: {
-            //       id: _id,
-            //       title,
-            //       desc,
-            //       price,
-            //       inStock,
-            //       img,
-            //     },
-            //   })
-            // }
-            >
-              정보
-            </div>
-          </Link>
+          <Link to={`/product/${_id}`}>자세히</Link>
         </InfoBox>
       </Left>
     </Container>
