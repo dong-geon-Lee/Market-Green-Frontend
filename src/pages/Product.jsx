@@ -3,18 +3,29 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux-toolkit/productSlice";
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 export const Container = styled.div`
   display: flex;
-  background-color: beige;
+  flex-direction: column;
 `;
 
 export const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  max-width: 130rem;
+  margin: 0 auto;
+  gap: 4.8rem;
+  padding: 0 2.4rem;
 `;
 
-export const ImgBox = styled.div``;
+export const Left = styled.div`
+  flex: 1;
+  margin-top: 4.8rem;
+`;
+
+export const ImgBox = styled.div`
+  height: 70rem;
+`;
 
 export const Image = styled.img`
   width: 100%;
@@ -23,7 +34,10 @@ export const Image = styled.img`
 `;
 
 export const ProductGroup = styled.div`
-  padding: 2rem;
+  flex: 1;
+  margin-top: 4.8rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const InfoBox = styled.div`
@@ -37,23 +51,39 @@ export const Title = styled.h1`
 `;
 
 export const Desc = styled.p`
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  letter-spacing: 1px;
+`;
+
+export const TableBox = styled.div`
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: none;
+  margin-top: 3.6rem;
+  margin-bottom: auto;
+  width: 60%;
+`;
+
+export const PriceBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
 export const Price = styled.p`
-  font-size: 1.4rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: red;
-  margin-bottom: 1rem;
+  color: #343a40;
+  padding: 1.2rem 1.6rem;
 `;
 
 export const Stock = styled.p`
-  font-size: 1.4rem;
+  font-size: 2rem;
+  padding: 1.2rem 1.6rem;
   font-weight: 700;
-  color: blue;
-  margin-bottom: 1rem;
+  color: #343a40;
 `;
 
 export const CartBtnBox = styled.div`
@@ -72,30 +102,38 @@ export const CartBtn = styled.button`
   border-radius: 4px;
 `;
 
+export const QuantityBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 1.2rem 1.6rem;
+`;
+
 export const CartText = styled.span`
   display: inline-block;
   font-size: 2rem;
   font-weight: 700;
-  padding: 0 0.6rem;
 `;
 
 export const OrderBtnBox = styled.div`
   display: flex;
-  gap: 1.2rem;
 `;
 
 export const OrderBtn = styled.button`
+  display: inline-block;
+  width: 100%;
   border: none;
   background-color: #c3fae8;
-  padding: 1.2rem 1.4rem;
-  border-radius: 9px;
+  padding: 2rem 1.4rem;
   letter-spacing: 1px;
   font-family: inherit;
   font-size: 1.4rem;
   font-weight: 600;
   color: #1971c2;
   cursor: pointer;
-  margin-top: 1.4rem;
+  text-align: center;
 
   & + button {
     background-color: #8ce99a;
@@ -104,10 +142,92 @@ export const OrderBtn = styled.button`
 `;
 
 export const Select = styled.select`
-  padding: 1rem 1.2rem;
   font-family: inherit;
   border: none;
   outline: none;
+  font-size: inherit;
+  padding: 0.4rem 3rem 0.4rem 1rem;
+  background-color: #eee;
+`;
+
+export const StockBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+`;
+
+export const RatingBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+`;
+
+export const Rating = styled.div`
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 1.2rem 1.6rem;
+
+  & svg {
+    fill: #ebb450;
+  }
+`;
+
+export const SubWrapper = styled.div`
+  display: flex;
+  max-width: 130rem;
+  margin: 0 auto;
+  gap: 4.8rem;
+  padding: 0 2.4rem;
+`;
+
+export const ReviewGroup = styled.div`
+  margin: 12.8rem 0;
+`;
+
+export const Review = styled.div`
+  margin-bottom: 3.2rem;
+`;
+
+export const ReviewText = styled.h3`
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  letter-spacing: 1px;
+`;
+
+export const ReviewDate = styled.p`
+  margin-bottom: 1.2rem;
+`;
+
+export const ReviewtUser = styled.p`
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+`;
+
+export const ReviewBox = styled.div`
+  background-color: #eee;
+  padding: 1.6rem 1.6rem;
+`;
+
+export const ReviewTest = styled.p`
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+`;
+
+export const ReviewTextZone = styled.div`
+  background-color: #cff4fc;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  align-items: center;
+`;
+
+export const Star = styled(Rating)`
+  font-size: 1.2rem;
+  padding: 0.8rem 0rem;
+  font-size: 1.2rem;
 `;
 
 const Product = () => {
@@ -122,14 +242,12 @@ const Product = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log("why?", product);
+  // Good
+  // "/users/:id" => <Users /> // useParams().id
 
- // Good
-// "/users/:id" => <Users /> // useParams().id
+  // Good
+  // "/search?keyword=something" : <Search /> // useLocation().search
 
-// Good
-// "/search?keyword=something" : <Search /> // useLocation().search
-  
   const AddCartHandler = () => {
     navigate(`/cart/${id}?quantity=${quantity}`);
   };
@@ -143,24 +261,107 @@ const Product = () => {
   return (
     <Container>
       <Wrapper>
-        <ImgBox>
-          <Image src={`/${product.img}`} alt={product.id} />
-        </ImgBox>
+        <Left>
+          <ImgBox>
+            <Image src={`${product.img}`} alt={product.id} />
+          </ImgBox>
+
+          <ReviewGroup>
+            <ReviewText>Reviews</ReviewText>
+            <Review>
+              <ReviewBox>
+                <ReviewtUser>Admin</ReviewtUser>
+
+                <Star>
+                  <FaStar></FaStar>
+                  <FaStar></FaStar>
+                  <FaStar></FaStar>
+                  <FaStar></FaStar>
+                </Star>
+
+                <ReviewDate>
+                  Today at <strong>9 : 48 PM</strong>
+                </ReviewDate>
+
+                <ReviewTextZone>
+                  <ReviewTest>이 제품 정말 예뻐요!</ReviewTest>
+                </ReviewTextZone>
+              </ReviewBox>
+            </Review>
+            <Review>
+              <ReviewBox>
+                <ReviewtUser>Admin</ReviewtUser>
+
+                <Star>
+                  <FaStar></FaStar>
+                  <FaStar></FaStar>
+                  <FaStar></FaStar>
+                  <FaStar></FaStar>
+                </Star>
+
+                <ReviewDate>
+                  Today at <strong>9 : 48 PM</strong>
+                </ReviewDate>
+
+                <ReviewTextZone>
+                  <ReviewTest>이 제품 정말 예뻐요!</ReviewTest>
+                </ReviewTextZone>
+              </ReviewBox>
+            </Review>
+            <Review>
+              <ReviewBox>
+                <ReviewtUser>Admin</ReviewtUser>
+
+                <Star>
+                  <FaStar></FaStar>
+                  <FaStar></FaStar>
+                  <FaStar></FaStar>
+                  <FaStar></FaStar>
+                </Star>
+
+                <ReviewDate>
+                  Today at <strong>9 : 48 PM</strong>
+                </ReviewDate>
+
+                <ReviewTextZone>
+                  <ReviewTest>이 제품 정말 예뻐요!</ReviewTest>
+                </ReviewTextZone>
+              </ReviewBox>
+            </Review>
+          </ReviewGroup>
+        </Left>
         <ProductGroup>
           <InfoBox>
-            <Title>제목: {product.title}</Title>
-            <Desc>설명: {product.desc}</Desc>
-            <Price>가격: {product.price}</Price>
+            <Title>{product.title}</Title>
+            <Desc>{product.desc}</Desc>
+          </InfoBox>
+
+          <TableBox>
+            <PriceBox>
+              <Price>가격</Price>
+              <Price>{product.price}원</Price>
+            </PriceBox>
             {product.inStock > 0 ? (
-              <Stock>In Stock</Stock>
+              <StockBox>
+                <Stock>재고</Stock>
+                <Stock>In Stock</Stock>
+              </StockBox>
             ) : (
               <Stock>unavailable</Stock>
             )}
-          </InfoBox>
 
-          {product.inStock > 0 ? (
-            <>
-              <CartText>Quantity</CartText>
+            <RatingBox>
+              <Rating>평점</Rating>
+              <Rating>
+                <FaStar></FaStar>
+                <FaStar></FaStar>
+                <FaStar></FaStar>
+                <FaStar></FaStar>
+                <FaStarHalfAlt></FaStarHalfAlt>
+              </Rating>
+            </RatingBox>
+            <QuantityBox>
+              <CartText>수량</CartText>
               <Select
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
@@ -171,12 +372,9 @@ const Product = () => {
                   </option>
                 ))}
               </Select>
-
-              <OrderBtnBox>
-                <OrderBtn onClick={AddCartHandler}>장바구니에 담기</OrderBtn>
-              </OrderBtnBox>
-            </>
-          ) : null}
+            </QuantityBox>
+            <OrderBtn onClick={AddCartHandler}>장바구니에 담기</OrderBtn>
+          </TableBox>
         </ProductGroup>
       </Wrapper>
     </Container>

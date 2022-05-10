@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/logo2.png";
 import { reset } from "../redux-toolkit/userSlice";
@@ -116,7 +116,6 @@ const Header = () => {
   };
 
   const { cartItems } = useSelector((state) => state.cart);
-  // const { id } = useParams();
 
   return (
     <Container>

@@ -137,7 +137,7 @@ const ProductItems = ({
 
         <InfoBox>
           <h1>제품명: {title}</h1>
-          <h3>{desc}</h3>
+          {/* <h3>{desc}</h3> */}
           <p>가격: {price}원</p>
           <h2>재고: {inStock}개</h2>
           <button onClick={() => dispatch(deleteProduct({ id: _id }))}>
