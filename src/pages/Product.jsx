@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux-toolkit/productSlice";
-import { FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import StarRating from "../components/StarRating";
 
 export const Container = styled.div`
   display: flex;
@@ -61,7 +62,7 @@ export const TableBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-bottom: none;
   margin-top: 3.6rem;
-  margin-bottom: auto;
+  /* margin-bottom: auto; */
   width: 60%;
 `;
 
@@ -200,7 +201,7 @@ export const ReviewDate = styled.p`
   margin-bottom: 1.2rem;
 `;
 
-export const ReviewtUser = styled.p`
+export const ReviewUser = styled.p`
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.4px;
@@ -230,6 +231,53 @@ export const Star = styled(Rating)`
   font-size: 1.2rem;
 `;
 
+export const CommentBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;
+  justify-content: center;
+`;
+
+export const SelectInfo = styled.div`
+  margin-bottom: 3.6rem;
+`;
+
+export const CommentTitle = styled(ReviewText)`
+  margin-bottom: 2rem;
+`;
+
+export const CommentRating = styled(ReviewTest)`
+  margin-bottom: 1rem;
+`;
+
+export const CommentSelect = styled.select`
+  width: 80%;
+  background-color: #eee;
+  outline: none;
+  padding: 1.2rem;
+  border: none;
+  cursor: pointer;
+`;
+
+export const CommentText = styled(ReviewTest)`
+  margin-bottom: 1rem;
+`;
+
+export const TextArea = styled.textarea`
+  width: 80%;
+  background-color: #eee;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  margin-bottom: 2rem;
+`;
+
+export const CommentInfo = styled.div``;
+
+export const SubmitButton = styled(OrderBtn)`
+  width: 80%;
+`;
+
 const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [rating, setRating] = useState(0);
@@ -242,12 +290,6 @@ const Product = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Good
-  // "/users/:id" => <Users /> // useParams().id
-
-  // Good
-  // "/search?keyword=something" : <Search /> // useLocation().search
-
   const AddCartHandler = () => {
     navigate(`/cart/${id}?quantity=${quantity}`);
   };
@@ -258,6 +300,7 @@ const Product = () => {
 
   const isStockNum = [...Array(product?.inStock).keys()];
 
+  console.log(product, "렌더링 재료");
   return (
     <Container>
       <Wrapper>
@@ -268,72 +311,33 @@ const Product = () => {
 
           <ReviewGroup>
             <ReviewText>Reviews</ReviewText>
-            <Review>
-              <ReviewBox>
-                <ReviewtUser>Admin</ReviewtUser>
+            {product.reviews?.map((review) => (
+              <Review>
+                <ReviewBox>
+                  <ReviewUser>{review.name}</ReviewUser>
 
-                <Star>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                </Star>
+                  <StarRating value={review.rating}></StarRating>
+                  <ReviewDate>
+                    Today at <strong>9 : 48 PM</strong>
+                  </ReviewDate>
 
-                <ReviewDate>
-                  Today at <strong>9 : 48 PM</strong>
-                </ReviewDate>
-
-                <ReviewTextZone>
-                  <ReviewTest>이 제품 정말 예뻐요!</ReviewTest>
-                </ReviewTextZone>
-              </ReviewBox>
-            </Review>
-            <Review>
-              <ReviewBox>
-                <ReviewtUser>Admin</ReviewtUser>
-
-                <Star>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                </Star>
-
-                <ReviewDate>
-                  Today at <strong>9 : 48 PM</strong>
-                </ReviewDate>
-
-                <ReviewTextZone>
-                  <ReviewTest>이 제품 정말 예뻐요!</ReviewTest>
-                </ReviewTextZone>
-              </ReviewBox>
-            </Review>
-            <Review>
-              <ReviewBox>
-                <ReviewtUser>Admin</ReviewtUser>
-
-                <Star>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                </Star>
-
-                <ReviewDate>
-                  Today at <strong>9 : 48 PM</strong>
-                </ReviewDate>
-
-                <ReviewTextZone>
-                  <ReviewTest>이 제품 정말 예뻐요!</ReviewTest>
-                </ReviewTextZone>
-              </ReviewBox>
-            </Review>
+                  <ReviewTextZone>
+                    <ReviewTest>{review.comment}</ReviewTest>
+                  </ReviewTextZone>
+                </ReviewBox>
+              </Review>
+            ))}
           </ReviewGroup>
         </Left>
         <ProductGroup>
           <InfoBox>
             <Title>{product.title}</Title>
-            <Desc>{product.desc}</Desc>
+            <Desc>
+              {product.desc} Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Molestiae dolores quam fuga excepturi, cupiditate blanditiis
+              culpa architecto qui error provident omnis deleniti facilis quas
+              et placeat rem nemo distinctio labore.
+            </Desc>
           </InfoBox>
 
           <TableBox>
@@ -352,13 +356,11 @@ const Product = () => {
 
             <RatingBox>
               <Rating>평점</Rating>
-              <Rating>
-                <FaStar></FaStar>
-                <FaStar></FaStar>
-                <FaStar></FaStar>
-                <FaStar></FaStar>
-                <FaStarHalfAlt></FaStarHalfAlt>
-              </Rating>
+
+              <StarRating
+                value={product?.rating.toFixed(1)}
+                text={product?.numReviews}
+              ></StarRating>
             </RatingBox>
             <QuantityBox>
               <CartText>수량</CartText>
@@ -375,6 +377,30 @@ const Product = () => {
             </QuantityBox>
             <OrderBtn onClick={AddCartHandler}>장바구니에 담기</OrderBtn>
           </TableBox>
+
+          <CommentBox>
+            <CommentTitle>Write a customer review</CommentTitle>
+            <SelectInfo>
+              <CommentRating>Rating</CommentRating>
+              <CommentSelect
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+              >
+                <option value="select...">Select...</option>
+                <option value="poor">1-Poor</option>
+                <option value="fair">2-Fair</option>
+                <option value="good">3-good</option>
+                <option value="very good">4-Very good</option>
+                <option value="excellent">5-Excellent</option>
+              </CommentSelect>
+            </SelectInfo>
+
+            <CommentInfo>
+              <CommentText>Comment</CommentText>
+              <TextArea rows="10" cols="10"></TextArea>
+            </CommentInfo>
+            <SubmitButton>제출하기</SubmitButton>
+          </CommentBox>
         </ProductGroup>
       </Wrapper>
     </Container>
@@ -382,3 +408,9 @@ const Product = () => {
 };
 
 export default Product;
+
+// Good
+// "/users/:id" => <Users /> // useParams().id
+
+// Good
+// "/search?keyword=something" : <Search /> // useLocation().search
