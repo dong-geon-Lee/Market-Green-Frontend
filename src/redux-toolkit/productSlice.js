@@ -102,11 +102,87 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
+export const addReview = createAsyncThunk(
+  "review/ADD",
+  async (payload, thunkAPI) => {
+    const TOKEN = thunkAPI.getState().user.user?.accessToken;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
+
+    const { _id, name } = thunkAPI.getState().user.user;
+    const { id, rating, comment } = payload;
+    const ratingData = {
+      name,
+      rating,
+      comment,
+      user: _id,
+    };
+
+    try {
+      const {
+        data: { reviews },
+      } = await axios.post(API_URL + `/${id}/review`, ratingData, config);
+
+      const review = reviews[reviews.length - 1];
+
+      return review;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// export const deleteReview = createAsyncThunk(
+//   "review/ADD",
+//   async (payload, thunkAPI) => {
+//     const TOKEN = thunkAPI.getState().user.user?.accessToken;
+
+//     const config = {
+//       headers: {
+//         Authorization: `Bearer ${TOKEN}`,
+//       },
+//     };
+
+//     const { _id, name } = thunkAPI.getState().user.user;
+//     const { id, rating, comment } = payload;
+//     const ratingData = {
+//       name,
+//       rating,
+//       comment,
+//       user: _id,
+//     };
+
+//     try {
+//       const {
+//         data: { reviews },
+//       } = await axios.post(API_URL + `/${id}/review`, ratingData, config);
+
+//       const review = reviews[reviews.length - 1];
+
+//       return review;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+// export const getReviews = createAsyncThunk(
+//   "review/GET",
+//   async (payload, thunkAPI) => {
+
+//   }
+// );
+
 const initialState = {
   products: [],
   product: "",
   isLoading: false,
   error: false,
+  message: "",
 };
 
 const productSlice = createSlice({
@@ -197,6 +273,32 @@ const productSlice = createSlice({
     [deleteProduct.rejected]: (state) => {
       state.isLoading = false;
       state.error = true;
+    },
+    // [getReviews.pending]: (state) => {
+    //   state.isLoading = true;
+    // },
+    // [getReviews.fulfilled]: (state, action) => {
+    //   state.isLoading = true;
+    //   state.product.reviews.push(action.payload);
+    //   state.error = false;
+    // },
+    // [getReviews.rejected]: (state, action) => {
+    //   state.isLoading = true;
+    //   state.error = action.payload;
+    // },
+    [addReview.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [addReview.fulfilled]: (state, action) => {
+      
+      state.isLoading = true;
+      state.product.reviews.push(action.payload);
+      // state.product.rating = rating;
+      state.error = false;
+    },
+    [addReview.rejected]: (state, action) => {
+      state.isLoading = true;
+      state.error = action.payload;
     },
   },
 });

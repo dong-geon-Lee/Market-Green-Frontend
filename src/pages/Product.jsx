@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../redux-toolkit/productSlice";
-import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { addReview, getProduct } from "../redux-toolkit/productSlice";
 import StarRating from "../components/StarRating";
+import moment from "moment";
 
 export const Container = styled.div`
   display: flex;
@@ -231,7 +231,7 @@ export const Star = styled(Rating)`
   font-size: 1.2rem;
 `;
 
-export const CommentBox = styled.div`
+export const CommentBox = styled.form`
   display: flex;
   flex-direction: column;
   margin: auto 0;
@@ -295,31 +295,42 @@ const Product = () => {
   };
 
   useEffect(() => {
-    dispatch(getProduct(id));
+    if (id) {
+      dispatch(getProduct(id));
+    }
   }, [dispatch, id]);
 
   const isStockNum = [...Array(product?.inStock).keys()];
 
   console.log(product, "렌더링 재료");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    alert("작성완료");
+    dispatch(addReview({ id, rating, comment }));
+
+    setRating("");
+    setComment("");
+  };
+
   return (
     <Container>
       <Wrapper>
         <Left>
           <ImgBox>
-            <Image src={`${product.img}`} alt={product.id} />
+            <Image src={`/${product?.img}`} alt={product?.id} />
           </ImgBox>
 
           <ReviewGroup>
             <ReviewText>Reviews</ReviewText>
-            {product.reviews?.map((review) => (
-              <Review>
+            {product?.reviews?.map((review) => (
+              <Review key={review._id}>
                 <ReviewBox>
                   <ReviewUser>{review.name}</ReviewUser>
 
                   <StarRating value={review.rating}></StarRating>
-                  <ReviewDate>
-                    Today at <strong>9 : 48 PM</strong>
-                  </ReviewDate>
+                  <ReviewDate>{moment(review.createdAt).calendar()}</ReviewDate>
 
                   <ReviewTextZone>
                     <ReviewTest>{review.comment}</ReviewTest>
@@ -331,9 +342,9 @@ const Product = () => {
         </Left>
         <ProductGroup>
           <InfoBox>
-            <Title>{product.title}</Title>
+            <Title>{product?.title}</Title>
             <Desc>
-              {product.desc} Lorem ipsum dolor sit amet consectetur adipisicing
+              {product?.desc} Lorem ipsum dolor sit amet consectetur adipisicing
               elit. Molestiae dolores quam fuga excepturi, cupiditate blanditiis
               culpa architecto qui error provident omnis deleniti facilis quas
               et placeat rem nemo distinctio labore.
@@ -343,22 +354,24 @@ const Product = () => {
           <TableBox>
             <PriceBox>
               <Price>가격</Price>
-              <Price>{product.price}원</Price>
+              <Price>{product?.price}원</Price>
             </PriceBox>
-            {product.inStock > 0 ? (
+            {product?.inStock > 0 ? (
               <StockBox>
                 <Stock>재고</Stock>
                 <Stock>In Stock</Stock>
               </StockBox>
             ) : (
-              <Stock>unavailable</Stock>
+              <StockBox>
+                <Stock>unavailable</Stock>
+              </StockBox>
             )}
 
             <RatingBox>
               <Rating>평점</Rating>
 
               <StarRating
-                value={product?.rating.toFixed(1)}
+                value={product?.rating?.toFixed(1)}
                 text={product?.numReviews}
               ></StarRating>
             </RatingBox>
@@ -378,7 +391,7 @@ const Product = () => {
             <OrderBtn onClick={AddCartHandler}>장바구니에 담기</OrderBtn>
           </TableBox>
 
-          <CommentBox>
+          <CommentBox onSubmit={submitHandler}>
             <CommentTitle>Write a customer review</CommentTitle>
             <SelectInfo>
               <CommentRating>Rating</CommentRating>
@@ -386,20 +399,28 @@ const Product = () => {
                 value={rating}
                 onChange={(e) => setRating(e.target.value)}
               >
-                <option value="select...">Select...</option>
-                <option value="poor">1-Poor</option>
-                <option value="fair">2-Fair</option>
-                <option value="good">3-good</option>
-                <option value="very good">4-Very good</option>
-                <option value="excellent">5-Excellent</option>
+                <option value="">Select...</option>
+                <option value="1">1-Poor</option>
+                <option value="2">2-Fair</option>
+                <option value="3">3-good</option>
+                <option value="4">4-Very good</option>
+                <option value="5">5-Excellent</option>
               </CommentSelect>
             </SelectInfo>
 
             <CommentInfo>
               <CommentText>Comment</CommentText>
-              <TextArea rows="10" cols="10"></TextArea>
+              <TextArea
+                rows="10"
+                cols="10"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              >
+                {comment}
+              </TextArea>
             </CommentInfo>
-            <SubmitButton>제출하기</SubmitButton>
+
+            <SubmitButton type="submit">제출하기</SubmitButton>
           </CommentBox>
         </ProductGroup>
       </Wrapper>

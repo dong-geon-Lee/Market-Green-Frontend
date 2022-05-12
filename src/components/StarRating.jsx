@@ -11,7 +11,7 @@ export const RatingBox = styled.div`
 export const Rating = styled.div`
   font-size: 2rem;
   font-weight: 700;
-  padding: 1.2rem 1.6rem;
+  /* padding: 1.2rem 1.6rem; */
 
   & svg {
     fill: #ebb450;
@@ -26,13 +26,12 @@ export const Star = styled(Rating)`
 
 export const ReviewNum = styled(Rating)`
   padding: 1.2rem 1.6rem 1.2rem 0;
+  margin-left: 1rem;
 `;
 
-const StarRating = ({ value, text }) => {
-  console.log(value, "가치");
+const StarRating = ({ value }) => {
   return (
     <RatingBox>
-      {/* {value} {text} */}
       <Rating>
         {value >= 1 ? (
           <FaStar></FaStar>
