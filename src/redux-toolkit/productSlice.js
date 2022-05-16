@@ -115,6 +115,7 @@ export const addReview = createAsyncThunk(
 
     const { _id, name } = thunkAPI.getState().user.user;
     const { id, rating, comment } = payload;
+
     const ratingData = {
       name,
       rating,
@@ -129,53 +130,55 @@ export const addReview = createAsyncThunk(
 
       const review = reviews[reviews.length - 1];
 
-      return review;
+      // return review;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-// export const deleteReview = createAsyncThunk(
-//   "review/ADD",
-//   async (payload, thunkAPI) => {
-//     const TOKEN = thunkAPI.getState().user.user?.accessToken;
+export const deleteReview = createAsyncThunk(
+  "review/Delete",
+  async (payload, thunkAPI) => {
+    const { id, numReviews, rating } = payload;
+    const { _id } = thunkAPI.getState().product.product;
+    const TOKEN = thunkAPI.getState().user.user?.accessToken;
 
-//     const config = {
-//       headers: {
-//         Authorization: `Bearer ${TOKEN}`,
-//       },
-//     };
+    const config = {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
 
-//     const { _id, name } = thunkAPI.getState().user.user;
-//     const { id, rating, comment } = payload;
-//     const ratingData = {
-//       name,
-//       rating,
-//       comment,
-//       user: _id,
-//     };
+    console.log(id, numReviews, rating);
+    try {
+      await axios.delete(
+        API_URL + `/review/${id}?numReviews=${numReviews}&rating=${rating}`
+      );
 
-//     try {
-//       const {
-//         data: { reviews },
-//       } = await axios.post(API_URL + `/${id}/review`, ratingData, config);
+      const { data } = await axios.get(API_URL + `/${_id}`, config);
+      console.log(data, "해당 제품에서 review 삭제 되고 난뒤 현재 데이터");
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
-//       const review = reviews[reviews.length - 1];
+export const getReviews = createAsyncThunk(
+  "review/Get",
+  async (_, thunkAPI) => {
+    const { _id } = thunkAPI.getState().product.product;
 
-//       return review;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+    try {
+      const { data } = await axios.get(API_URL + `/review/${_id}`);
 
-// export const getReviews = createAsyncThunk(
-//   "review/GET",
-//   async (payload, thunkAPI) => {
-
-//   }
-// );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 const initialState = {
   products: [],
@@ -183,6 +186,9 @@ const initialState = {
   isLoading: false,
   error: false,
   message: "",
+  // reviews: [],
+  // numReviews: 0,
+  // rating: [],
 };
 
 const productSlice = createSlice({
@@ -193,6 +199,9 @@ const productSlice = createSlice({
       state.products = null;
       state.isLoading = false;
       state.error = false;
+    },
+    reviewReset: (state) => {
+      state.product = {};
     },
   },
   extraReducers: {
@@ -274,35 +283,48 @@ const productSlice = createSlice({
       state.isLoading = false;
       state.error = true;
     },
-    // [getReviews.pending]: (state) => {
-    //   state.isLoading = true;
-    // },
-    // [getReviews.fulfilled]: (state, action) => {
-    //   state.isLoading = true;
-    //   state.product.reviews.push(action.payload);
-    //   state.error = false;
-    // },
-    // [getReviews.rejected]: (state, action) => {
-    //   state.isLoading = true;
-    //   state.error = action.payload;
-    // },
     [addReview.pending]: (state) => {
       state.isLoading = true;
     },
     [addReview.fulfilled]: (state, action) => {
-      
-      state.isLoading = true;
-      state.product.reviews.push(action.payload);
-      // state.product.rating = rating;
+      console.log("add review", action.payload);
+      state.isLoading = false;
+      // state.product.reviews.push(action.payload);
       state.error = false;
     },
     [addReview.rejected]: (state, action) => {
       state.isLoading = true;
       state.error = action.payload;
     },
+    [deleteReview.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [deleteReview.fulfilled]: (state, action) => {
+      console.log("delete review", action.payload);
+
+      state.isLoading = false;
+      state.product = action.payload;
+      state.error = false;
+    },
+    [deleteReview.rejected]: (state, action) => {
+      state.isLoading = true;
+      state.error = action.payload;
+    },
+    [getReviews.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getReviews.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.product = action.payload;
+      state.error = false;
+    },
+    [getReviews.rejected]: (state, action) => {
+      state.isLoading = true;
+      state.error = action.payload;
+    },
   },
 });
 
-export const { productReset } = productSlice.actions;
+export const { productReset, reviewReset } = productSlice.actions;
 
 export const productReducer = productSlice.reducer;

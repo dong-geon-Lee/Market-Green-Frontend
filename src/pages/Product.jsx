@@ -2,9 +2,18 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addReview, getProduct } from "../redux-toolkit/productSlice";
+import {
+  addReview,
+  deleteReview,
+  getProduct,
+  getReviews,
+  reviewReset,
+} from "../redux-toolkit/productSlice";
 import StarRating from "../components/StarRating";
 import moment from "moment";
+import SubStarRating from "../components/SubStarRating";
+import { offSpinner, onSpinner } from "../redux-toolkit/spinnerSlice";
+import Spinner from "../components/Spinner";
 
 export const Container = styled.div`
   display: flex;
@@ -278,6 +287,13 @@ export const SubmitButton = styled(OrderBtn)`
   width: 80%;
 `;
 
+export const Button = styled(OrderBtn)`
+  width: 4%;
+  padding: 0.3rem;
+  cursor: pointer;
+  margin-left: 85%;
+`;
+
 const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [rating, setRating] = useState(0);
@@ -285,6 +301,8 @@ const Product = () => {
 
   const userData = useSelector((state) => state.product);
   const { loading, error, product } = userData;
+
+  const isLoading = useSelector((state) => state.spinner.isLoading);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -295,28 +313,39 @@ const Product = () => {
   };
 
   useEffect(() => {
-    if (id) {
+    if (id || product._id) {
       dispatch(getProduct(id));
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, product._id]);
 
   const isStockNum = [...Array(product?.inStock).keys()];
-
-  console.log(product, "렌더링 재료");
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    alert("작성완료");
-    dispatch(addReview({ id, rating, comment }));
+    dispatch(reviewReset());
 
+    dispatch(onSpinner(true));
+
+    setTimeout(() => {
+      dispatch(offSpinner(false));
+    }, 1500);
+
+    dispatch(addReview({ id, rating, comment }));
     setRating("");
     setComment("");
   };
 
+  const totalRating =
+    product?.reviews?.reduce((acc, item) => item?.rating + acc, 0) /
+      product?.reviews?.length || 0.0;
+
+  console.log(totalRating, "전체");
+
   return (
     <Container>
       <Wrapper>
+        {isLoading && <Spinner></Spinner>}
         <Left>
           <ImgBox>
             <Image src={`/${product?.img}`} alt={product?.id} />
@@ -327,9 +356,27 @@ const Product = () => {
             {product?.reviews?.map((review) => (
               <Review key={review._id}>
                 <ReviewBox>
-                  <ReviewUser>{review.name}</ReviewUser>
+                  <ReviewUser>
+                    {review.name}
+                    <Button
+                      onClick={() =>
+                        dispatch(
+                          deleteReview({
+                            id: review._id,
+                            numReviews: product.numReviews,
+                            rating: product.rating,
+                          })
+                        )
+                      }
+                    >
+                      x
+                    </Button>
+                  </ReviewUser>
 
-                  <StarRating value={review.rating}></StarRating>
+                  <StarRating
+                    value={review.rating}
+                    totalRating={totalRating}
+                  ></StarRating>
                   <ReviewDate>{moment(review.createdAt).calendar()}</ReviewDate>
 
                   <ReviewTextZone>
@@ -370,10 +417,10 @@ const Product = () => {
             <RatingBox>
               <Rating>평점</Rating>
 
-              <StarRating
+              <SubStarRating
                 value={product?.rating?.toFixed(1)}
-                text={product?.numReviews}
-              ></StarRating>
+                totalRating={totalRating}
+              ></SubStarRating>
             </RatingBox>
             <QuantityBox>
               <CartText>수량</CartText>
