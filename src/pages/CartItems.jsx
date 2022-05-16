@@ -3,17 +3,34 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { removeFromCart } from "../redux-toolkit/cartSlice";
 
-export const Container = styled.div`
-  display: flex;
-  background-color: beige;
-`;
-
 export const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  max-width: 130rem;
+  margin: 0 auto;
+  padding: 3.2rem 3.2rem;
+
+  overflow: hidden;
 `;
 
-export const ImgBox = styled.div``;
+export const ProductGroup = styled.div`
+  display: flex;
+  position: relative;
+  background-color: beige;
+  border-radius: 1rem;
+`;
+
+export const ImgBox = styled.div`
+  flex: 0.3;
+  padding: 3rem;
+`;
+
+export const InfoBox = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem;
+`;
 
 export const Image = styled.img`
   width: 100%;
@@ -21,38 +38,43 @@ export const Image = styled.img`
   object-fit: cover;
 `;
 
-export const ProductGroup = styled.div`
-  padding: 2rem;
-`;
-
-export const InfoBox = styled.div`
-  line-height: 1.6;
-`;
-
-export const Title = styled.h1`
-  font-size: 3rem;
-  font-weight: 900;
+export const Title = styled.p`
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #adb5bd;
   margin-bottom: 1rem;
-`;
+  text-transform: uppercase;
 
-export const Desc = styled.p`
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  & + p {
+    color: #212529;
+    font-weight: 700;
+  }
 `;
 
 export const Price = styled.p`
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: red;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #adb5bd;
   margin-bottom: 1rem;
+  text-transform: uppercase;
+
+  & + p {
+    color: #212529;
+    font-weight: 700;
+  }
 `;
 
 export const Stock = styled.p`
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: blue;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #adb5bd;
   margin-bottom: 1rem;
+  text-transform: uppercase;
+
+  & + p {
+    color: #212529;
+    font-weight: 700;
+  }
 `;
 
 export const CartBtnBox = styled.div`
@@ -80,21 +102,24 @@ export const CartText = styled.span`
 
 export const OrderBtnBox = styled.div`
   display: flex;
-  gap: 1.2rem;
 `;
 
 export const OrderBtn = styled.button`
   border: none;
-  background-color: #c3fae8;
-  padding: 1.2rem 1.4rem;
-  border-radius: 9px;
+  background-color: #ff6b6b;
+  padding: 0.8rem;
+  border-radius: 50%;
   letter-spacing: 1px;
   font-family: inherit;
   font-size: 1.4rem;
   font-weight: 600;
-  color: #1971c2;
+  color: #fff;
   cursor: pointer;
-  margin-top: 1.4rem;
+  display: flex;
+  position: absolute;
+  left: -1%;
+  top: -2%;
+  transform: translate(2%, 5%);
 
   & + button {
     background-color: #8ce99a;
@@ -102,7 +127,39 @@ export const OrderBtn = styled.button`
   }
 `;
 
-const CartItems = ({ product, title, desc, price, img, qty }) => {
+export const StockBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & p {
+    margin-top: 1rem;
+  }
+`;
+
+export const PriceBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 2rem;
+
+  & p {
+    margin-top: 1rem;
+  }
+`;
+
+export const TitleBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 2rem;
+
+  & p {
+    margin-top: 1rem;
+  }
+`;
+
+const CartItems = ({ product, title, price, img, qty }) => {
   const dispatch = useDispatch();
 
   const removeItemCart = (product) => {
@@ -110,23 +167,29 @@ const CartItems = ({ product, title, desc, price, img, qty }) => {
   };
 
   return (
-    <Container>
-      <Wrapper>
+    <Wrapper>
+      <ProductGroup>
+        <OrderBtn onClick={() => removeItemCart(product)}>x</OrderBtn>
         <ImgBox>
-          <Image src={img} />
+          <Image src={`/${img}`} />
         </ImgBox>
 
-        <ProductGroup>
-          <InfoBox>
-            <Title>제목: {title}</Title>
-            <Desc>설명: {desc}</Desc>
-            <Price>가격: {price * qty}</Price>
-            <Stock>개수: {qty}</Stock>
-            <OrderBtn onClick={() => removeItemCart(product)}>x</OrderBtn>
-          </InfoBox>
-        </ProductGroup>
-      </Wrapper>
-    </Container>
+        <InfoBox>
+          <TitleBox>
+            <Title>product</Title>
+            <Title>{title}</Title>
+          </TitleBox>
+          <StockBox>
+            <Stock>Quantity</Stock>
+            <Stock>{qty}</Stock>
+          </StockBox>
+          <PriceBox>
+            <Price>Price</Price>
+            <Price>{price}</Price>
+          </PriceBox>
+        </InfoBox>
+      </ProductGroup>
+    </Wrapper>
   );
 };
 
