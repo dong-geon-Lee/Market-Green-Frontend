@@ -19,6 +19,7 @@ export const getProducts = createAsyncThunk(
 export const getProduct = createAsyncThunk(
   "product/GET",
   async (payload, thunkAPI) => {
+    console.log(payload);
     const productId = payload;
     const TOKEN = thunkAPI.getState().user.user?.accessToken;
 

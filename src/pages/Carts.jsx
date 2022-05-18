@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { addToCart } from "../redux-toolkit/cartSlice";
 import CartItems from "./CartItems";
 import styled from "styled-components";
+import { getProduct } from "../redux-toolkit/productSlice";
 
 export const Container = styled.div`
   display: flex;
@@ -65,6 +66,25 @@ export const CartButtonGroup = styled.div`
   justify-content: space-between;
 `;
 
+export const CartLink = styled(Link)`
+  display: inline-block;
+  width: 35%;
+  padding: 1.6rem 1.6rem;
+  margin: 2.4rem 4rem 0 4rem;
+  cursor: pointer;
+  background-color: #212529;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-align: center;
+
+  & + button {
+    background-color: #2f9e44;
+  }
+`;
+
 export const CartButton = styled.button`
   border: none;
   display: inline-block;
@@ -74,17 +94,15 @@ export const CartButton = styled.button`
   cursor: pointer;
   background-color: #212529;
   color: #fff;
+  font-size: 1.4rem;
   font-weight: 500;
   letter-spacing: 1px;
-
-  & + button {
-    background-color: #2f9e44;
-  }
 `;
 
 const Carts = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  // const { _id } = useSelector((state) => state.product.product);
 
   const id = useParams();
   const location = useLocation();
@@ -102,30 +120,44 @@ const Carts = () => {
     <Container>
       <Group>
         <TotalCartItem>
-          <h1>장바구니 ({cartItems.length})</h1>
+          <h1>장바구니 ({cartItems ? cartItems?.length : 0})</h1>
         </TotalCartItem>
-        {cartItems?.map((cart, index) => (
-          <CartItems key={index} {...cart} qty={cart.quantity}></CartItems>
-        ))}
 
-        <Wrapper>
-          <TotalBox>
-            <p>TOTAL:</p>
-            <span>
-              <strong>
-                {cartItems.reduce((acc, item) => {
-                  return acc + item.quantity * item.price;
-                }, 0)}{" "}
-                원
-              </strong>
-            </span>
-          </TotalBox>
-        </Wrapper>
+        {cartItems.length === 0 ? (
+          <>
+            <h1>카트에 제품을 추가해주세요</h1>
+            <CartButtonGroup>
+              <CartLink to="/" style={{ width: "100%" }}>
+                쇼핑하기
+              </CartLink>
+            </CartButtonGroup>
+          </>
+        ) : (
+          <>
+            {cartItems?.map((cart, index) => (
+              <CartItems key={index} {...cart} qty={cart.quantity}></CartItems>
+            ))}
 
-        <CartButtonGroup>
-          <CartButton>쇼핑하기</CartButton>
-          <CartButton>결제하기</CartButton>
-        </CartButtonGroup>
+            <Wrapper>
+              <TotalBox>
+                <p>TOTAL:</p>
+                <span>
+                  <strong>
+                    {cartItems?.reduce((acc, item) => {
+                      return acc + item.quantity * item.price;
+                    }, 0)}{" "}
+                    원
+                  </strong>
+                </span>
+              </TotalBox>
+            </Wrapper>
+
+            <CartButtonGroup>
+              <CartLink to="/">쇼핑하기</CartLink>
+              <CartButton>결제하기</CartButton>
+            </CartButtonGroup>
+          </>
+        )}
       </Group>
     </Container>
   );

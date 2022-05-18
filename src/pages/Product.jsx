@@ -6,7 +6,6 @@ import {
   addReview,
   deleteReview,
   getProduct,
-  getReviews,
   reviewReset,
 } from "../redux-toolkit/productSlice";
 import StarRating from "../components/StarRating";

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import logo from "../assets/logo2.png";
 import { reset } from "../redux-toolkit/userSlice";
 import { BsFillCartFill } from "react-icons/bs";
-
+import { deleteStorage } from "../redux-toolkit/cartSlice.js";
 export const Container = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -113,10 +113,12 @@ const Header = () => {
     localStorage.removeItem("user");
 
     dispatch(reset());
+    dispatch(deleteStorage());
   };
 
   const { cartItems } = useSelector((state) => state.cart);
 
+  console.log(cartItems);
   return (
     <Container>
       <Link to="/">
@@ -153,11 +155,10 @@ const Header = () => {
               </Link>
               <Button onClick={() => logout()}>로그아웃</Button>
 
-              {/* <Link to={`/cart/${id}`}> */}
               <Link to={`/cart`}>
                 <CartBox>
                   <BsFillCartFill />
-                  <CartText>{cartItems.length}</CartText>
+                  <CartText>{cartItems ? cartItems?.length : 0}</CartText>
                 </CartBox>
               </Link>
             </>

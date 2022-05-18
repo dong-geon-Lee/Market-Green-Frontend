@@ -12,6 +12,7 @@ export const addToCart = createAsyncThunk(
     } = payload;
 
     const TOKEN = thunkAPI.getState().user.user?.accessToken;
+    const CART = thunkAPI.getState().cart?.cartItems;
 
     const config = {
       headers: {
@@ -60,12 +61,15 @@ const cartSlice = createSlice({
 
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
+    deleteStorage: (state) => {
+      state.cartItems = [];
+    },
   },
   extraReducers: {
     [addToCart.fulfilled]: (state, action) => {
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
 
-      const existItem = state.cartItems.find(
+      const existItem = state.cartItems?.find(
         (x) => x.product === action.payload.product
       );
 
@@ -73,20 +77,18 @@ const cartSlice = createSlice({
         state.cartItems = state.cartItems.map((x) =>
           x.product === existItem.product ? action.payload : x
         );
+
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       } else {
+        console.log(action.payload);
         state.cartItems.push(action.payload);
+
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       }
     },
   },
 });
 
-export const { removeFromCart } = cartSlice.actions;
+export const { removeFromCart, deleteStorage } = cartSlice.actions;
 
 export const cartReducer = cartSlice.reducer;
-
-// localStorage.setItem(
-//   "cartItems",
-//   JSON.stringify(thunkAPI.getState().cart.cartItems)
-// );
