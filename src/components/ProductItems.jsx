@@ -132,7 +132,7 @@ const ProductItems = ({
     <Container>
       <Left>
         <ImgBox>
-          <img src={img} alt="img" />
+          <img src={`${img}`} alt="img" />
         </ImgBox>
 
         <InfoBox>

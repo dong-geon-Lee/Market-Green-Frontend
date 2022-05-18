@@ -99,10 +99,11 @@ const ProductEdit = () => {
     }));
   };
 
+  console.log(userData.img, "img change");
   const handleImage = (e) => {
     setUserData((prevState) => ({
       ...prevState,
-      img: URL.createObjectURL(e.target.files[0]),
+      img: window.URL.createObjectURL(e.target.files[0]),
     }));
   };
 

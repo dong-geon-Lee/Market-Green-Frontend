@@ -311,11 +311,12 @@ const Product = () => {
     navigate(`/cart/${id}?quantity=${quantity}`);
   };
 
+  console.log(product.img);
   useEffect(() => {
     if (id || product._id) {
       dispatch(getProduct(id));
     }
-  }, [dispatch, id, product._id]);
+  }, [dispatch, id, product._id, product?.img]);
 
   const isStockNum = [...Array(product?.inStock).keys()];
 
@@ -341,13 +342,22 @@ const Product = () => {
 
   console.log(totalRating, "전체");
 
+  console.log(product?.img?.split("3000/")[1]);
+
   return (
     <Container>
       <Wrapper>
         {isLoading && <Spinner></Spinner>}
         <Left>
           <ImgBox>
-            <Image src={`/${product?.img}`} alt={product?.id} />
+            <Image
+              src={
+                product?.img?.startsWith("blob")
+                  ? `${product?.img}`
+                  : `/${product?.img}`
+              }
+              alt={product?.id}
+            />
           </ImgBox>
 
           <ReviewGroup>
