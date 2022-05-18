@@ -341,7 +341,6 @@ const Product = () => {
       product?.reviews?.length || 0.0;
 
   console.log(totalRating, "전체");
-
   console.log(product?.img?.split("3000/")[1]);
 
   return (
