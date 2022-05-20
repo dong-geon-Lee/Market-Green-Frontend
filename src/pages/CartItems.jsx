@@ -171,7 +171,7 @@ const CartItems = ({ product, title, price, img, qty }) => {
       <ProductGroup>
         <OrderBtn onClick={() => removeItemCart(product)}>x</OrderBtn>
         <ImgBox>
-          <Image src={`/${img}`} />
+          <Image src={`http://localhost:5000/${img}`} />
         </ImgBox>
 
         <InfoBox>

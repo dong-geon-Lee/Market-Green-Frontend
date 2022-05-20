@@ -88,8 +88,6 @@ const ProductEdit = () => {
 
   const [userData, setUserData] = useState(state);
 
-  console.log(userData);
-
   const { id, title, desc, price, categories, inStock, img } = userData;
 
   const onChange = (e) => {
@@ -99,31 +97,22 @@ const ProductEdit = () => {
     }));
   };
 
-  console.log(userData.img, "img change");
-  const handleImage = (e) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      img: window.URL.createObjectURL(e.target.files[0]),
-    }));
-  };
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(
-      updateProduct({
-        id,
-        title,
-        desc,
-        price,
-        categories,
-        inStock,
-        img,
-      })
-    );
+    const formData = new FormData();
+
+    formData.append("img", img);
+    formData.append("title", title);
+    formData.append("desc", desc);
+    formData.append("price", price);
+    formData.append("categories", categories);
+    formData.append("inStock", inStock);
+
+    dispatch(updateProduct({ id, formData }));
 
     dispatch(onSpinner(true));
 
@@ -138,6 +127,13 @@ const ProductEdit = () => {
       categories: "",
       inStock: "",
     });
+  };
+
+  const handleImage = (e) => {
+    setUserData((prevState) => ({
+      ...prevState,
+      img: e.target.files[0],
+    }));
   };
 
   return (

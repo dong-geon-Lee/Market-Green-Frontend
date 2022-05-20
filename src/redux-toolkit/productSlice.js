@@ -19,7 +19,6 @@ export const getProducts = createAsyncThunk(
 export const getProduct = createAsyncThunk(
   "product/GET",
   async (payload, thunkAPI) => {
-    console.log(payload);
     const productId = payload;
     const TOKEN = thunkAPI.getState().user.user?.accessToken;
 
@@ -39,6 +38,7 @@ export const setProduct = createAsyncThunk(
   async (payload, thunkAPI) => {
     const TOKEN = thunkAPI.getState().user.user?.accessToken;
 
+    console.log(payload, "formData 가공");
     const config = {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
@@ -46,9 +46,9 @@ export const setProduct = createAsyncThunk(
     };
 
     try {
-      const response = await axios.post(API_URL, payload, config);
+      const { data } = await axios.post(API_URL, payload, config);
 
-      return response.data;
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.messsage);
     }
@@ -58,9 +58,7 @@ export const setProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
   "product/PUT",
   async (payload, thunkAPI) => {
-    const { id } = payload;
-
-    console.log(payload, "img blob");
+    const { id, formData } = payload;
 
     const TOKEN = thunkAPI.getState().user.user?.accessToken;
 
@@ -71,9 +69,9 @@ export const updateProduct = createAsyncThunk(
     };
 
     try {
-      const response = await axios.put(API_URL + `/${id}`, payload, config);
+      const { data } = await axios.put(API_URL + `/${id}`, formData, config);
 
-      return response.data;
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -251,7 +249,7 @@ const productSlice = createSlice({
     [updateProduct.fulfilled]: (state, action) => {
       const { id, title, desc, price, categories, inStock, img } =
         action.payload;
-
+      console.log(action.payload);
       state.isLoading = false;
       state.products &&
         state.products.map((data) => {

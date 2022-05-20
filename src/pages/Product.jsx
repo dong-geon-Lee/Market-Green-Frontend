@@ -311,7 +311,6 @@ const Product = () => {
     navigate(`/cart/${id}?quantity=${quantity}`);
   };
 
-  console.log(product.img);
   useEffect(() => {
     if (id || product._id) {
       dispatch(getProduct(id));
@@ -340,9 +339,6 @@ const Product = () => {
     product?.reviews?.reduce((acc, item) => item?.rating + acc, 0) /
       product?.reviews?.length || 0.0;
 
-  console.log(totalRating, "전체");
-  console.log(product?.img?.split("3000/")[1]);
-
   return (
     <Container>
       <Wrapper>
@@ -350,11 +346,7 @@ const Product = () => {
         <Left>
           <ImgBox>
             <Image
-              src={
-                product?.img?.startsWith("blob")
-                  ? `${product?.img}`
-                  : `/${product?.img}`
-              }
+              src={`http://localhost:5000/${product?.img}`}
               alt={product?.id}
             />
           </ImgBox>

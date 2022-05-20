@@ -94,7 +94,6 @@ const ProductForm = () => {
   const onChange = (e) => {
     setUserData((prevState) => ({
       ...prevState,
-
       [e.target.name]: e.target.value,
     }));
   };
