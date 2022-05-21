@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   display: flex;
   max-width: 130rem;
   margin: 0 auto;
-  padding: 3.2rem 3.2rem;
+  padding: 1.6rem 3.2rem;
 
   overflow: hidden;
 `;
@@ -171,7 +171,7 @@ const CartItems = ({ product, title, price, img, qty }) => {
       <ProductGroup>
         <OrderBtn onClick={() => removeItemCart(product)}>x</OrderBtn>
         <ImgBox>
-          <Image src={`http://localhost:5000/${img}`} />
+          <Image src={`http://localhost:5000/${img}`} alt="make" />
         </ImgBox>
 
         <InfoBox>

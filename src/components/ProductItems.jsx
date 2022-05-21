@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { deleteProduct } from "../redux-toolkit/productSlice";
 
 export const Container = styled.div`
-  display: flex;
+  /* display: flex; */
 `;
 
 export const Left = styled.div`
@@ -27,20 +27,20 @@ export const ImgBox = styled.div`
 
 export const InfoBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+
+  justify-items: start;
   align-items: center;
-  gap: 1rem;
+  row-gap: 1rem;
   padding: 1.6rem 0;
 
   & h1 {
     grid-row: 1 / 2;
-    grid-column: 1 / 6;
-    width: 100%;
+    grid-column: 1 / 4;
     color: darkblue;
     margin: 0;
-    padding: 0.6rem 0;
+    padding: 0.6rem 1.6rem;
+    justify-self: start;
   }
 
   & h3 {
@@ -56,10 +56,10 @@ export const InfoBox = styled.div`
   & p {
     font-size: 1.8rem;
     font-weight: 900;
-    grid-column: 1 / 4;
-    grid-row: 3 / 4;
+    grid-column: 3 / 5;
+    grid-row: 1 / 2;
     color: black;
-    width: 100%;
+    justify-self: center;
   }
 
   & h2 {
@@ -87,31 +87,34 @@ export const InfoBox = styled.div`
   & button {
     border: none;
     color: red;
-    padding: 0.8rem 1.2rem;
+    padding: 0.8rem 0rem;
     background-color: #fff;
     display: flex;
     border-radius: 6px;
-    grid-row: 1 / 2;
-    grid-column: 5 / 6;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
     font-size: 1.4rem;
     cursor: pointer;
     letter-spacing: 0.5px;
     font-weight: 500;
     cursor: pointer;
+    justify-self: center;
 
     & + button {
-      grid-row: 1 / 2;
-      grid-column: 4 / 5;
+      grid-row: 2 / 3;
+      grid-column: 2 / 3;
       color: green;
+      justify-items: center;
     }
 
     & + button + a {
       grid-row: 2 / 3;
-      grid-column: 5 / 6;
+      grid-column: 4 / 5;
       color: black;
       text-decoration: none;
       font-size: 1.4rem;
       font-weight: 600;
+      justify-items: center;
     }
   }
 `;
@@ -138,7 +141,7 @@ const ProductItems = ({
         <InfoBox>
           <h1>제품명: {title}</h1>
           <p>가격: {price}원</p>
-          <h2>재고: {inStock}개</h2>
+          {/* <h2>재고: {inStock}개</h2> */}
           <button onClick={() => dispatch(deleteProduct({ id: _id }))}>
             삭제
           </button>

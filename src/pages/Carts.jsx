@@ -11,8 +11,9 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 91vh;
-  padding: 0 3.2rem;
+  height: 100%;
+  padding: 9.6rem 3.2rem;
+  margin-top: auto;
 `;
 
 export const Group = styled.div`
@@ -69,8 +70,8 @@ export const CartButtonGroup = styled.div`
 export const CartLink = styled(Link)`
   display: inline-block;
   width: 35%;
-  padding: 1.6rem 1.6rem;
-  margin: 2.4rem 4rem 0 4rem;
+  padding: 2.4rem;
+  margin: 2.4rem 4rem 2.4rem 4rem;
   cursor: pointer;
   background-color: #212529;
   color: #fff;
@@ -80,29 +81,14 @@ export const CartLink = styled(Link)`
   letter-spacing: 1px;
   text-align: center;
 
-  & + button {
+  & + a {
     background-color: #2f9e44;
   }
-`;
-
-export const CartButton = styled.button`
-  border: none;
-  display: inline-block;
-  width: 35%;
-  padding: 1.6rem 1.6rem;
-  margin: 2.4rem 4rem 0 4rem;
-  cursor: pointer;
-  background-color: #212529;
-  color: #fff;
-  font-size: 1.4rem;
-  font-weight: 500;
-  letter-spacing: 1px;
 `;
 
 const Carts = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  // const { _id } = useSelector((state) => state.product.product);
 
   const id = useParams();
   const location = useLocation();
@@ -154,7 +140,7 @@ const Carts = () => {
 
             <CartButtonGroup>
               <CartLink to="/">쇼핑하기</CartLink>
-              <CartButton>결제하기</CartButton>
+              <CartLink to="/shipping">결제하기</CartLink>
             </CartButtonGroup>
           </>
         )}

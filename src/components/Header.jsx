@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/logo2.png";
 import { reset } from "../redux-toolkit/userSlice";
 import { BsFillCartFill } from "react-icons/bs";
-import { deleteStorage } from "../redux-toolkit/cartSlice.js";
+import { deleteStorage, deleteShipping } from "../redux-toolkit/cartSlice.js";
+
 export const Container = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -108,17 +109,22 @@ const Header = () => {
   const token = useSelector((state) => state.user.user?.accessToken);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("shipping");
+    localStorage.removeItem("cartItems");
 
     dispatch(reset());
     dispatch(deleteStorage());
+    dispatch(deleteShipping());
+
+    navigate("/");
   };
 
   const { cartItems } = useSelector((state) => state.cart);
 
-  console.log(cartItems);
   return (
     <Container>
       <Link to="/">

@@ -38,7 +38,6 @@ export const setProduct = createAsyncThunk(
   async (payload, thunkAPI) => {
     const TOKEN = thunkAPI.getState().user.user?.accessToken;
 
-    console.log(payload, "formData 가공");
     const config = {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
@@ -113,6 +112,7 @@ export const addReview = createAsyncThunk(
     };
 
     const { _id, name } = thunkAPI.getState().user.user;
+
     const { id, rating, comment } = payload;
 
     const ratingData = {
@@ -123,13 +123,7 @@ export const addReview = createAsyncThunk(
     };
 
     try {
-      const {
-        data: { reviews },
-      } = await axios.post(API_URL + `/${id}/review`, ratingData, config);
-
-      const review = reviews[reviews.length - 1];
-
-      // return review;
+      await axios.post(API_URL + `/${id}/review`, ratingData, config);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -156,7 +150,7 @@ export const deleteReview = createAsyncThunk(
       );
 
       const { data } = await axios.get(API_URL + `/${_id}`, config);
-      console.log(data, "해당 제품에서 review 삭제 되고 난뒤 현재 데이터");
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -185,9 +179,6 @@ const initialState = {
   isLoading: false,
   error: false,
   message: "",
-  // reviews: [],
-  // numReviews: 0,
-  // rating: [],
 };
 
 const productSlice = createSlice({
@@ -235,7 +226,6 @@ const productSlice = createSlice({
     },
     [setProduct.fulfilled]: (state) => {
       state.isLoading = false;
-      // state.products.push(action.payload)
       state.error = false;
     },
     [setProduct.rejected]: (state) => {
@@ -249,7 +239,7 @@ const productSlice = createSlice({
     [updateProduct.fulfilled]: (state, action) => {
       const { id, title, desc, price, categories, inStock, img } =
         action.payload;
-      console.log(action.payload);
+
       state.isLoading = false;
       state.products &&
         state.products.map((data) => {
@@ -285,10 +275,8 @@ const productSlice = createSlice({
     [addReview.pending]: (state) => {
       state.isLoading = true;
     },
-    [addReview.fulfilled]: (state, action) => {
-      console.log("add review", action.payload);
+    [addReview.fulfilled]: (state) => {
       state.isLoading = false;
-      // state.product.reviews.push(action.payload);
       state.error = false;
     },
     [addReview.rejected]: (state, action) => {
@@ -299,8 +287,6 @@ const productSlice = createSlice({
       state.isLoading = true;
     },
     [deleteReview.fulfilled]: (state, action) => {
-      console.log("delete review", action.payload);
-
       state.isLoading = false;
       state.product = action.payload;
       state.error = false;

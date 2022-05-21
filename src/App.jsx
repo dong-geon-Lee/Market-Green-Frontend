@@ -17,6 +17,7 @@ import Admin from "./admin/pages/Admin";
 import Product from "./pages/Product";
 import ProductEdit from "./admin/pages/ProductEdit";
 import Carts from "./pages/Carts";
+import Shipping from "./pages/Shipping";
 
 const App = () => {
   const user = useSelector((state) => state.user.user?.accessToken);
@@ -32,7 +33,7 @@ const App = () => {
         <Route path="/product/:id" element={<Product />}></Route>
         <Route path="/cart/:id" element={<Carts />}></Route>
         <Route path="/cart" element={<Carts></Carts>}></Route>
-
+        <Route path="/shipping" element={<Shipping></Shipping>}></Route>
         <Route
           path="/profile"
           element={user ? <Profile /> : <Navigate replace to="/" />}

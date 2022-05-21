@@ -12,7 +12,6 @@ export const addToCart = createAsyncThunk(
     } = payload;
 
     const TOKEN = thunkAPI.getState().user.user?.accessToken;
-    const CART = thunkAPI.getState().cart?.cartItems;
 
     const config = {
       headers: {
@@ -41,8 +40,8 @@ const cartItemStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 
-const shippingAddressStorage = localStorage.getItem("shippingAddress")
-  ? JSON.parse(localStorage.getItem("shippingAddress"))
+const shippingAddressStorage = localStorage.getItem("shipping")
+  ? JSON.parse(localStorage.getItem("shipping"))
   : {};
 
 const initialState = {
@@ -64,6 +63,19 @@ const cartSlice = createSlice({
     deleteStorage: (state) => {
       state.cartItems = [];
     },
+    addShippingInfo: (state, action) => {
+      state.shippingAddress = action.payload;
+
+      localStorage.setItem("shipping", JSON.stringify(action.payload));
+    },
+    deleteShipping: (state) => {
+      state.shippingAddress = {};
+    },
+    // getShippingInfo: (state) => {
+    //   const shipping = JSON.parse(localStorage.getItem("shipping"));
+
+    //   state.shippingAddress = shipping;
+    // },
   },
   extraReducers: {
     [addToCart.fulfilled]: (state, action) => {
@@ -89,6 +101,12 @@ const cartSlice = createSlice({
   },
 });
 
-export const { removeFromCart, deleteStorage } = cartSlice.actions;
+export const {
+  removeFromCart,
+  deleteStorage,
+  addShippingInfo,
+  deleteShipping,
+  getShippingInfo,
+} = cartSlice.actions;
 
 export const cartReducer = cartSlice.reducer;

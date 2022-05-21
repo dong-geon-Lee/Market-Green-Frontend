@@ -70,7 +70,6 @@ export const TableBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-bottom: none;
   margin-top: 3.6rem;
-  /* margin-bottom: auto; */
   width: 60%;
 `;
 
@@ -347,7 +346,7 @@ const Product = () => {
           <ImgBox>
             <Image
               src={`http://localhost:5000/${product?.img}`}
-              alt={product?.id}
+              alt="take your image"
             />
           </ImgBox>
 
