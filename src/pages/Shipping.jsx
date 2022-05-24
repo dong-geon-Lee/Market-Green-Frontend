@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addShippingInfo } from "../redux-toolkit/cartSlice.js";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -73,6 +74,7 @@ export const Button = styled.button`
 const Shipping = () => {
   const shipping = useSelector((state) => state.cart?.shippingAddress);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [shippingData, setShippingData] = useState({
     address: shipping.address,
@@ -87,9 +89,9 @@ const Shipping = () => {
     e.preventDefault();
 
     dispatch(addShippingInfo({ address, city, postalCode, country }));
-  };
 
-  console.log(shipping, "?");
+    navigate("/payment");
+  };
 
   const onChange = (e) => {
     setShippingData(() => ({
@@ -97,17 +99,6 @@ const Shipping = () => {
       [e.target.name]: e.target.value,
     }));
   };
-
-  // useEffect(() => {
-  //   dispatch(getShippingInfo());
-
-  //   setShippingData({
-  //     address: addressData,
-  //     city: cityData,
-  //     postalCode: postalCodeData,
-  //     country: countryData,
-  //   });
-  // }, [dispatch]);
 
   return (
     <Container>

@@ -4,7 +4,6 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { addToCart } from "../redux-toolkit/cartSlice";
 import CartItems from "./CartItems";
 import styled from "styled-components";
-import { getProduct } from "../redux-toolkit/productSlice";
 
 export const Container = styled.div`
   display: flex;

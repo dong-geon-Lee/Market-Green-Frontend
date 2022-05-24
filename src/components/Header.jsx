@@ -5,7 +5,11 @@ import styled from "styled-components";
 import logo from "../assets/logo2.png";
 import { reset } from "../redux-toolkit/userSlice";
 import { BsFillCartFill } from "react-icons/bs";
-import { deleteStorage, deleteShipping } from "../redux-toolkit/cartSlice.js";
+import {
+  deleteStorage,
+  deleteShipping,
+  deletePaymentMethod,
+} from "../redux-toolkit/cartSlice.js";
 
 export const Container = styled.nav`
   display: flex;
@@ -119,7 +123,7 @@ const Header = () => {
     dispatch(reset());
     dispatch(deleteStorage());
     dispatch(deleteShipping());
-
+    dispatch(deletePaymentMethod());
     navigate("/");
   };
 
