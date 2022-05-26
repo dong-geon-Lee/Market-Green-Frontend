@@ -130,7 +130,7 @@ const Carts = () => {
                   <strong>
                     {cartItems?.reduce((acc, item) => {
                       return acc + item.quantity * item.price;
-                    }, 0)}{" "}
+                    }, 0)}
                     원
                   </strong>
                 </span>

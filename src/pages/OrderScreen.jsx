@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FaUser } from "react-icons/fa";
 import { FaTruck } from "react-icons/fa";
@@ -20,8 +20,15 @@ import {
   cartTaxPrice,
   cartTotalPrice,
 } from "../redux-toolkit/cartSlice";
-import { createOrder, createOrderReset } from "../redux-toolkit/orderSlice.js";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  createOrder,
+  getOrderDetails,
+  orderItemsPrice,
+  payOrder,
+} from "../redux-toolkit/orderSlice.js";
+import { useParams } from "react-router-dom";
+import { PayPalButton } from "react-paypal-button-v2";
+import axios from "axios";
 
 export const Container = styled.div`
   width: 100%;
@@ -158,62 +165,59 @@ export const TotalSpan = styled.span`
   letter-spacing: 1px;
 `;
 
-const PlaceOrder = () => {
-  const user = useSelector((state) => state.user);
-  const {
-    user: { name, email },
-  } = user;
+const OrderScreen = () => {
+  const { id: orderId } = useParams();
 
-  const cart = useSelector((state) => state.cart);
-  const {
-    cartItems,
-    shippingAddress,
-    paymentMethod,
-    itemsPrice,
-    shippingPrice,
-    taxPrice,
-    totalPrice,
-  } = cart;
+  const [sdkReady, setSdkReady] = useState(false);
 
   const orderInfo = useSelector((state) => state.order);
-  const { success, order } = orderInfo;
+  const { loading, error, orderDetails, itemsPrice } = orderInfo;
 
-  console.log(cart);
-  console.log(orderInfo);
-  console.log(success);
+  const orderPay = useSelector((state) => state.order);
+  const { loadingPay, successPay } = orderPay;
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const id = useParams();
+
+  console.log(orderDetails);
+
+  const { orderItems } = orderDetails;
+
+  const itemPrice = orderItems?.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   useEffect(() => {
-    dispatch(cartItemPrice());
-    dispatch(cartShippingPrice());
-    dispatch(cartTaxPrice());
-    dispatch(cartTotalPrice());
+    const addPaypalScript = async () => {
+      const { data: clientId } = await axios.get(
+        "http://localhost:5000/api/paypal"
+      );
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+      script.async = true;
+      script.onload = () => {
+        setSdkReady(true);
+      };
+      document.body.appendChild(script);
+    };
 
-    if (success) {
-      navigate(`/order/${order._id}`);
-      dispatch(createOrderReset());
+    if (!orderDetails || successPay) {
+      dispatch(getOrderDetails({ id: orderId }));
+      dispatch(orderItemsPrice(itemPrice));
+    } else if (!orderDetails.isPaid) {
+      if (!window.paypal) {
+        addPaypalScript();
+      } else {
+        setSdkReady(true);
+      }
     }
-  }, [id, success, dispatch]);
+  }, [dispatch, orderId, successPay]);
 
-  const placeOrderHandler = (e) => {
-    e.preventDefault();
-
-    dispatch(
-      createOrder({
-        orderItems: cartItems,
-        shippingAddress,
-        paymentMethod,
-        itemsPrice,
-        shippingPrice,
-        taxPrice,
-        totalPrice,
-      })
-    );
+  const successPaymentHandler = (paymentResult) => {
+    console.log(paymentResult, "결과");
+    dispatch(payOrder({ orderId, paymentResult }));
   };
-
   return (
     <Container>
       <Wrapper>
@@ -229,13 +233,13 @@ const PlaceOrder = () => {
                 <Label>
                   <strong>이름:</strong>
                 </Label>
-                <Span>{name}</Span>
+                <Span>{orderDetails.user?.name}</Span>
               </Div>
               <Div>
                 <Label>
                   <strong>이메일:</strong>
                 </Label>
-                <Span>{email}</Span>
+                <Span>{orderDetails.user?.email}</Span>
               </Div>
             </Info>
           </OrderBox>
@@ -251,13 +255,13 @@ const PlaceOrder = () => {
                 <Label>
                   <strong>지역:</strong>
                 </Label>
-                <Span>{shippingAddress.city}</Span>
+                <Span>{orderDetails.shippingAddress?.city}</Span>
               </Div>
               <Div>
                 <Label>
                   <strong>결제: </strong>
                 </Label>
-                <Span>{paymentMethod}</Span>
+                <Span>{orderDetails.paymentMethod}</Span>
               </Div>
             </Info>
           </OrderBox>
@@ -271,22 +275,22 @@ const PlaceOrder = () => {
               <SubTitle>Deliver to</SubTitle>
               <div>
                 <Label>
-                  <strong>도로명번호:</strong>
+                  <strong>도로명주소:</strong>
                 </Label>
-                <Span>{shippingAddress.postalCode}</Span>
+                <Span>{orderDetails.shippingAddress?.postalCode}</Span>
               </div>
               <div>
                 <Label>
                   <strong>상세주소:</strong>
                 </Label>
-                <Span>계양구 리덕스 아파트</Span>
+                <Span>{orderDetails.shippingAddress?.address}</Span>
               </div>
             </Info>
           </OrderBox>
         </OrderGroup>
 
         <ProductGroup>
-          {cartItems.map((item) => (
+          {orderDetails?.orderItems?.map((item) => (
             <div key={item.product}>
               <Center>
                 <ImgBox>
@@ -316,29 +320,32 @@ const PlaceOrder = () => {
         <div>
           <TotalBox>
             <TotalLabel>Products</TotalLabel>
-            <TotalSpan>+ {itemsPrice} 원</TotalSpan>
+            <TotalSpan>+ {orderDetails.itemsPrice} 원</TotalSpan>
           </TotalBox>
 
           <TotalBox>
             <TotalLabel>Shipping</TotalLabel>
-            <TotalSpan>+ {shippingPrice} 원</TotalSpan>
+            <TotalSpan>+ {orderDetails.shippingPrice} 원</TotalSpan>
           </TotalBox>
 
           <TotalBox>
             <TotalLabel>Discount</TotalLabel>
-            <TotalSpan>- {taxPrice} 원</TotalSpan>
+            <TotalSpan>- {orderDetails.taxPrice} 원</TotalSpan>
           </TotalBox>
 
           <TotalBox>
             <TotalLabel>Total</TotalLabel>
-            <TotalSpan>{totalPrice} 원</TotalSpan>
+            <TotalSpan>{orderDetails.totalPrice} 원</TotalSpan>
           </TotalBox>
         </div>
 
-        <Button onClick={placeOrderHandler}>주문하기</Button>
+        <PayPalButton
+          amount={orderDetails.totalPrice}
+          onSuccess={successPaymentHandler}
+        ></PayPalButton>
       </TotalGroup>
     </Container>
   );
 };
 
-export default PlaceOrder;
+export default OrderScreen;

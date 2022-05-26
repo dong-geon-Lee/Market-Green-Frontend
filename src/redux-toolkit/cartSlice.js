@@ -44,14 +44,14 @@ const shippingAddressStorage = localStorage.getItem("shipping")
   ? JSON.parse(localStorage.getItem("shipping"))
   : {};
 
-// const paymentMethodStorage = localStorage.getItem("paymentMethod")
-//   ? JSON.parse(localStorage.getItem("paymentMethod"))
-//   : "";
+const paymentMethodStorage = localStorage.getItem("paymentMethod")
+  ? JSON.parse(localStorage.getItem("paymentMethod"))
+  : "";
 
 const initialState = {
   cartItems: cartItemStorage,
   shippingAddress: shippingAddressStorage,
-  paymentMethod: "",
+  paymentMethod: paymentMethodStorage,
   itemsPrice: "",
   taxPrice: "",
   shippingPrice: "",
@@ -96,6 +96,16 @@ const cartSlice = createSlice({
         0
       );
     },
+    cartShippingPrice: (state) => {
+      state.shippingPrice = state.itemsPrice > 50000 ? 0 : 3000;
+    },
+    cartTaxPrice: (state) => {
+      state.taxPrice = Number(0.1 * state.itemsPrice);
+    },
+    cartTotalPrice: (state) => {
+      state.totalPrice =
+        state.itemsPrice - state.taxPrice + state.shippingPrice;
+    },
   },
   extraReducers: {
     [addToCart.fulfilled]: (state, action) => {
@@ -130,6 +140,9 @@ export const {
   savePaymentMethod,
   deletePaymentMethod,
   cartItemPrice,
+  cartShippingPrice,
+  cartTaxPrice,
+  cartTotalPrice,
 } = cartSlice.actions;
 
 export const cartReducer = cartSlice.reducer;

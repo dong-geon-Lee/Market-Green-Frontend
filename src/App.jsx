@@ -20,6 +20,7 @@ import Carts from "./pages/Carts";
 import Shipping from "./pages/Shipping";
 import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
+import OrderScreen from "./pages/OrderScreen";
 
 const App = () => {
   const user = useSelector((state) => state.user.user?.accessToken);
@@ -37,7 +38,14 @@ const App = () => {
         <Route path="/cart" element={<Carts></Carts>}></Route>
         <Route path="/shipping" element={<Shipping></Shipping>}></Route>
         <Route path="/payment" element={<Payment></Payment>}></Route>
-        <Route path="/placeorder" element={<PlaceOrder></PlaceOrder>}></Route>
+        <Route
+          path="/placeorder"
+          element={user ? <PlaceOrder /> : <Navigate replace to="/" />}
+        ></Route>
+        <Route
+          path="/order/:id"
+          element={user ? <OrderScreen /> : <Navigate replace to="/" />}
+        ></Route>
         <Route
           path="/profile"
           element={user ? <Profile /> : <Navigate replace to="/" />}
