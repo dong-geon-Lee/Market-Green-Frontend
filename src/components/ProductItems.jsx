@@ -12,6 +12,20 @@ export const Container = styled.div`
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+`;
+
+export const CardLabel = styled.div`
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  background-color: #ffd43b;
+  padding: 0.8rem 1.2rem;
+  transform: rotate(0deg);
 `;
 
 export const ImgBox = styled.div`
@@ -19,6 +33,12 @@ export const ImgBox = styled.div`
   width: 30rem;
   height: 35rem;
   cursor: pointer;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    opacity: 0.75;
+    transform: translateY(-3px);
+  }
 `;
 
 export const Image = styled.img`
@@ -66,6 +86,13 @@ export const Button = styled.button`
   background-color: transparent;
   cursor: pointer;
   color: #e8590c;
+  transition: all 0.3s ease;
+  padding: 1rem;
+
+  &:hover {
+    transform: scale(1.05);
+    font-weight: 800;
+  }
 
   & + button {
     color: #2f9e44;
@@ -88,22 +115,15 @@ export const LinkBtn = styled(Link)`
   cursor: pointer;
 `;
 
-const ProductItems = ({
-  _id,
-  title,
-  desc,
-  price,
-  img,
-  inStock,
-  categories,
-  rating,
-}) => {
+const ProductItems = ({ _id, title, desc, price, img, inStock, rating }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onClick = (id) => {
     navigate(`/product/${id}`);
   };
+
+  let prices = price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
   return (
     <Container>
@@ -114,7 +134,7 @@ const ProductItems = ({
 
         <InfoBox>
           <Title>{title}</Title>
-          <Text>가격: {price}원</Text>
+          <Text>{prices}원</Text>
           <StarRating value={rating}></StarRating>
           <OptionBox>
             <Button onClick={() => dispatch(deleteProduct({ id: _id }))}>
@@ -131,7 +151,6 @@ const ProductItems = ({
                     price,
                     inStock,
                     img,
-                    categories,
                   },
                 })
               }
@@ -140,6 +159,7 @@ const ProductItems = ({
             </Button>
           </OptionBox>
         </InfoBox>
+        {rating >= 4.5 ? <CardLabel>Best Product</CardLabel> : <></>}
       </Card>
     </Container>
   );

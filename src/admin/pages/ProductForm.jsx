@@ -174,7 +174,7 @@ const ProductForm = () => {
               placeholder="Add price"
             />
           </Box>
-          <Box>
+          {/* <Box>
             <Label>분류</Label>
             <Input
               type="text"
@@ -183,7 +183,7 @@ const ProductForm = () => {
               onChange={onChange}
               placeholder="Add categories"
             />
-          </Box>
+          </Box> */}
           <Box>
             <Label>재고</Label>
             <Input

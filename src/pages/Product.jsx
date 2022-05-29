@@ -8,11 +8,11 @@ import {
   getProduct,
   reviewReset,
 } from "../redux-toolkit/productSlice";
-import StarRating from "../components/StarRating";
 import moment from "moment";
 import SubStarRating from "../components/SubStarRating";
 import { offSpinner, onSpinner } from "../redux-toolkit/spinnerSlice";
 import Spinner from "../components/Spinner";
+import StarReviews from "../components/StarReviews";
 
 export const Container = styled.div`
   display: flex;
@@ -191,6 +191,11 @@ export const SubWrapper = styled.div`
 
 export const ReviewGroup = styled.div`
   margin: 12.8rem 0;
+  /* display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  width: 100%; */
 `;
 
 export const Review = styled.div`
@@ -198,10 +203,16 @@ export const Review = styled.div`
 `;
 
 export const ReviewText = styled.h3`
+  font-size: 1.6rem;
   font-weight: 500;
   text-transform: uppercase;
   margin-bottom: 1.2rem;
   letter-spacing: 1px;
+
+  & strong {
+    font-size: 2rem;
+    color: #37b24d;
+  }
 `;
 
 export const ReviewDate = styled.p`
@@ -286,10 +297,17 @@ export const SubmitButton = styled(OrderBtn)`
 `;
 
 export const Button = styled(OrderBtn)`
-  width: 4%;
-  padding: 0.3rem;
+  display: inline-block;
+  padding: 0.8rem 1rem;
   cursor: pointer;
-  margin-left: 85%;
+  width: 5%;
+`;
+
+export const ReviewInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Product = () => {
@@ -338,6 +356,8 @@ const Product = () => {
     product?.reviews?.reduce((acc, item) => item?.rating + acc, 0) /
       product?.reviews?.length || 0.0;
 
+  const totalReview = product?.reviews?.length || 0;
+
   return (
     <Container>
       <Wrapper>
@@ -351,12 +371,15 @@ const Product = () => {
           </ImgBox>
 
           <ReviewGroup>
-            <ReviewText>Reviews</ReviewText>
+            <ReviewText>
+              Reviews <strong>({totalReview})</strong>
+            </ReviewText>
+
             {product?.reviews?.map((review) => (
               <Review key={review._id}>
                 <ReviewBox>
-                  <ReviewUser>
-                    {review.name}
+                  <ReviewInfo>
+                    <ReviewUser>{review.name}</ReviewUser>
                     <Button
                       onClick={() =>
                         dispatch(
@@ -370,12 +393,9 @@ const Product = () => {
                     >
                       x
                     </Button>
-                  </ReviewUser>
+                  </ReviewInfo>
+                  <StarReviews value={review.rating}></StarReviews>
 
-                  <StarRating
-                    value={review.rating}
-                    totalRating={totalRating}
-                  ></StarRating>
                   <ReviewDate>{moment(review.createdAt).calendar()}</ReviewDate>
 
                   <ReviewTextZone>

@@ -69,7 +69,7 @@ const Button = styled.button`
   font-family: inherit;
   margin: 1.2rem 0;
   color: #fff;
-  background-color: #4ba87d;
+  background-color: #fa5252;
   text-transform: uppercase;
   letter-spacing: 1.75px;
   border-radius: 9px;
@@ -77,7 +77,7 @@ const Button = styled.button`
   & + button {
     grid-row: 4 / 5;
     grid-column: 2 / 3;
-    background-color: #fa5252;
+    background-color: #4ba87d;
   }
 `;
 
@@ -180,7 +180,7 @@ const ProductEdit = () => {
               placeholder="Add price"
             />
           </Box>
-          <Box>
+          {/* <Box>
             <Label>분류</Label>
             <Input
               type="text"
@@ -189,7 +189,7 @@ const ProductEdit = () => {
               onChange={onChange}
               placeholder="Add categories"
             />
-          </Box>
+          </Box> */}
           <Box>
             <Label>재고</Label>
             <Input
@@ -201,10 +201,10 @@ const ProductEdit = () => {
             />
           </Box>
 
-          <Button type="submit">업데이트</Button>
           <Button type="button" onClick={() => navigate(-1)}>
             뒤로가기
           </Button>
+          <Button type="submit">업데이트</Button>
         </Form>
       </Wrapper>
     </Container>

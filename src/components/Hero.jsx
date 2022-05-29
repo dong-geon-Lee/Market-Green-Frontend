@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 8rem 4.8rem 8rem 4.8rem;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
     url("https://floweraura-blog-img.s3.ap-south-1.amazonaws.com/Plant+Dec+2019-+Dec+2020/basic-information-about-plants.jpg");
   background-size: cover;
   background-position: center;
@@ -35,7 +35,7 @@ export const Title = styled.h1`
 
 export const Text = styled.p`
   color: #e9ecef;
-  font-size: 2.4rem;
+  font-size: 3rem;
   font-weight: 400;
   margin: 2.4rem 0 6.4rem 0;
   line-height: 1.5;
@@ -55,18 +55,27 @@ export const Button = styled.button`
   padding: 1.6rem 2rem;
   font-family: inherit;
   font-size: 2.4rem;
-  font-weight: 600;
+  font-weight: 700;
   background-color: #40c057;
   color: #f4fce3;
   border-radius: 9px;
   cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #2f9e44;
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
 
   & + button {
     margin-left: 3.2rem;
-  }
+    background-color: #a9e34b;
 
-  &:hover {
-    opacity: 0.8;
+    &:hover {
+      background-color: #82c91e;
+      opacity: 0.9;
+    }
   }
 `;
 

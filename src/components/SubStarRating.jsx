@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
-import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import React from "react";
 import styled from "styled-components";
-import { getProduct } from "../redux-toolkit/productSlice";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 export const RatingBox = styled.div`
   display: flex;
