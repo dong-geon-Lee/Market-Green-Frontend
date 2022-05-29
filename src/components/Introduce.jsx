@@ -1,17 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import img1 from "../assets/img7.jpg";
-import img2 from "../assets/img6.jpg";
+import { FaBook } from "react-icons/fa";
+import { FaSeedling } from "react-icons/fa";
+import { FaHandHoldingWater } from "react-icons/fa";
 
 export const Container = styled.div`
   max-width: 130rem;
-  padding: 0 3.2rem;
+  padding: 9.6rem 3.2rem;
   margin: 0 auto;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const IntroBox = styled.div`
@@ -21,7 +24,7 @@ export const IntroBox = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 3rem;
+  font-size: 3.6rem;
   letter-spacing: 1px;
   margin-bottom: 3.2rem;
 `;
@@ -36,98 +39,90 @@ export const Strong = styled.strong`
   color: #2f9e44;
 `;
 
-export const ContentBox = styled.div``;
-
-export const Card = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-`;
-
-export const LeftCard = styled.div`
-  position: relative;
+export const ContentBox = styled.div`
+  width: 100%;
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  & svg {
+    color: #2f9e44;
+    font-size: 9.8rem;
+  }
 `;
 
-export const LeftInfo = styled.div`
-  position: absolute;
-  top: 0%;
-  left: 0%;
+export const IconInfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const LeftTitle = styled.div``;
-export const LeftText = styled.div``;
+export const TitleInfo = styled.h1`
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #212529;
+  margin: 0.8rem 0;
+`;
+
+export const TextInfo = styled.p`
+  color: #adb5bd;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.5;
+  width: 80%;
+  text-align: center;
+`;
+
+export const Icon = styled.div``;
 export const LeftDetail = styled.div``;
 export const LeftImgBox = styled.div``;
-export const LeftImage = styled.img`
-  width: 100%;
-  height: 100%;
-`;
+export const LeftImage = styled.img``;
 
-export const RightCard = styled.div`
-  position: relative;
-  display: flex;
-`;
-
-export const RightInfo = styled.div`
-  position: absolute;
-  top: 0%;
-  left: 0%;
-`;
-
+export const RightCard = styled.div``;
+export const RightInfo = styled.div``;
 export const RightTitle = styled.div``;
 export const RightText = styled.div``;
 export const RightDetail = styled.div``;
 export const RightImgBox = styled.div``;
-
-export const RightImage = styled.img`
-  width: 100%;
-  height: 100%;
-`;
+export const RightImage = styled.img``;
 
 const Introduce = () => {
   return (
     <Container>
       <Wrapper>
         <IntroBox>
-          <Title>회사소개</Title>
+          <Title>Start creating your own garden!</Title>
           <Text>
-            "원하는 식물을 <Strong>MarketGreen</Strong> 에서 편안하게
-            주문하세요!"
+            "Order what you want at <Strong>MarketGreen</Strong>"
           </Text>
         </IntroBox>
 
         <ContentBox>
-          <Card>
-            <LeftCard>
-              <LeftInfo>
-                <LeftText>LIVING BEAUTIFULLY WITHNATURE</LeftText>
-                <LeftTitle>아름답게 자연과 함께 삶</LeftTitle>
-                <LeftDetail>
-                  MarketGreen 과 함께, 푸른 것으로, 맘껏 푸르러지다.
-                </LeftDetail>
-              </LeftInfo>
+          <IconInfoBox>
+            <FaBook></FaBook>
+            <TitleInfo>Infomation</TitleInfo>
+            <TextInfo>
+              We provide educational content about various rare plants.
+            </TextInfo>
+          </IconInfoBox>
 
-              <LeftImgBox>
-                <LeftImage src={img1}></LeftImage>
-              </LeftImgBox>
-            </LeftCard>
+          <IconInfoBox>
+            <FaSeedling></FaSeedling>
+            <TitleInfo>Product</TitleInfo>
+            <TextInfo>
+              We provide the best experience with beautiful and pretty plants.
+            </TextInfo>
+          </IconInfoBox>
 
-            <RightCard>
-              <RightImgBox>
-                <RightImage src={img2}></RightImage>
-              </RightImgBox>
-              <RightInfo>
-                <RightText>PLANT SHOPPING PURDA MARKET</RightText>
-                <RightTitle>
-                  식물쇼핑 플랜테리어 플랫폼 ‘MarketGreen’ 은
-                </RightTitle>
-                <RightDetail>
-                  누구나 쉽게 일상 속에서 자연을 접하는 다양한 방식을 만들어
-                  갑니다.
-                </RightDetail>
-              </RightInfo>
-            </RightCard>
-          </Card>
+          <IconInfoBox>
+            <FaHandHoldingWater></FaHandHoldingWater>
+            <TitleInfo>Advice</TitleInfo>
+            <TextInfo>
+              We provide expert advice on how to grow and design plants.
+            </TextInfo>
+          </IconInfoBox>
         </ContentBox>
       </Wrapper>
     </Container>

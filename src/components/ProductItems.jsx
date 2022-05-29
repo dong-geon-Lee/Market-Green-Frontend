@@ -1,122 +1,91 @@
 import React from "react";
+import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { deleteProduct } from "../redux-toolkit/productSlice";
+import StarRating from "./StarRating";
 
 export const Container = styled.div`
-  /* display: flex; */
+  display: flex;
 `;
 
-export const Left = styled.div`
+export const Card = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const Right = styled.div``;
-
 export const ImgBox = styled.div`
   display: flex;
+  width: 30rem;
+  height: 35rem;
+  cursor: pointer;
+`;
 
-  & img {
-    display: block;
-    width: 100%;
-    height: 20rem;
-  }
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 `;
 
 export const InfoBox = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-
-  justify-items: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  row-gap: 1rem;
   padding: 1.6rem 0;
+`;
 
-  & h1 {
-    grid-row: 1 / 2;
-    grid-column: 1 / 4;
-    color: darkblue;
-    margin: 0;
-    padding: 0.6rem 1.6rem;
-    justify-self: start;
+export const Title = styled.h1`
+  color: darkblue;
+  margin: 0;
+  padding: 0.6rem 1.6rem;
+`;
+
+export const Text = styled.p`
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: black;
+`;
+
+export const OptionBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+export const Button = styled.button`
+  border: none;
+  padding: 0.8rem 0rem;
+  display: block;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  background-color: transparent;
+  cursor: pointer;
+  color: #e8590c;
+
+  & + button {
+    color: #2f9e44;
   }
 
-  & h3 {
-    grid-column: 1 / 5;
-    grid-row: 2 / 3;
-    width: 100%;
-    color: green;
-    font-size: 1.6rem;
-    margin: 0;
-    padding: 0;
+  & + button + button {
+    color: #fcc419;
   }
+`;
 
-  & p {
-    font-size: 1.8rem;
-    font-weight: 900;
-    grid-column: 3 / 5;
-    grid-row: 1 / 2;
-    color: black;
-    justify-self: center;
-  }
-
-  & h2 {
-    grid-column: 4 / 6;
-    grid-row: 1 / 2;
-    font-size: 1.8rem;
-    color: red;
-    margin: 0;
-  }
-
-  & h4 {
-    grid-column: 4 / 6;
-    grid-row: 3 / 4;
-    font-size: 1.4rem;
-    color: yellowgreen;
-    margin: 0;
-    padding: 0;
-  }
-
-  & h2 {
-    grid-column: 4 / 6;
-    grid-row: 3 / 4;
-  }
-
-  & button {
-    border: none;
-    color: red;
-    padding: 0.8rem 0rem;
-    background-color: #fff;
-    display: flex;
-    border-radius: 6px;
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
-    font-size: 1.4rem;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-    cursor: pointer;
-    justify-self: center;
-
-    & + button {
-      grid-row: 2 / 3;
-      grid-column: 2 / 3;
-      color: green;
-      justify-items: center;
-    }
-
-    & + button + a {
-      grid-row: 2 / 3;
-      grid-column: 4 / 5;
-      color: black;
-      text-decoration: none;
-      font-size: 1.4rem;
-      font-weight: 600;
-      justify-items: center;
-    }
-  }
+export const LinkBtn = styled(Link)`
+  border: none;
+  padding: 0.8rem 0rem;
+  display: block;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: black;
+  letter-spacing: 0.5px;
+  cursor: pointer;
 `;
 
 const ProductItems = ({
@@ -127,44 +96,51 @@ const ProductItems = ({
   img,
   inStock,
   categories,
+  rating,
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const onClick = (id) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <Container>
-      <Left>
-        <ImgBox>
-          <img src={`http://localhost:5000/${img}`} alt="img" />
+      <Card>
+        <ImgBox onClick={() => onClick(_id)}>
+          <Image src={`http://localhost:5000/${img}`} alt="img" />
         </ImgBox>
 
         <InfoBox>
-          <h1>제품명: {title}</h1>
-          <p>가격: {price}원</p>
-          {/* <h2>재고: {inStock}개</h2> */}
-          <button onClick={() => dispatch(deleteProduct({ id: _id }))}>
-            삭제
-          </button>
-          <button
-            onClick={() =>
-              navigate("/productEdit", {
-                state: {
-                  id: _id,
-                  title,
-                  desc,
-                  price,
-                  inStock,
-                  img,
-                  categories,
-                },
-              })
-            }
-          >
-            수정
-          </button>
-          <Link to={`/product/${_id}`}>자세히</Link>
+          <Title>{title}</Title>
+          <Text>가격: {price}원</Text>
+          <StarRating value={rating}></StarRating>
+          <OptionBox>
+            <Button onClick={() => dispatch(deleteProduct({ id: _id }))}>
+              삭제
+            </Button>
+            <Button onClick={() => onClick(_id)}>자세히</Button>
+            <Button
+              onClick={() =>
+                navigate("/productEdit", {
+                  state: {
+                    id: _id,
+                    title,
+                    desc,
+                    price,
+                    inStock,
+                    img,
+                    categories,
+                  },
+                })
+              }
+            >
+              수정
+            </Button>
+          </OptionBox>
         </InfoBox>
-      </Left>
+      </Card>
     </Container>
   );
 };

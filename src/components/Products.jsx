@@ -11,9 +11,9 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.4rem;
+  display: flex;
+  justify-content: center;
+  gap: 3.2rem;
 `;
 
 const Products = () => {
