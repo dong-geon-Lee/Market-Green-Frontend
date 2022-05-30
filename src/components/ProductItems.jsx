@@ -30,7 +30,7 @@ export const CardLabel = styled.div`
 
 export const ImgBox = styled.div`
   display: flex;
-  width: 30rem;
+  width: 28rem;
   height: 35rem;
   cursor: pointer;
   transition: all 0.3s ease-out;

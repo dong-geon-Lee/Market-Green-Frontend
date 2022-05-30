@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import ProductItems from "./ProductItems";
 import { getProducts } from "../redux-toolkit/productSlice";
-import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
+import Carousel from "react-elastic-carousel";
 
 export const Container = styled.div`
   max-width: 140rem;
@@ -15,8 +15,8 @@ export const Container = styled.div`
 export const Title = styled.h1`
   font-size: 3.6rem;
   font-weight: 800;
-  text-align: center;
   margin-bottom: 4.8rem;
+  text-align: center;
   letter-spacing: 1px;
   color: #7ed56f;
 `;
@@ -26,24 +26,34 @@ export const Wrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 3.2rem;
+
+  & .rec {
+    column-gap: 0.8rem;
+
+    & .rec-arrow {
+      opacity: 0.3;
+      margin-bottom: 13rem;
+    }
+
+    & .rec-arrow-right {
+      /* margin-left: 0.3rem; */
+    }
+  }
+
+  & .rec.rec-arrow-left:hover:enabled,
+  .rec.rec-arrow-right:hover:enabled {
+    opacity: 0.6;
+    background-color: #7ed56f;
+    box-shadow: 0 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  }
 `;
 
-export const Arrow = styled.svg`
-  font-size: 5rem;
-  position: absolute;
-  top: 50%;
-  transform: translate(0%, -50%);
-`;
-
-export const ArrowLeft = styled(Arrow)`
-  left: 0%;
-  z-index: 10;
-`;
-
-export const ArrowRight = styled(Arrow)`
-  right: -18%;
-  z-index: 10;
-`;
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2 },
+  { width: 768, itemsToShow: 3 },
+  { width: 1200, itemsToShow: 4 },
+];
 
 const Products = () => {
   const { products } = useSelector((state) => state.product);
@@ -58,20 +68,15 @@ const Products = () => {
 
   return (
     <Container>
-      <ArrowLeft>
-        <BsArrowLeftShort></BsArrowLeftShort>
-      </ArrowLeft>
-      <ArrowRight>
-        <BsArrowRightShort></BsArrowRightShort>
-      </ArrowRight>
-
       <Title>Product</Title>
 
       <Wrapper>
-        {products &&
-          products?.map((data) => (
-            <ProductItems key={data._id} {...data}></ProductItems>
-          ))}
+        <Carousel breakPoints={breakPoints}>
+          {products &&
+            products?.map((data) => (
+              <ProductItems key={data._id} {...data}></ProductItems>
+            ))}
+        </Carousel>
       </Wrapper>
     </Container>
   );
