@@ -16,7 +16,7 @@ export const Container = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  height: 9.6rem;
+  height: 9vh;
   padding: 0 3.2rem;
   position: relative;
 
@@ -140,16 +140,16 @@ const Header = () => {
 
       <NavList>
         <Items>
-          <ItemLink>하는 일</ItemLink>
+          <ItemLink>About</ItemLink>
         </Items>
         <Items>
-          <ItemLink>제품</ItemLink>
+          <ItemLink>Product</ItemLink>
         </Items>
         <Items>
-          <ItemLink>평가 후기</ItemLink>
+          <ItemLink>Testimonial</ItemLink>
         </Items>
         <Items>
-          <ItemLink>가격</ItemLink>
+          <ItemLink>Information</ItemLink>
         </Items>
 
         <BtnBox>
@@ -157,13 +157,13 @@ const Header = () => {
             <>
               {admin && (
                 <Link to="/admin">
-                  <Button>관리자페이지</Button>
+                  <Button>Admin</Button>
                 </Link>
               )}
               <Link to="/profile">
-                <Button>마이페이지</Button>
+                <Button>Profile</Button>
               </Link>
-              <Button onClick={() => logout()}>로그아웃</Button>
+              <Button onClick={() => logout()}>Logout</Button>
 
               <Link to={`/cart`}>
                 <CartBox>

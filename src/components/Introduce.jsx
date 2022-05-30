@@ -6,7 +6,7 @@ import { FaHandHoldingWater } from "react-icons/fa";
 
 export const Container = styled.div`
   max-width: 130rem;
-  padding: 9.6rem 3.2rem;
+  padding: 25rem 3.2rem 15rem 3.2rem;
   margin: 0 auto;
 `;
 
