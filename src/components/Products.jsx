@@ -35,9 +35,7 @@ export const Wrapper = styled.div`
       margin-bottom: 13rem;
     }
 
-    & .rec-arrow-right {
-      /* margin-left: 0.3rem; */
-    }
+    
   }
 
   & .rec.rec-arrow-left:hover:enabled,

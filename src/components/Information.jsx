@@ -1,11 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import image from "../assets/image4.jpg";
 
 export const Container = styled.div`
-  max-width: 140rem;
+  max-width: 130rem;
   padding: 20rem 3.2rem;
   margin: 0 auto;
+`;
+
+export const MainText = styled.h1`
+  font-size: 3.6rem;
+  font-weight: 800;
+  margin-bottom: 4.8rem;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #7ed56f;
 `;
 
 export const Wrapper = styled.div`
@@ -66,6 +74,7 @@ export const Button = styled.button`
 const Information = () => {
   return (
     <Container>
+      <MainText>Promotion</MainText>
       <Wrapper>
         <Content></Content>
         <InformationBox>

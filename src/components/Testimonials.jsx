@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import pic1 from "../assets/pic1.jpg";
 import Carousel from "react-elastic-carousel";
 import { userData } from "../data/productDummy";
 
@@ -21,7 +20,6 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
   display: flex;
   justify-content: center;
-  padding: 5rem 0;
 `;
 
 export const Title = styled.h1`
@@ -38,25 +36,30 @@ export const UserBox = styled.div`
   flex-direction: column;
   flex: 1;
   background-color: beige;
-  padding: 2rem;
+  padding: 2rem 2rem;
   border-radius: 0.9rem;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 
   & .rec-carousel-wrapper {
     width: 74rem;
+    margin: 2rem 0 0 0;
+
+    .ilevYi {
+      margin-top: 2rem;
+    }
   }
 `;
 
 export const UserInfo = styled.div`
   display: flex;
-  gap: 3.2rem;
-  padding: 2rem 4rem;
+  gap: 4.2rem;
+  padding: 2rem 2rem;
 `;
 
 export const UserImage = styled.div`
-  width: 20rem;
-  height: 16rem;
+  width: 22rem;
+  height: 15rem;
   border-radius: 50%;
   overflow: hidden;
 `;
@@ -98,8 +101,15 @@ export const Image = styled.img`
 export const SlideBox = styled.div`
   background-color: orange;
   padding: 2rem;
-  border-top-right-radius: 0.9rem;
-  border-bottom-right-radius: 0.9rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+
+  &:last-of-type {
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius: 0rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
 `;
 
 const Testimonials = () => {
@@ -113,7 +123,7 @@ const Testimonials = () => {
           <UserBox>
             <Carousel>
               {userData.map((data) => (
-                <UserInfo>
+                <UserInfo key={data.id}>
                   <UserImage>
                     <Image src={data.avatar} alt="pic1"></Image>
                   </UserImage>

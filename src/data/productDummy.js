@@ -7,7 +7,6 @@ import img6 from "../assets/img6.jpg";
 import pic1 from "../assets/pic1.jpg";
 import pic2 from "../assets/pic2.jpg";
 import pic3 from "../assets/pic3.jpg";
-import pic4 from "../assets/pic4.jpg";
 
 export const productDummy = [
   {
@@ -131,5 +130,92 @@ export const userData = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non fringilla leo. Phasellus dui erat, ultrices sollicitudin ante quis, convallis varius odio. Quisque sed tristique ante.",
     rating: 4.5,
     audio: "https://testimonialapi.toolcarton.com/audio/5.mp3",
+  },
+];
+
+export const plantsData = [
+  {
+    id: 1,
+    name: "애둘리스61",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302417974/202206/0040240000005020522.jpg",
+  },
+  {
+    id: 2,
+    name: "모닝뷰티5483",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302417915/202206/0040250000037243062.jpg",
+  },
+  {
+    id: 3,
+    name: "오팔리나5479",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302417915/202206/0040250000037243022.jpg",
+  },
+  {
+    id: 4,
+    name: "시타시나-식충식물",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302417872/202009/0050090000000012782.jpg",
+  },
+  {
+    id: 5,
+    name: "레지네 알로카시아",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302420328/202110/0030020000000426362.jpg",
+  },
+  {
+    id: 6,
+    name: "베고니아 자니타쥬엘(4S)",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302419380/202205/0030100000000441092.jpg",
+  },
+  {
+    id: 7,
+    name: "카라-버건디컬러",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302422655/202205/0050010000001737262.jpg",
+  },
+  {
+    id: 8,
+    name: "크로키아그린 코로키아그린",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302422922/202205/0050140000000054812.jpg",
+  },
+  {
+    id: 9,
+    name: "사자두단풍",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302418786/202206/0050020000002836902.jpg",
+  },
+  {
+    id: 10,
+    name: "로드게시란",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302423342/202204/0070070000000356482.jpg",
+  },
+  {
+    id: 11,
+    name: "카틀레아(옐로우돌)",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302420207/202205/0070030000000091692.jpg",
+  },
+  {
+    id: 12,
+    name: "소엽풍란",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302420207/202205/0070030000000091682.jpg",
+  },
+  {
+    id: 13,
+    name: "골든애니버셔리",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302420505/202204/0030110000000311912.jpg",
+  },
+  {
+    id: 14,
+    name: "별수국",
+    image:
+      "https://m.simpol.co.kr/data/shopimages/product/302420316/202205/0030010000000888752.jpg",
   },
 ];
