@@ -14,4 +14,11 @@ body {
   line-height: 1;
   color: #555;
   overflow-x: hidden;
+  background-image: url("./assets/background.png");
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
 }
