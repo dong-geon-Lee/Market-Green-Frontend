@@ -33,7 +33,7 @@ export const InformationBox = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 5.2rem;
+  font-size: 6.4rem;
   font-weight: 800;
   letter-spacing: 1.5px;
   color: #f76707;
@@ -51,16 +51,16 @@ export const Box = styled.div`
 export const Button = styled.button`
   display: inline-block;
   border: none;
-  padding: 1.6rem 2rem;
+  padding: 2rem 2.4rem;
   font-family: inherit;
-  font-size: 2.4rem;
+  font-size: 3rem;
   font-weight: 700;
   background-color: #40c057;
   color: #f4fce3;
   border-radius: 9px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin: 3rem 0;
+  margin: 6rem 0 3rem 0;
 `;
 
 const Information = () => {
