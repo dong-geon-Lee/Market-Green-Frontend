@@ -31,14 +31,42 @@ export const Wrapper = styled.div`
 export const Form = styled.form`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  column-gap: 3.2rem;
-  row-gap: 4.8rem;
+  row-gap: 0.6rem;
   width: 40rem;
 `;
 
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 3.6rem;
+  transition: all 0.3s ease;
+
+  & .emailInput {
+    border: ${(props) =>
+      props.inValidEmail ? "1px solid #b40e0e" : "1px solid #9f9f9f"};
+    background-color: ${(props) => (props.inValidEmail ? "#fddddd" : "#fff")};
+  }
+
+  & .emailInput:focus {
+    background-color: ${(props) =>
+      props.inValidEmail ? "#fbe8d2" : "#f4fce3"};
+    border-color: ${(props) => (props.inValidEmail ? "#ff8800" : "#240370")};
+    outline: none;
+  }
+
+  & .passwordInput {
+    border: ${(props) =>
+      props.inValidPassword ? "1px solid #b40e0e" : "1px solid #9f9f9f"};
+    background-color: ${(props) =>
+      props.inValidPassword ? "#fddddd" : "#fff"};
+  }
+
+  & .passwordInput:focus {
+    background-color: ${(props) =>
+      props.inValidPassword ? "#fbe8d2" : "#f4fce3"};
+    border-color: ${(props) => (props.inValidPassword ? "#ff8800" : "#240370")};
+    outline: none;
+  }
 `;
 
 export const Label = styled.label`
@@ -68,12 +96,34 @@ const Button = styled.button`
   font-size: 2rem;
   font-weight: 700;
   font-family: inherit;
-  margin: 1.2rem 0;
+  margin: 3.6rem 0;
   color: #fff;
   background-color: #4ba87d;
   text-transform: uppercase;
   letter-spacing: 1.75px;
   border-radius: 9px;
+
+  &:hover,
+  &:active {
+    border-color: #2b8a3e;
+    background-color: #2b8a3e;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:active {
+    cursor: not-allowed;
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #292929;
+  }
+`;
+
+export const Message = styled.p`
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #f03e3e;
 `;
 
 const Login = () => {
@@ -86,11 +136,34 @@ const Login = () => {
 
   const { email, password } = userData;
 
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
+
+  const emailIsValid = email.includes("@");
+  const passwordIsValid = password.trim() !== "" && password.length > 3;
+
+  const emailInputIsInvalid = !email && emailTouched;
+  const passwordInputIsInvalid = !password && passwordTouched;
+
+  let formIsValid = false;
+
+  if (emailIsValid && passwordIsValid) {
+    formIsValid = true;
+  }
+
   const onChange = (e) => {
     setUserData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+  };
+
+  const emailInputBlurHandler = () => {
+    setEmailTouched(true);
+  };
+
+  const passwordInputBlurHandler = () => {
+    setPasswordTouched(true);
   };
 
   const dispatch = useDispatch();
@@ -99,8 +172,8 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      alert("add email or password");
+    if (!formIsValid) {
+      alert("Form Invalid!");
       return;
     }
 
@@ -116,6 +189,9 @@ const Login = () => {
       password: "",
     });
 
+    setEmailTouched(false);
+    setPasswordTouched(false);
+
     dispatch(onSpinner(true));
 
     setTimeout(() => {
@@ -129,28 +205,46 @@ const Login = () => {
       <Wrapper>
         {isLoading && <Spinner></Spinner>}
         <Form onSubmit={onSubmit}>
-          <Box>
+          <Box inValidEmail={emailInputIsInvalid}>
             <Label>E-mail</Label>
             <Input
               type="email"
               name="email"
               value={email}
               onChange={onChange}
+              onBlur={emailInputBlurHandler}
               placeholder="Enter email..."
+              className="emailInput"
             />
           </Box>
-          <Box>
+          {emailInputIsInvalid ? (
+            <Message>email empty</Message>
+          ) : (
+            email && !emailIsValid && <Message>'@' not includes</Message>
+          )}
+
+          <Box inValidPassword={passwordInputIsInvalid}>
             <Label>Password</Label>
             <Input
               type="password"
               name="password"
               value={password}
               onChange={onChange}
+              onBlur={passwordInputBlurHandler}
               placeholder="Enter password..."
+              className="passwordInput"
             />
           </Box>
+          {passwordInputIsInvalid ? (
+            <Message>password must not be empty.</Message>
+          ) : (
+            password &&
+            !passwordIsValid && <Message>password length 3 more </Message>
+          )}
 
-          <Button type="submit">로그인</Button>
+          <Button type="submit" disabled={!formIsValid}>
+            로그인
+          </Button>
         </Form>
       </Wrapper>
     </Container>

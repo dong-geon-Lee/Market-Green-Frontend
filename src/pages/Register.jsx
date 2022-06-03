@@ -38,6 +38,61 @@ export const Form = styled.form`
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.6rem;
+
+  & .nameInput {
+    border: ${(props) =>
+      props.inValidName ? "1px solid #b40e0e" : "1px solid #9f9f9f"};
+    background-color: ${(props) => (props.inValidName ? "#fddddd" : "#fff")};
+  }
+
+  & .nameInput:focus {
+    background-color: ${(props) => (props.inValidName ? "#fbe8d2" : "#f4fce3")};
+    border-color: ${(props) => (props.inValidName ? "#ff8800" : "#240370")};
+    outline: none;
+  }
+
+  & .emailInput {
+    border: ${(props) =>
+      props.inValidEmail ? "1px solid #b40e0e" : "1px solid #9f9f9f"};
+    background-color: ${(props) => (props.inValidEmail ? "#fddddd" : "#fff")};
+  }
+
+  & .emailInput:focus {
+    background-color: ${(props) =>
+      props.inValidEmail ? "#fbe8d2" : "#f4fce3"};
+    border-color: ${(props) => (props.inValidEmail ? "#ff8800" : "#240370")};
+    outline: none;
+  }
+
+  & .passwordInput {
+    border: ${(props) =>
+      props.inValidPassword ? "1px solid #b40e0e" : "1px solid #9f9f9f"};
+    background-color: ${(props) =>
+      props.inValidPassword ? "#fddddd" : "#fff"};
+  }
+
+  & .passwordInput:focus {
+    background-color: ${(props) =>
+      props.inValidPassword ? "#fbe8d2" : "#f4fce3"};
+    border-color: ${(props) => (props.inValidPassword ? "#ff8800" : "#240370")};
+    outline: none;
+  }
+
+  & .password2Input {
+    border: ${(props) =>
+      props.inValidPassword2 ? "1px solid #b40e0e" : "1px solid #9f9f9f"};
+    background-color: ${(props) =>
+      props.inValidPassword2 ? "#fddddd" : "#fff"};
+  }
+
+  & .password2Input:focus {
+    background-color: ${(props) =>
+      props.inValidPassword2 ? "#fbe8d2" : "#f4fce3"};
+    border-color: ${(props) =>
+      props.inValidPassword2 ? "#ff8800" : "#240370"};
+    outline: none;
+  }
 `;
 
 export const Label = styled.label`
@@ -73,6 +128,28 @@ const Button = styled.button`
   text-transform: uppercase;
   letter-spacing: 1.75px;
   border-radius: 9px;
+
+  &:hover,
+  &:active {
+    border-color: #2b8a3e;
+    background-color: #2b8a3e;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:active {
+    cursor: not-allowed;
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #292929;
+  }
+`;
+
+export const Message = styled.p`
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #f03e3e;
 `;
 
 const Register = () => {
@@ -87,6 +164,28 @@ const Register = () => {
 
   const { name, email, password, password2 } = userData;
 
+  const [nameTouched, setNameTouched] = useState(false);
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
+  const [password2Touched, setPassword2Touched] = useState(false);
+
+  const nameIsValid = name.trim() !== "";
+  const emailIsValid = email.includes("@");
+  const passwordIsValid = password.trim() !== "" && password.length > 3;
+  const password2IsValid =
+    password2.trim() !== "" && password2.length > 3 && password === password2;
+
+  const nameInputIsInvalid = !name && nameTouched;
+  const emailInputIsInvalid = !email && emailTouched;
+  const passwordInputIsInvalid = !password && passwordTouched;
+  const password2InputIsInvalid = !password2 && password2Touched;
+
+  let formIsValid = false;
+
+  if (nameIsValid && emailIsValid && passwordIsValid && password2IsValid) {
+    formIsValid = true;
+  }
+
   const onChange = (e) => {
     setUserData((prevState) => ({
       ...prevState,
@@ -94,11 +193,32 @@ const Register = () => {
     }));
   };
 
+  const nameInputBlurHandler = () => {
+    setNameTouched(true);
+  };
+
+  const emailInputBlurHandler = () => {
+    setEmailTouched(true);
+  };
+
+  const passwordInputBlurHandler = () => {
+    setPasswordTouched(true);
+  };
+
+  const password2InputBlurHandler = () => {
+    setPassword2Touched(true);
+  };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    if (!formIsValid) {
+      alert("Form Invalid!");
+      return;
+    }
 
     const newUser = {
       name,
@@ -115,6 +235,11 @@ const Register = () => {
       password2: "",
     });
 
+    setNameTouched(false);
+    setEmailTouched(false);
+    setPasswordTouched(false);
+    setPassword2Touched(false);
+
     dispatch(onSpinner(true));
 
     setTimeout(() => {
@@ -128,48 +253,83 @@ const Register = () => {
       <Wrapper>
         {isLoading && <Spinner></Spinner>}
         <Form onSubmit={onSubmit}>
-          <Box>
+          <Box inValidName={nameInputIsInvalid}>
             <Label>Name</Label>
             <Input
               type="text"
               name="name"
               value={name}
               onChange={onChange}
+              onBlur={nameInputBlurHandler}
               placeholder="Enter name..."
+              className="nameInput"
             />
+            {nameInputIsInvalid && (
+              <Message className="error-text">Name must not be empty</Message>
+            )}
           </Box>
-          <Box>
+          <Box inValidEmail={emailInputIsInvalid}>
             <Label>E-mail</Label>
             <Input
               type="email"
               name="email"
               value={email}
               onChange={onChange}
+              onBlur={emailInputBlurHandler}
               placeholder="Enter email..."
+              className="emailInput"
             />
+            {emailInputIsInvalid ? (
+              <Message>email empty</Message>
+            ) : (
+              email && !emailIsValid && <Message>'@' not includes</Message>
+            )}
           </Box>
-          <Box>
+          <Box inValidPassword={passwordInputIsInvalid}>
             <Label>Password</Label>
             <Input
               type="password"
               name="password"
               value={password}
               onChange={onChange}
+              onBlur={passwordInputBlurHandler}
               placeholder="Enter password..."
+              className="passwordInput"
             />
+            {passwordInputIsInvalid ? (
+              <Message>password must not be empty.</Message>
+            ) : (
+              password &&
+              !passwordIsValid && <Message>password length 3 more </Message>
+            )}
           </Box>
-          <Box>
+          <Box inValidPassword2={password2InputIsInvalid}>
             <Label>Password Confirm</Label>
             <Input
               type="password"
               name="password2"
               value={password2}
               onChange={onChange}
+              onBlur={password2InputBlurHandler}
               placeholder="Password Confirm..."
+              className="password2Input"
             />
+            {/* {password2InputIsInvalid ? (
+              <Message>password2 must not be empty.</Message>
+            ) : (
+              password !== password2 && <Message>password not correct</Message>
+            )} */}
+            {password2InputIsInvalid ? (
+              <Message>password2 must not be empty.</Message>
+            ) : (
+              passwordIsValid &&
+              !password2IsValid && <Message>password not correct</Message>
+            )}
           </Box>
 
-          <Button type="submit">회원가입</Button>
+          <Button type="submit" disabled={!formIsValid}>
+            회원가입
+          </Button>
         </Form>
       </Wrapper>
     </Container>
@@ -177,13 +337,3 @@ const Register = () => {
 };
 
 export default Register;
-
-// const user = useSelector((state) => state.user);
-
-// const dispatch = useDispatch();
-
-// useEffect(() => {
-//   dispatch(getUsers());
-// }, []);
-
-// console.log(user);
