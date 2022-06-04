@@ -264,9 +264,7 @@ const Register = () => {
               placeholder="Enter name..."
               className="nameInput"
             />
-            {nameInputIsInvalid && (
-              <Message className="error-text">Name must not be empty</Message>
-            )}
+            {nameInputIsInvalid && <Message>Name must not be empty</Message>}
           </Box>
           <Box inValidEmail={emailInputIsInvalid}>
             <Label>E-mail</Label>
@@ -314,11 +312,6 @@ const Register = () => {
               placeholder="Password Confirm..."
               className="password2Input"
             />
-            {/* {password2InputIsInvalid ? (
-              <Message>password2 must not be empty.</Message>
-            ) : (
-              password !== password2 && <Message>password not correct</Message>
-            )} */}
             {password2InputIsInvalid ? (
               <Message>password2 must not be empty.</Message>
             ) : (

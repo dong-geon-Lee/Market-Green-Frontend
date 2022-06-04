@@ -28,14 +28,13 @@ export const Wrapper = styled.div`
   gap: 3.2rem;
 
   & .rec {
-    column-gap: 0.8rem;
+    /* column-gap: 0.8rem; */
 
     & .rec-arrow {
-      opacity: 0.3;
+      opacity: 0.5;
       margin-bottom: 13rem;
+      color: #333;
     }
-
-    
   }
 
   & .rec.rec-arrow-left:hover:enabled,

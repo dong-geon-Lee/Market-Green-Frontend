@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import image from "../assets/spinner.gif";
 
 const spin = keyframes`
   0% {
@@ -23,19 +24,19 @@ export const SpinnerContainer = styled.div`
   align-items: center;
 `;
 
-export const SpinnerContent = styled.div`
-  width: 6.4rem;
-  height: 6.4rem;
-  border: 8px solid;
-  border-color: #000 #555;
+export const SpinnerContent = styled.img`
+  width: 8.4rem;
+  height: 8.4rem;
   border-radius: 50%;
-  animation: ${(props) => props.spin} 1.2s linear infinite;
+  /* border: 8px solid; */
+  /* border-color: #000 #555; */
+  /* animation: ${(props) => props.spin} 1.2s linear infinite; */
 `;
 
 const Spinner = () => {
   return (
     <SpinnerContainer>
-      <SpinnerContent spin={spin}></SpinnerContent>
+      <SpinnerContent src={image} alt="spinner" spin={spin}></SpinnerContent>
     </SpinnerContainer>
   );
 };

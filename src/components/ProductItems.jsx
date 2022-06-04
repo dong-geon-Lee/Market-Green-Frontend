@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteProduct } from "../redux-toolkit/productSlice";
 import StarRating from "./StarRating";
+import { offSpinner, onSpinner } from "../redux-toolkit/spinnerSlice";
+import Spinner from "../components/Spinner";
 
 export const Container = styled.div`
   display: flex;
@@ -116,6 +118,8 @@ export const LinkBtn = styled(Link)`
 `;
 
 const ProductItems = ({ _id, title, desc, price, img, inStock, rating }) => {
+  const isLoading = useSelector((state) => state.spinner.isLoading);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -128,6 +132,7 @@ const ProductItems = ({ _id, title, desc, price, img, inStock, rating }) => {
   return (
     <Container>
       <Card>
+        {isLoading && <Spinner></Spinner>}
         <ImgBox onClick={() => onClick(_id)}>
           <Image src={`http://localhost:5000/${img}`} alt="img" />
         </ImgBox>
@@ -137,7 +142,16 @@ const ProductItems = ({ _id, title, desc, price, img, inStock, rating }) => {
           <Text>{prices}원</Text>
           <StarRating value={rating}></StarRating>
           <OptionBox>
-            <Button onClick={() => dispatch(deleteProduct({ id: _id }))}>
+            <Button
+              onClick={() => {
+                dispatch(deleteProduct({ id: _id }));
+                dispatch(onSpinner(true));
+
+                setTimeout(() => {
+                  dispatch(offSpinner(false));
+                }, 1500);
+              }}
+            >
               삭제
             </Button>
             <Button onClick={() => onClick(_id)}>자세히</Button>
