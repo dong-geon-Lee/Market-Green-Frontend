@@ -256,13 +256,6 @@ const ProductEdit = () => {
       dispatch(offSpinner(false));
       navigate(-1);
     }, 1500);
-    // setUserData({
-    //   title: "",
-    //   desc: "",
-    //   price: "",
-    //   inStock: "",
-    //   // categories: "",
-    // });
   };
 
   const handleImage = (e) => {
