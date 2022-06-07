@@ -133,7 +133,7 @@ export const TextBox = styled.div`
 
 const Footer = () => {
   return (
-    <Container>
+    <Container id='footer'>
       <hr />
       <Wrapper>
         <LogoGroup>

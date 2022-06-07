@@ -90,7 +90,7 @@ export const RightImage = styled.img``;
 
 const Introduce = () => {
   return (
-    <Container>
+    <Container id='intro'>
       <Wrapper>
         <IntroBox>
           <Title>Start creating your own garden!</Title>

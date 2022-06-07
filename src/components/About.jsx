@@ -87,7 +87,7 @@ export const Image = styled.img`
 
 const About = () => {
   return (
-    <Container>
+    <Container id="about">
       <Wrapper>
         <Title>Create your own beautiful and exciting garden!</Title>
 

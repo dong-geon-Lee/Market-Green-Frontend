@@ -114,7 +114,7 @@ export const SlideBox = styled.div`
 
 const Testimonials = () => {
   return (
-    <Container>
+    <Container id="testimonials">
       <Wrapper>
         <Title>Customer Reviews</Title>
 

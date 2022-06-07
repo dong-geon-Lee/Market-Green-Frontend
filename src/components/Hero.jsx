@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  height: 92vh;
+  height: 100vh;
 `;
 
 export const Wrapper = styled.div`

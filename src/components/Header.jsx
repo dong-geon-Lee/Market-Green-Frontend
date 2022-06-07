@@ -16,6 +16,13 @@ import { FaUserAlt } from "react-icons/fa";
 import { BsFillFileEarmarkPersonFill } from "react-icons/bs";
 import { BsDoorOpenFill } from "react-icons/bs";
 import { BsFillHouseFill } from "react-icons/bs";
+import { FaInfoCircle } from "react-icons/fa";
+import { GrProductHunt } from "react-icons/gr";
+import { HiSpeakerphone } from "react-icons/hi";
+import { FaNetworkWired } from "react-icons/fa";
+import { SiWebhint } from "react-icons/si";
+import { FaEnvira } from "react-icons/fa";
+import { FaPhotoVideo } from "react-icons/fa";
 
 export const Container = styled.nav`
   display: flex;
@@ -24,7 +31,11 @@ export const Container = styled.nav`
   background-color: #fff;
   height: 8vh;
   padding: 0 3.2rem;
-  position: relative;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
 
   & a {
     text-decoration: none;
@@ -54,6 +65,7 @@ export const NavList = styled.ul`
   display: flex;
   align-items: center;
   gap: 4.8rem;
+  transition: all 0.3s ease;
 `;
 
 export const Items = styled.li`
@@ -142,6 +154,16 @@ export const LinkStyle = styled(Link)`
   line-height: 1.5;
 `;
 
+export const NavText = styled.a`
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+  cursor: pointer;
+`;
+
 export const Nav = styled.nav`
   width: 25rem;
   height: 100vh;
@@ -187,7 +209,7 @@ export const AdminBox = styled.div`
   gap: 2.4rem;
 `;
 
-const Header = () => {
+const Header = (props) => {
   const [sidebar, setSidebar] = useState(false);
 
   const user = useSelector((state) => state.user.user);
@@ -223,7 +245,6 @@ const Header = () => {
           <LogoTitle>MarketGreen</LogoTitle>
         </LogoBox>
       </Link>
-
       <NavList>
         <Navbar>
           <LinkTag to="#">
@@ -240,23 +261,11 @@ const Header = () => {
             </Toggle>
 
             <Content>
-              {/* <Items>
-                <ItemLink>About</ItemLink>
-              </Items>
-              <Items>
-                <ItemLink>Product</ItemLink>
-              </Items>
-              <Items>
-                <ItemLink>Testimonial</ItemLink>
-              </Items>
-              <Items>
-                <ItemLink>Information</ItemLink>
-              </Items> */}
-
               <LinkStyle to="/">
                 <BsFillHouseFill style={{ marginRight: "1rem" }} />
                 Home
               </LinkStyle>
+
               <BtnBox>
                 {user && token ? (
                   <AdminBox>
@@ -298,6 +307,41 @@ const Header = () => {
                   </>
                 )}
               </BtnBox>
+
+              <NavText href="#intro" onClick={showSidebar}>
+                <FaNetworkWired style={{ marginRight: "1rem" }} />
+                Introduce
+              </NavText>
+
+              <NavText href="#about" onClick={showSidebar}>
+                <FaInfoCircle style={{ marginRight: "1rem" }} />
+                About
+              </NavText>
+
+              <NavText href="#products" onClick={showSidebar}>
+                <GrProductHunt style={{ marginRight: "1rem" }} />
+                Product
+              </NavText>
+
+              <NavText href="#testimonials" onClick={showSidebar}>
+                <HiSpeakerphone style={{ marginRight: "1rem" }} />
+                Testimonials
+              </NavText>
+
+              <NavText href="#promotion" onClick={showSidebar}>
+                <SiWebhint style={{ marginRight: "1rem" }} />
+                Promotion
+              </NavText>
+
+              <NavText href="#gallery" onClick={showSidebar}>
+                <FaPhotoVideo style={{ marginRight: "1rem" }} />
+                Gallery
+              </NavText>
+
+              <NavText href="#footer" onClick={showSidebar}>
+                <FaEnvira style={{ marginRight: "1rem" }} />
+                Footer
+              </NavText>
             </Content>
           </Side>
         </Nav>

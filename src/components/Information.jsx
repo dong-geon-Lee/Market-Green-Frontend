@@ -73,7 +73,7 @@ export const Button = styled.button`
 
 const Information = () => {
   return (
-    <Container>
+    <Container id="promotion">
       <MainText>Promotion</MainText>
       <Wrapper>
         <Content></Content>

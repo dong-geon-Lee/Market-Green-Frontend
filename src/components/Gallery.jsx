@@ -105,7 +105,7 @@ export const Image = styled.img`
 
 const Gallery = () => {
   return (
-    <Container>
+    <Container id="gallery">
       <h1>Gallery</h1>
       <Wrapper>
         <ImageBox className="item1">
