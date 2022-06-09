@@ -17,6 +17,7 @@ import StarReviews from "../components/StarReviews";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 7rem;
 `;
 
 export const Wrapper = styled.div`

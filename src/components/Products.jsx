@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import ProductItems from "./ProductItems";
@@ -45,6 +45,39 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const SelectBox = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  padding: 3.2rem 6.4rem;
+  width: 100%;
+
+  & select {
+    border: none;
+    border-radius: 6px;
+    background-color: #ececec;
+    padding: 1.2rem 1.2rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1.5;
+
+    &:last-of-type {
+      margin-left: 1.4rem;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      opacity: 0.9;
+      font-weight: 500;
+    }
+  }
+`;
+
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
   { width: 550, itemsToShow: 2 },
@@ -52,8 +85,82 @@ const breakPoints = [
   { width: 1200, itemsToShow: 4 },
 ];
 
+// const sortOptionList = [
+//   { value: "latest", name: "최신순" },
+//   { value: "oldest", name: "오래된 순" },
+// ];
+
+const filterOptionList = [
+  { value: "all", name: "평점" },
+  { value: "good", name: "별4개이상" },
+  { value: "bad", name: "별4개 미만" },
+];
+
+const highOptionList = [
+  { value: "all", name: "가격" },
+  { value: "high", name: "높은 가격순" },
+  { value: "low", name: "낮은 가격순" },
+];
+
+const ControlMenu = ({ value, onChange, optionList }) => {
+  return (
+    <select value={value} onChange={(e) => onChange(e.target.value)}>
+      {optionList.map((data, idx) => (
+        <option key={idx} value={data.value}>
+          {data.name}
+        </option>
+      ))}
+    </select>
+  );
+};
+
 const Products = () => {
   const { products } = useSelector((state) => state.product);
+  const productList = useSelector((state) => state.product.products);
+
+  const [sortType, setSortType] = useState("latest");
+  const [filter, setFilter] = useState("all");
+  const [price, setPrice] = useState("all");
+
+  const getProductList = () => {
+    const filterCallBack = (item) => {
+      if (filter === "good") {
+        return parseInt(item.rating) >= 4;
+      } else {
+        return parseInt(item.rating) < 4;
+      }
+    };
+
+    const comparePrice = (a, b) => {
+      if (price === "high") {
+        return b.price - a.price;
+      } else {
+        return a.price - b.price;
+      }
+    };
+
+    // const compare = (a, b) => {
+    //   let dateA = a.createdAt.split("T")[0];
+    //   let dateB = b.createdAt.split("T")[0];
+
+    //   if (sortType === "latest") {
+    //     return new Date(dateB) - new Date(dateA);
+    //   } else {
+    //     return new Date(dateA) - new Date(dateB);
+    //   }
+    // };
+
+    const copyList = products && productList?.slice();
+
+    const filteredList =
+      filter === "all"
+        ? copyList
+        : copyList.filter((data) => filterCallBack(data));
+
+    const sortedList = filteredList.sort(comparePrice);
+
+    return sortedList;
+  };
 
   const dispatch = useDispatch();
 
@@ -67,12 +174,32 @@ const Products = () => {
     <Container id="products">
       <Title>Product</Title>
 
+      <SelectBox>
+        {/* <ControlMenu
+          value={sortType}
+          onChange={setSortType}
+          optionList={sortOptionList}
+        ></ControlMenu> */}
+        <ControlMenu
+          value={filter}
+          onChange={setFilter}
+          optionList={filterOptionList}
+        ></ControlMenu>
+        <ControlMenu
+          value={price}
+          onChange={setPrice}
+          optionList={highOptionList}
+        ></ControlMenu>
+      </SelectBox>
       <Wrapper>
         <Carousel breakPoints={breakPoints}>
-          {products &&
-            products?.map((data) => (
+          {getProductList().map((data) => (
+            <ProductItems key={data._id} {...data}></ProductItems>
+          ))}
+          {/* {products &&
+            products.map((data) => (
               <ProductItems key={data._id} {...data}></ProductItems>
-            ))}
+            ))} */}
         </Carousel>
       </Wrapper>
     </Container>

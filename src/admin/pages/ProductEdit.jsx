@@ -175,6 +175,7 @@ const ProductEdit = () => {
   const [userData, setUserData] = useState(state);
 
   const { id, title, desc, price, categories, inStock, img } = userData;
+
   const [imgTouched, setImgTouched] = useState(false);
   const [titleTouched, setTitleTouched] = useState(false);
   const [descTouched, setDescTouched] = useState(false);

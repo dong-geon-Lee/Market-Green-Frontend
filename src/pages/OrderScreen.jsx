@@ -19,11 +19,14 @@ import {
   cartShippingPrice,
   cartTaxPrice,
   cartTotalPrice,
+  deleteStorage,
 } from "../redux-toolkit/cartSlice";
 import {
   createOrder,
+  createOrderReset,
   getOrderDetails,
   orderItemsPrice,
+  orderPayReset,
   payOrder,
 } from "../redux-toolkit/orderSlice.js";
 import { useParams } from "react-router-dom";
@@ -171,7 +174,7 @@ const OrderScreen = () => {
   const [sdkReady, setSdkReady] = useState(false);
 
   const orderInfo = useSelector((state) => state.order);
-  const { loading, error, orderDetails, itemsPrice } = orderInfo;
+  const { loading, error, orderDetails, itemsPrice, order } = orderInfo;
 
   const orderPay = useSelector((state) => state.order);
   const { loadingPay, successPay } = orderPay;
@@ -192,6 +195,7 @@ const OrderScreen = () => {
       const { data: clientId } = await axios.get(
         "http://localhost:5000/api/paypal"
       );
+
       const script = document.createElement("script");
       script.type = "text/javascript";
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
@@ -203,13 +207,16 @@ const OrderScreen = () => {
     };
 
     if (!orderDetails || successPay) {
+      dispatch(orderPayReset());
       dispatch(getOrderDetails({ id: orderId }));
-      dispatch(orderItemsPrice(itemPrice));
+      // dispatch(orderItemsPrice(itemPrice));
     } else if (!orderDetails.isPaid) {
       if (!window.paypal) {
         addPaypalScript();
+        dispatch(orderPayReset());
       } else {
         setSdkReady(true);
+        dispatch(orderPayReset());
       }
     }
   }, [dispatch, orderId, successPay]);
@@ -217,7 +224,16 @@ const OrderScreen = () => {
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult, "결과");
     dispatch(payOrder({ orderId, paymentResult }));
+    // dispatch(createOrderReset());
+    dispatch(deleteStorage());
+    alert("결제 완료 ");
+
+    setTimeout(() => {
+      localStorage.setItem("paymentResult", JSON.stringify(paymentResult));
+      window.location.href = "/";
+    }, 3000);
   };
+
   return (
     <Container>
       <Wrapper>

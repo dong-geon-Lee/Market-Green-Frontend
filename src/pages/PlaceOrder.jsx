@@ -19,6 +19,7 @@ import {
   cartShippingPrice,
   cartTaxPrice,
   cartTotalPrice,
+  deleteStorage,
 } from "../redux-toolkit/cartSlice";
 import { createOrder, createOrderReset } from "../redux-toolkit/orderSlice.js";
 import { useNavigate, useParams } from "react-router-dom";
@@ -175,16 +176,15 @@ const PlaceOrder = () => {
     totalPrice,
   } = cart;
 
-  const orderInfo = useSelector((state) => state.order);
-  const { success, order } = orderInfo;
+  const orderCreate = useSelector((state) => state.order);
+  const { success, order } = orderCreate;
 
-  console.log(cart);
-  console.log(orderInfo);
+  console.log(order);
+  console.log(orderCreate);
   console.log(success);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const id = useParams();
 
   useEffect(() => {
     dispatch(cartItemPrice());
@@ -194,12 +194,15 @@ const PlaceOrder = () => {
 
     if (success) {
       navigate(`/order/${order._id}`);
+
       dispatch(createOrderReset());
     }
-  }, [id, success, dispatch]);
+  }, [navigate, success, dispatch, order]);
 
   const placeOrderHandler = (e) => {
     e.preventDefault();
+
+    dispatch(deleteStorage());
 
     dispatch(
       createOrder({

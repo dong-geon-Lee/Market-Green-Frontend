@@ -134,7 +134,7 @@ const ProductItems = ({ _id, title, desc, price, img, inStock, rating }) => {
       <Card>
         {isLoading && <Spinner></Spinner>}
         <ImgBox onClick={() => onClick(_id)}>
-          <Image src={`http://localhost:5000/${img}`} alt="img" />
+          <Image src={`http://localhost:5000/${img}`} alt="image" />
         </ImgBox>
 
         <InfoBox>

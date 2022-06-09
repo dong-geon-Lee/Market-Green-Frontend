@@ -11,7 +11,7 @@ export const RatingBox = styled.div`
 export const Rating = styled.div`
   font-size: 2rem;
   font-weight: 700;
-  /* padding: 1.2rem 1.6rem; */
+  
 
   & svg {
     fill: #ebb450;
