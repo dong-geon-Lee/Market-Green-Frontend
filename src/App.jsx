@@ -21,6 +21,7 @@ import Shipping from "./pages/Shipping";
 import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
 import OrderScreen from "./pages/OrderScreen";
+import PaymentResult from "./pages/PaymentResult";
 
 const App = () => {
   const user = useSelector((state) => state.user.user?.accessToken);
@@ -50,6 +51,7 @@ const App = () => {
           path="/profile"
           element={user ? <Profile /> : <Navigate replace to="/" />}
         ></Route>
+        <Route path="/paymentResult" element={<PaymentResult />}></Route>
         <Route
           path="/profileEdit"
           element={user ? <ProfileEdit /> : <Navigate replace to="/" />}

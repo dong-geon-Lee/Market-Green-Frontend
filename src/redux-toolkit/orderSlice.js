@@ -78,6 +78,23 @@ export const payOrder = createAsyncThunk(
   }
 );
 
+export const getUserOrders = createAsyncThunk(
+  "GET/userOrder",
+  async (_, thunkAPI) => {
+    const TOKEN = thunkAPI.getState().user.user?.accessToken;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
+
+    const { data } = await axios.get(API_URL, config);
+    console.log(data);
+    return data;
+  }
+);
+
 const initialState = {
   loading: false,
   success: false,
@@ -100,17 +117,10 @@ const orderSlice = createSlice({
       state.orderDetails = "";
       state.success = false;
       state.loading = false;
-
-      // localStorage.removeItem("cartItems");
     },
     orderPayReset: (state) => {
       state.success = "";
     },
-    // orderItemsPrice: (state, action) => {
-    //   localStorage.setItem("itemsPrice", JSON.stringify(action.payload));
-
-    //   state.itemsPrice = action.payload;
-    // },
   },
 
   extraReducers: {
@@ -151,6 +161,19 @@ const orderSlice = createSlice({
       state.successPay = true;
     },
     [payOrder.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [getUserOrders.pending]: (state) => {
+      state.loading = false;
+    },
+    [getUserOrders.fulfilled]: (state, action) => {
+      state.loading = false;
+      // state.orders.push(...action.payload);
+      state.orders = action.payload;
+      state.error = false;
+    },
+    [getUserOrders.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

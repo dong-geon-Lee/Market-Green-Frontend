@@ -225,12 +225,13 @@ const OrderScreen = () => {
     console.log(paymentResult, "결과");
     dispatch(payOrder({ orderId, paymentResult }));
     // dispatch(createOrderReset());
-    dispatch(deleteStorage());
     alert("결제 완료 ");
 
     setTimeout(() => {
       localStorage.setItem("paymentResult", JSON.stringify(paymentResult));
-      window.location.href = "/";
+      dispatch(deleteStorage());
+      localStorage.removeItem("cartItems");
+      window.location.href = "/paymentResult";
     }, 3000);
   };
 

@@ -84,7 +84,7 @@ export const LinkBox = styled.div`
   border-radius: 9px;
 
   & a {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     font-family: inherit;
     text-decoration: none;
@@ -130,6 +130,9 @@ const Profile = () => {
           <BtnBox>
             <LinkBox>
               <Link to="/profileEdit">프로필 변경</Link>
+            </LinkBox>
+            <LinkBox>
+              <Link to="/paymentResult">결제 내역</Link>
             </LinkBox>
             <Button type="submit">회원 탈퇴</Button>
           </BtnBox>
