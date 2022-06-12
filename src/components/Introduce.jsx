@@ -3,11 +3,16 @@ import styled from "styled-components";
 import { FaBook } from "react-icons/fa";
 import { FaSeedling } from "react-icons/fa";
 import { FaHandHoldingWater } from "react-icons/fa";
+import { smallMobile } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
   padding: 25rem 3.2rem 15rem 3.2rem;
   margin: 0 auto;
+
+  ${smallMobile({
+    padding: "15rem 3.2rem 15rem 3.2rem",
+  })}
 `;
 
 export const Wrapper = styled.div`
@@ -27,12 +32,28 @@ export const Title = styled.h1`
   font-size: 3.6rem;
   letter-spacing: 1px;
   margin-bottom: 3.2rem;
+
+  ${smallMobile({
+    textAlign: "center",
+    fontSize: "4rem",
+    fontWeight: "700",
+    letterSpacing: "1.5px",
+    lineHeight: "1.5",
+  })}
 `;
 
 export const Text = styled.h1`
   font-size: 2.4rem;
   letter-spacing: 0.75px;
   color: #69db7c;
+
+  ${smallMobile({
+    textAlign: "center",
+    fontSize: "2.6rem",
+    fontWeight: "700",
+    letterSpacing: "1px",
+    lineHeight: "1.5",
+  })}
 `;
 
 export const Strong = styled.strong`
@@ -48,7 +69,16 @@ export const ContentBox = styled.div`
   & svg {
     color: #2f9e44;
     font-size: 9.8rem;
+
+    ${smallMobile({
+      fontSize: "12rem",
+    })}
   }
+
+  ${smallMobile({
+    flexDirection: "column",
+    padding: "0 4.8rem",
+  })}
 `;
 
 export const IconInfoBox = styled.div`
@@ -56,6 +86,10 @@ export const IconInfoBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  ${smallMobile({
+    marginBottom: "6rem",
+  })}
 `;
 
 export const TitleInfo = styled.h1`
@@ -64,6 +98,12 @@ export const TitleInfo = styled.h1`
   line-height: 1.5;
   color: #212529;
   margin: 0.8rem 0;
+
+  ${smallMobile({
+    fontSize: "3.6rem",
+    marginTop: "2rem",
+    letterSpacing: "1px",
+  })}
 `;
 
 export const TextInfo = styled.p`
@@ -73,6 +113,11 @@ export const TextInfo = styled.p`
   line-height: 1.5;
   width: 80%;
   text-align: center;
+
+  ${smallMobile({
+    fontSize: "2rem",
+    letterSpacing: "0.5px",
+  })}
 `;
 
 export const Icon = styled.div``;
@@ -90,7 +135,7 @@ export const RightImage = styled.img``;
 
 const Introduce = () => {
   return (
-    <Container id='intro'>
+    <Container id="intro">
       <Wrapper>
         <IntroBox>
           <Title>Start creating your own garden!</Title>

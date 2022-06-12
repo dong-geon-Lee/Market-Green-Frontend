@@ -1,8 +1,18 @@
 import React from "react";
+import { GrEbay } from "react-icons/gr";
 import styled from "styled-components";
+import {
+  desktops,
+  Mobile,
+  smallDesktops,
+  smallTablets,
+  Tablets,
+  smallMobile,
+} from "../responsive";
 
 export const Container = styled.div`
   display: flex;
+  width: 100vw;
   height: 100vh;
 `;
 
@@ -16,6 +26,10 @@ export const Wrapper = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  ${smallMobile({
+    backgroundPosition: "top left",
+  })}
 `;
 
 export const InfoBox = styled.div`
@@ -32,6 +46,17 @@ export const Title = styled.h1`
   line-height: 1.5;
   margin-bottom: 1.6rem;
   letter-spacing: 2px;
+
+  ${smallDesktops({ fontSize: "6rem" })}
+  ${smallTablets({ fontSize: "4.8rem" })}
+  ${Mobile({ fontSize: "3rem" })}
+
+  ${smallMobile({
+    width: "80%",
+    textAlign: "center",
+    fontSize: "5rem",
+    letterSpacing: "2.5px",
+  })}
 `;
 
 export const Text = styled.p`
@@ -41,8 +66,22 @@ export const Text = styled.p`
   margin: 2.4rem 0 6.4rem 0;
   line-height: 1.5;
   letter-spacing: 1px;
-  width: 60%;
+  width: 75%;
   text-align: center;
+
+  ${smallDesktops({ fontSize: "2.4rem" })}
+  ${smallTablets({ fontSize: "2rem" })}
+  ${Mobile({ fontSize: "1.8rem", width: "60%" })}
+  
+  ${smallMobile({
+    width: "80%",
+    textAlign: "center",
+    fontSize: "2rem",
+    fontWeight: "400",
+    lineHeight: "1.7",
+    letterSpacing: "1.5px",
+    color: "#f8f9fa",
+  })}
 `;
 
 export const BtnBox = styled.div`
@@ -62,6 +101,15 @@ export const Button = styled.button`
   border-radius: 9px;
   cursor: pointer;
   transition: all 0.3s ease;
+
+  ${smallDesktops({ fontSize: "2rem" })}
+  ${Mobile({ fontSize: "1.6rem" })}
+
+  ${smallMobile({
+    fontSize: "2.4rem",
+    fontWeight: "500",
+    padding: "2rem 2.4rem",
+  })}
 
   &:hover {
     background-color: #2f9e44;

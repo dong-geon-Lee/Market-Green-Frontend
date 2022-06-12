@@ -4,11 +4,16 @@ import image1 from "../assets/image1.jpg";
 import image2 from "../assets/image2.jpg";
 import image3 from "../assets/image3.jpg";
 import image4 from "../assets/image4.jpg";
+import { smallMobile } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
   padding: 25rem 3.2rem;
   margin: 0 auto;
+
+  /* ${smallMobile({
+    padding: "12rem 3.2rem",
+  })} */
 `;
 
 export const Wrapper = styled.div`
@@ -45,7 +50,12 @@ export const Right = styled.div`
   margin: 0 0 0 6rem;
 `;
 
-export const AboutBox = styled.div``;
+export const AboutBox = styled.div`
+  & p:last-child {
+    text-align: right;
+    margin-right: 3.6rem;
+  }
+`;
 
 export const SubHeading = styled.h2`
   font-size: 2.4rem;
@@ -95,14 +105,16 @@ const About = () => {
           <Left>
             <AboutBox>
               <SubHeading>
-                Come with us how to grow your plants to be better and healthier
+                "Come with us how to grow your plants to be better and
+                healthier"
               </SubHeading>
               <Text>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error
-                aliquid consectetur, eum placeat odio tempora cum repudiandae
-                asperiores repellendus est? Qui obcaecati delectus, laboriosam
-                modi magnam autem voluptatibus aspernatur repellendus.
+                We have a variety of products for your own garden! <br></br>
+                Market green has hundreds of rare and eco-friendly plants. We
+                want you to feel joy and peace!
               </Text>
+
+              <Text>- MarketGreen</Text>
             </AboutBox>
           </Left>
 

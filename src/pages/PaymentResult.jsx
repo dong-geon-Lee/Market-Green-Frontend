@@ -65,8 +65,12 @@ export const Wrapper = styled.div`
       color: red;
     }
 
-    & tr {
+    & thead {
       background-color: #04aa6d;
+
+      & td:hover {
+        background-color: #ddd;
+      }
     }
   }
 `;
@@ -88,25 +92,29 @@ const PaymentResult = () => {
         <h1>{order && order[0]?.user.name}님의 결제내역</h1>
 
         <table id="customers">
-          <tr>
-            <th>orderID</th>
-            <th>Product</th>
-            <th>Customer</th>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Status</th>
-          </tr>
-
-          {order.map((data) => (
-            <tr key={data._id}>
-              <td>{data._id}</td>
-              <td>{data.orderItems[0].title}</td>
-              <td>{data.user.name}</td>
-              <td>{data.paidAt.split("T")[0]}</td>
-              <td>{data.totalPrice} 원</td>
-              <td>{data.paymentResult.status ? "결제완료" : "결제 대기 중"}</td>
+          <thead>
+            <tr>
+              <th>orderID</th>
+              <th>Product</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Status</th>
             </tr>
-          ))}
+
+            {order.map((data) => (
+              <tr key={data._id}>
+                <td>{data._id}</td>
+                <td>{data.orderItems[0].title}</td>
+                <td>{data.user.name}</td>
+                <td>{data.paidAt.split("T")[0]}</td>
+                <td>{data.totalPrice} 원</td>
+                <td>
+                  {data.paymentResult.status ? "결제완료" : "결제 대기 중"}
+                </td>
+              </tr>
+            ))}
+          </thead>
         </table>
       </Wrapper>
     </Container>
