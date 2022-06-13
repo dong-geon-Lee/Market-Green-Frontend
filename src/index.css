@@ -6,6 +6,8 @@
 
 html {
   font-size: 62.5%;
+  /*  임시로 사용 미디어쿼리 끝날떄까지 */
+  overflow-x: hidden;
 }
 
 body {

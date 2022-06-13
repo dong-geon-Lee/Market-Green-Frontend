@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductItems from "./ProductItems";
 import { getProducts } from "../redux-toolkit/productSlice";
 import Carousel from "react-elastic-carousel";
+import { smallMobile } from "../responsive";
 
 export const Container = styled.div`
   max-width: 140rem;
@@ -19,6 +20,10 @@ export const Title = styled.h1`
   text-align: center;
   letter-spacing: 1px;
   color: #7ed56f;
+
+  ${smallMobile({
+    marginBottom: "2rem",
+  })}
 `;
 
 export const Wrapper = styled.div`
@@ -28,8 +33,6 @@ export const Wrapper = styled.div`
   gap: 3.2rem;
 
   & .rec {
-    /* column-gap: 0.8rem; */
-
     & .rec-arrow {
       opacity: 0.5;
       margin-bottom: 13rem;
@@ -50,6 +53,10 @@ export const SelectBox = styled.div`
   justify-content: flex-start;
   padding: 3.2rem 6.4rem;
   width: 100%;
+
+  ${smallMobile({
+    justifyContent: "center",
+  })}
 
   & select {
     border: none;
@@ -75,6 +82,10 @@ export const SelectBox = styled.div`
       opacity: 0.9;
       font-weight: 500;
     }
+
+    ${smallMobile({
+      textAlign: "center",
+    })}
   }
 `;
 
@@ -84,11 +95,6 @@ const breakPoints = [
   { width: 768, itemsToShow: 3 },
   { width: 1200, itemsToShow: 4 },
 ];
-
-// const sortOptionList = [
-//   { value: "latest", name: "최신순" },
-//   { value: "oldest", name: "오래된 순" },
-// ];
 
 const filterOptionList = [
   { value: "all", name: "평점" },
@@ -118,7 +124,6 @@ const Products = () => {
   const { products } = useSelector((state) => state.product);
   const productList = useSelector((state) => state.product.products);
 
-  const [sortType, setSortType] = useState("latest");
   const [filter, setFilter] = useState("all");
   const [price, setPrice] = useState("all");
 
@@ -138,17 +143,6 @@ const Products = () => {
         return a.price - b.price;
       }
     };
-
-    // const compare = (a, b) => {
-    //   let dateA = a.createdAt.split("T")[0];
-    //   let dateB = b.createdAt.split("T")[0];
-
-    //   if (sortType === "latest") {
-    //     return new Date(dateB) - new Date(dateA);
-    //   } else {
-    //     return new Date(dateA) - new Date(dateB);
-    //   }
-    // };
 
     const copyList = products && productList?.slice();
 
@@ -175,11 +169,6 @@ const Products = () => {
       <Title>Product</Title>
 
       <SelectBox>
-        {/* <ControlMenu
-          value={sortType}
-          onChange={setSortType}
-          optionList={sortOptionList}
-        ></ControlMenu> */}
         <ControlMenu
           value={filter}
           onChange={setFilter}
@@ -196,10 +185,6 @@ const Products = () => {
           {getProductList().map((data) => (
             <ProductItems key={data._id} {...data}></ProductItems>
           ))}
-          {/* {products &&
-            products.map((data) => (
-              <ProductItems key={data._id} {...data}></ProductItems>
-            ))} */}
         </Carousel>
       </Wrapper>
     </Container>

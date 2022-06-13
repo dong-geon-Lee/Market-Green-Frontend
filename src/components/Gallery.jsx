@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { plantsData } from "../data/productDummy";
+import { smallMobile } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
@@ -24,44 +25,82 @@ export const Wrapper = styled.div`
   grid-gap: 1.5rem;
   padding: 1.5rem;
 
+  ${smallMobile({
+    display: "flex",
+    flexDirection: "column",
+    gap: "6rem",
+  })}
+
   & .item1 {
     grid-row: 1 / span 2;
     grid-column: 1 / span 2;
+
+    ${smallMobile({
+      display: "none",
+    })}
   }
 
   & .item2 {
     grid-row: 6 / span 2;
     grid-column: 8 / span 1;
+
+    ${smallMobile({
+      display: "none",
+    })}
   }
 
   & .item3 {
     grid-row: 4 / span 1;
     grid-column: 5 / span 1;
+
+    ${smallMobile({
+      display: "none",
+    })}
   }
 
   & .item4 {
     grid-row: 1 / span 2;
     grid-column: 7 / span 2;
+
+    ${smallMobile({
+      display: "none",
+    })}
   }
 
   & .item5 {
     grid-row: 3 / span 3;
     grid-column: 1 / span 2;
+
+    /* ${smallMobile({
+      display: "none",
+    })} */
   }
 
   & .item6 {
     grid-row: 4 / span 2;
     grid-column: 3 / span 2;
+
+    ${smallMobile({
+      display: "none",
+    })}
   }
 
   & .item7 {
     grid-row: 1 / span 2;
     grid-column: 6 / span 1;
+
+    ${smallMobile({
+      display: "none",
+    })}
   }
 
   & .item8 {
     grid-row: 3 / span 2;
     grid-column: 6 / span 2;
+
+    ${smallMobile({
+      display: "none",
+    })}
   }
 
   & .item9 {
@@ -77,6 +116,10 @@ export const Wrapper = styled.div`
   & .item11 {
     grid-row: 6 / span 2;
     grid-column: 2 / span 2;
+
+    ${smallMobile({
+      display: "none",
+    })}
   }
 
   & .item12 {
@@ -95,7 +138,11 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const ImageBox = styled.figure``;
+export const ImageBox = styled.figure`
+  ${smallMobile({
+    padding: "0rem 6rem",
+  })}
+`;
 
 export const Image = styled.img`
   width: 100%;

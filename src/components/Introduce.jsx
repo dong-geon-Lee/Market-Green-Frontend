@@ -39,6 +39,7 @@ export const Title = styled.h1`
     fontWeight: "700",
     letterSpacing: "1.5px",
     lineHeight: "1.5",
+    padding: "0 3.6rem",
   })}
 `;
 
@@ -49,10 +50,11 @@ export const Text = styled.h1`
 
   ${smallMobile({
     textAlign: "center",
-    fontSize: "2.6rem",
+    fontSize: "2.4rem",
     fontWeight: "700",
-    letterSpacing: "1px",
+    letterSpacing: "1.3px",
     lineHeight: "1.5",
+    padding: "0 2rem",
   })}
 `;
 

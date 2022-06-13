@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { smallMobile } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
@@ -26,6 +27,8 @@ export const Wrapper = styled.div`
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
   padding: 20rem 0;
   display: flex;
+
+  ${smallMobile({ backgroundPosition: "top center", flexDirection: "column" })}
 `;
 
 export const Content = styled.div`
@@ -47,6 +50,12 @@ export const Title = styled.h1`
   color: #f76707;
   width: 100%;
   text-align: center;
+
+  ${smallMobile({
+    fontSize: "5.6rem",
+    letterSpacing: "2px",
+    lineHeight: "1.5",
+  })}
 `;
 
 export const Box = styled.div`

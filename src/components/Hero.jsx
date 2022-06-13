@@ -52,7 +52,6 @@ export const Title = styled.h1`
   ${Mobile({ fontSize: "3rem" })}
 
   ${smallMobile({
-    width: "80%",
     textAlign: "center",
     fontSize: "5rem",
     letterSpacing: "2.5px",
@@ -73,8 +72,9 @@ export const Text = styled.p`
   ${smallTablets({ fontSize: "2rem" })}
   ${Mobile({ fontSize: "1.8rem", width: "60%" })}
   
+
   ${smallMobile({
-    width: "80%",
+    width: "100%",
     textAlign: "center",
     fontSize: "2rem",
     fontWeight: "400",
@@ -108,7 +108,7 @@ export const Button = styled.button`
   ${smallMobile({
     fontSize: "2.4rem",
     fontWeight: "500",
-    padding: "2rem 2.4rem",
+    padding: "1.4rem 1.8rem",
   })}
 
   &:hover {

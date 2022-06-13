@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BsTwitter } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
+import { smallMobile } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
@@ -14,6 +15,11 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 6rem 0rem;
+
+  ${smallMobile({
+    flexDirection: "column",
+    alignItems: "center",
+  })}
 `;
 
 export const LogoGroup = styled.div`
@@ -21,6 +27,13 @@ export const LogoGroup = styled.div`
   flex-direction: column;
   gap: 2rem;
   flex: 1.3;
+
+  ${smallMobile({
+    flex: "1",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+  })}
 `;
 
 export const ContactGroup = styled.div`
@@ -30,6 +43,8 @@ export const ContactGroup = styled.div`
   align-items: center;
   gap: 2rem;
   flex: 1;
+
+  ${smallMobile({ marginTop: "3rem", textAlign: "center" })}
 `;
 
 export const AccountGroup = styled.div`
@@ -39,6 +54,10 @@ export const AccountGroup = styled.div`
   align-items: center;
   gap: 2rem;
   flex: 1;
+
+  ${smallMobile({
+    display: "none",
+  })}
 `;
 
 export const CompanyGroup = styled.div`
@@ -48,6 +67,10 @@ export const CompanyGroup = styled.div`
   align-items: center;
   gap: 2rem;
   flex: 1;
+
+  ${smallMobile({
+    display: "none",
+  })}
 `;
 
 export const ResourceGroup = styled.div`
@@ -57,6 +80,10 @@ export const ResourceGroup = styled.div`
   align-items: center;
   gap: 2rem;
   flex: 1;
+
+  ${smallMobile({
+    display: "none",
+  })}
 `;
 
 export const Title = styled.h1`
@@ -112,6 +139,10 @@ export const Small = styled.small`
   font-size: 1.2rem;
   line-height: 1.8;
   width: 75%;
+
+  ${smallMobile({
+    textAlign: "center",
+  })}
 `;
 
 export const Text = styled.p`
@@ -119,6 +150,20 @@ export const Text = styled.p`
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.5px;
+`;
+
+export const TextLink = styled.a`
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover {
+    font-weight: 600;
+  }
 `;
 
 export const TextBox = styled.div`
@@ -133,7 +178,7 @@ export const TextBox = styled.div`
 
 const Footer = () => {
   return (
-    <Container id='footer'>
+    <Container id="footer">
       <hr />
       <Wrapper>
         <LogoGroup>
@@ -151,8 +196,12 @@ const Footer = () => {
         <ContactGroup>
           <ContactTitle>Contact us</ContactTitle>
           <TextBox>
-            <Text>623 Harrison St., 2nd Floor, San Francisco, CA 94107</Text>
-            <Text>415-201-6370 margetgreen@omnifood.com</Text>
+            <TextLink href="https://github.com/dong-geon-Lee/Market-Green-Frontend">
+              https://github.com/dong-geon-Lee/Market-Green-Frontend
+            </TextLink>
+            <TextLink href="https://github.com/dong-geon-Lee/Market-Green-Backend">
+              https://github.com/dong-geon-Lee/Market-Green-Backend
+            </TextLink>
           </TextBox>
         </ContactGroup>
 

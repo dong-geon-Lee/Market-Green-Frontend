@@ -11,9 +11,9 @@ export const Container = styled.div`
   padding: 25rem 3.2rem;
   margin: 0 auto;
 
-  /* ${smallMobile({
+  ${smallMobile({
     padding: "12rem 3.2rem",
-  })} */
+  })}
 `;
 
 export const Wrapper = styled.div`
@@ -33,27 +33,57 @@ export const Title = styled.h1`
   display: inline-block;
   color: transparent;
   -webkit-background-clip: text;
+  width: 100%;
+
+  ${smallMobile({
+    fontSize: "3rem",
+    textAlign: "left",
+    lineHeight: "1.7",
+    padding: "0 4rem",
+    marginBottom: "4rem",
+    letterSpacing: "1.5px",
+  })}
 `;
 
 export const Section = styled.section`
   display: flex;
+
+  ${smallMobile({
+    flexDirection: "column",
+  })}
 `;
 
 export const Left = styled.div`
   flex: 0.4;
   display: flex;
   align-items: center;
+
+  ${smallMobile({
+    flex: "1",
+    textAlign: "center",
+  })}
 `;
 
 export const Right = styled.div`
   flex: 0.6;
   margin: 0 0 0 6rem;
+
+  ${smallMobile({
+    flex: "1",
+    margin: "0",
+  })}
 `;
 
 export const AboutBox = styled.div`
   & p:last-child {
     text-align: right;
     margin-right: 3.6rem;
+    font-weight: 700;
+
+    ${smallMobile({
+      width: "100%",
+      margin: "2rem 0",
+    })}
   }
 `;
 
@@ -63,6 +93,12 @@ export const SubHeading = styled.h2`
   font-style: italic;
   line-height: 1.3;
   letter-spacing: 1px;
+
+  ${smallMobile({
+    fontSize: "2.2rem",
+    padding: "0 3rem",
+    lineHeight: "1.5",
+  })}
 `;
 
 export const Text = styled.p`
@@ -71,6 +107,13 @@ export const Text = styled.p`
   line-height: 1.3;
   letter-spacing: 1px;
   margin: 3rem 0;
+
+  ${smallMobile({
+    padding: "0 8rem",
+    lineHeight: "1.6",
+    letterSpacing: "1.5px",
+    textAlign: "left",
+  })}
 `;
 
 export const ImageBox = styled.div`
@@ -78,6 +121,15 @@ export const ImageBox = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 1rem;
+
+  ${smallMobile({
+    gridTemplateColumns: "repeat(1,1fr)",
+    gridTemplateRows: "repeat(1,1fr)",
+    gap: "4rem",
+    marginTop: "3.2rem",
+    width: "100%",
+    height: "100%",
+  })}
 `;
 
 export const Image = styled.img`
@@ -92,7 +144,19 @@ export const Image = styled.img`
     transform: scale(1.07) translateY(-0.5rem);
     box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.2);
     z-index: 20;
+
+    ${smallMobile({
+      outline: "none",
+      transform: "scale(1.03) translateY(-0.2rem)",
+      boxShadow: "0 0 0 rgba(0,0,0,0)",
+      zIndex: "3",
+    })}
   }
+
+  ${smallMobile({
+    padding: "0 4rem",
+    height: "30rem",
+  })}
 `;
 
 const About = () => {

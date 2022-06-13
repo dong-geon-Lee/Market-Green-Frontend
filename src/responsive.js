@@ -57,7 +57,7 @@ export const normalMobile = (props) => {
 //  500px
 export const smallMobile = (props) => {
   return css`
-    @media only screen and (width: 31.25rem) {
+    @media only screen and (max-width: 31.25rem) {
       ${props}
     }
   `;
