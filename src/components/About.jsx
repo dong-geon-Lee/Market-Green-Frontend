@@ -4,7 +4,7 @@ import image1 from "../assets/image1.jpg";
 import image2 from "../assets/image2.jpg";
 import image3 from "../assets/image3.jpg";
 import image4 from "../assets/image4.jpg";
-import { Mobile } from "../responsive";
+import { Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
@@ -34,6 +34,15 @@ export const Title = styled.h1`
   color: transparent;
   -webkit-background-clip: text;
   width: 100%;
+
+  ${Tablets({
+    fontSize: "4rem",
+    textAlign: "center",
+    lineHeight: "1.7",
+    padding: "0 6rem",
+    marginBottom: "4rem",
+    letterSpacing: "1.8px",
+  })}
 
   ${Mobile({
     fontSize: "3rem",
@@ -94,6 +103,13 @@ export const SubHeading = styled.h2`
   line-height: 1.3;
   letter-spacing: 1px;
 
+  ${Tablets({
+    fontSize: "2.3rem",
+    textAlign: "center",
+    lineHeight: "1.5",
+    letterSpacing: "1.5px",
+  })}
+
   ${Mobile({
     fontSize: "2.2rem",
     padding: "0 3rem",
@@ -107,6 +123,14 @@ export const Text = styled.p`
   line-height: 1.3;
   letter-spacing: 1px;
   margin: 3rem 0;
+
+  ${Tablets({
+    fontSize: "1.6rem",
+    fontWeight: "500",
+    textAlign: "left",
+    lineHeight: "1.7",
+    letterSpacing: "1.5px",
+  })}
 
   ${Mobile({
     padding: "0 8rem",
@@ -122,6 +146,10 @@ export const ImageBox = styled.div`
   grid-template-rows: repeat(2, 1fr);
   gap: 1rem;
 
+  ${Tablets({
+    gap: "2rem",
+  })}
+
   ${Mobile({
     gridTemplateColumns: "repeat(1,1fr)",
     gridTemplateRows: "repeat(1,1fr)",
@@ -129,6 +157,7 @@ export const ImageBox = styled.div`
     marginTop: "3.2rem",
     width: "100%",
     height: "100%",
+    padding: "0 4rem",
   })}
 `;
 
@@ -152,6 +181,10 @@ export const Image = styled.img`
       zIndex: "3",
     })}
   }
+
+  ${Tablets({
+    height: "24rem",
+  })}
 
   ${Mobile({
     padding: "0 4rem",

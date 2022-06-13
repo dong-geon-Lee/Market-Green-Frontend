@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductItems from "./ProductItems";
 import { getProducts } from "../redux-toolkit/productSlice";
 import Carousel from "react-elastic-carousel";
-import { Mobile } from "../responsive";
+import { Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   max-width: 140rem;
@@ -20,6 +20,10 @@ export const Title = styled.h1`
   text-align: center;
   letter-spacing: 1px;
   color: #7ed56f;
+
+  ${Tablets({
+    marginBottom: "1rem",
+  })}
 
   ${Mobile({
     marginBottom: "2rem",
@@ -54,6 +58,10 @@ export const SelectBox = styled.div`
   padding: 3.2rem 6.4rem;
   width: 100%;
 
+  ${Tablets({
+    justifyContent: "center",
+  })}
+
   ${Mobile({
     justifyContent: "center",
   })}
@@ -70,7 +78,19 @@ export const SelectBox = styled.div`
     letter-spacing: 1px;
     line-height: 1.5;
 
+    ${Tablets({
+      textAlign: "center",
+    })}
+
     &:last-of-type {
+      ${Tablets({
+        marginLeft: "2rem",
+      })}
+
+      ${Mobile({
+        marginLeft: "2rem",
+      })}
+
       margin-left: 1.4rem;
     }
 

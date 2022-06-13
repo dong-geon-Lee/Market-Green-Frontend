@@ -1,16 +1,7 @@
 import { css } from "styled-components";
 
-// 1344px
-export const desktops = (props) => {
-  return css`
-    @media only screen and (max-width: 84rem) {
-      ${props}
-    }
-  `;
-};
-
-// 1200px
-export const smallDesktops = (props) => {
+// 1200px for large devices.
+export const Desktops = (props) => {
   return css`
     @media only screen and (max-width: 75rem) {
       ${props}
@@ -18,25 +9,25 @@ export const smallDesktops = (props) => {
   `;
 };
 
-//  944px
+// 992px for laptops.
+export const Laptops = (props) => {
+  return css`
+    @media only screen and (max-width: 62rem) {
+      ${props}
+    }
+  `;
+};
+
+// 768px for tablets.
 export const Tablets = (props) => {
   return css`
-    @media only screen and (max-width: 59rem) {
+    @media only screen and (max-width: 48rem) {
       ${props}
     }
   `;
 };
 
-//  816px
-export const smallTablets = (props) => {
-  return css`
-    @media only screen and (max-width: 51rem) {
-      ${props}
-    }
-  `;
-};
-
-//  576px
+// 576px for portrait phones.
 export const Mobile = (props) => {
   return css`
     @media only screen and (max-width: 36rem) {

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Carousel from "react-elastic-carousel";
 import { userData } from "../data/productDummy";
-import { Mobile } from "../responsive";
+import { Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   max-width: 100rem;
@@ -108,14 +108,18 @@ export const UserJob = styled.p`
   font-weight: 400;
   letter-spacing: 0.5px;
   color: gray;
+
+  ${Tablets({ fontSize: "1.8rem", fontWeight: "600" })}
 `;
 
 export const UserText = styled.p`
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.7;
   letter-spacing: 0.5px;
   color: gray;
+
+  ${Tablets({ fontSize: "1.5rem", fontWeight: "500" })}
 `;
 
 export const Image = styled.img`

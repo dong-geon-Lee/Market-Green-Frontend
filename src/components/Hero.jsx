@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Mobile } from "../responsive";
+import { Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   display: flex;
@@ -18,6 +18,10 @@ export const Wrapper = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  ${Tablets({
+    backgroundPosition: "top left",
+  })}
 
   ${Mobile({
     backgroundPosition: "top left",
@@ -39,9 +43,16 @@ export const Title = styled.h1`
   margin-bottom: 1.6rem;
   letter-spacing: 2px;
 
-  ${Mobile({
+  ${Tablets({
+    fontSize: "6rem",
     textAlign: "center",
+    letterSpacing: "2.2px",
+    width: "80%",
+  })}
+
+  ${Mobile({
     fontSize: "5rem",
+    textAlign: "center",
     letterSpacing: "2.5px",
   })}
 `;
@@ -55,6 +66,14 @@ export const Text = styled.p`
   letter-spacing: 1px;
   width: 75%;
   text-align: center;
+
+  ${Tablets({
+    fontSize: "2.6rem",
+    textAlign: "center",
+    letterSpacing: "2px",
+    lineHeight: "1.5",
+    padding: "0 2rem",
+  })}
 
   ${Mobile({
     width: "100%",

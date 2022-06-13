@@ -40,7 +40,6 @@ export const ImgBox = styled.div`
 
   ${Mobile({
     width: "35rem",
-    // height: "40rem",
   })}
 
   &:hover {
@@ -68,12 +67,24 @@ export const Title = styled.h1`
   color: darkblue;
   margin: 0;
   padding: 0.6rem 1.6rem;
+
+  ${Mobile({
+    fontSize: "3rem",
+    lineHeight: "1.3",
+    letterSpacing: "1.5px",
+  })}
 `;
 
 export const Text = styled.p`
   font-size: 1.8rem;
   font-weight: 900;
   color: black;
+
+  ${Mobile({
+    fontSize: "2.2rem",
+    lineHeight: "1.3",
+    letterSpacing: "1px",
+  })}
 `;
 
 export const OptionBox = styled.div`
@@ -96,6 +107,13 @@ export const Button = styled.button`
   color: #e8590c;
   transition: all 0.3s ease;
   padding: 1rem;
+
+  ${Mobile({
+    fontSize: "1.6rem",
+    lineHeight: "1.3",
+    letterSpacing: "1px",
+    marginTop: "1.4rem",
+  })}
 
   &:hover {
     transform: scale(1.05);

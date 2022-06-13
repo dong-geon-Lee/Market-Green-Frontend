@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BsTwitter } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
-import { Mobile } from "../responsive";
+import { Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
@@ -80,6 +80,10 @@ export const ResourceGroup = styled.div`
   align-items: center;
   gap: 2rem;
   flex: 1;
+
+  ${Tablets({
+    display: "none",
+  })}
 
   ${Mobile({
     display: "none",

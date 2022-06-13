@@ -34,8 +34,8 @@ body {
   }
 }
 
-/* 960px --> 60 * 16 = 960 */
-@media only screen and (max-width: 60rem) {
+/* 992px --> 62 * 16 = 992 */
+@media only screen and (max-width: 62rem) {
   html {
     font-size: 50%;
   }

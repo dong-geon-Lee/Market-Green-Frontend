@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Mobile } from "../responsive";
+import { Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
@@ -50,6 +50,12 @@ export const Title = styled.h1`
   color: #f76707;
   width: 100%;
   text-align: center;
+
+  ${Tablets({
+    fontSize: "6rem",
+    letterSpacing: "2px",
+    lineHeight: "1.5",
+  })}
 
   ${Mobile({
     fontSize: "5.6rem",

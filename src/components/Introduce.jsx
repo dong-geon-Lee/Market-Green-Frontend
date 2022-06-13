@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FaBook } from "react-icons/fa";
 import { FaSeedling } from "react-icons/fa";
 import { FaHandHoldingWater } from "react-icons/fa";
-import { Mobile } from "../responsive";
+import { Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
@@ -29,13 +29,21 @@ export const IntroBox = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 3.6rem;
-  letter-spacing: 1px;
+  font-size: 5.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
   margin-bottom: 3.2rem;
+
+  ${Tablets({
+    fontSize: "4.4rem",
+    fontWeight: "700",
+    letterSpacing: "1.8px",
+    lineHeight: "1.5",
+  })}
 
   ${Mobile({
     textAlign: "center",
-    fontSize: "4rem",
+    fontSize: "3.6rem",
     fontWeight: "700",
     letterSpacing: "1.5px",
     lineHeight: "1.5",
@@ -44,9 +52,17 @@ export const Title = styled.h1`
 `;
 
 export const Text = styled.h1`
-  font-size: 2.4rem;
-  letter-spacing: 0.75px;
+  font-size: 2.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
   color: #69db7c;
+
+  ${Tablets({
+    fontSize: "2.6rem",
+    fontWeight: "700",
+    letterSpacing: "1.5px",
+    lineHeight: "1.5",
+  })}
 
   ${Mobile({
     textAlign: "center",
@@ -72,10 +88,19 @@ export const ContentBox = styled.div`
     color: #2f9e44;
     font-size: 9.8rem;
 
-    ${Mobile({
+    ${Tablets({
       fontSize: "12rem",
     })}
+
+    ${Mobile({
+      fontSize: "14rem",
+    })}
   }
+
+  ${Tablets({
+    justifyContent: "baseline",
+    alignItems: "baseline",
+  })}
 
   ${Mobile({
     flexDirection: "column",
@@ -101,6 +126,13 @@ export const TitleInfo = styled.h1`
   color: #212529;
   margin: 0.8rem 0;
 
+  ${Tablets({
+    fontSize: "3rem",
+    fontWeight: "700",
+    letterSpacing: "1px",
+    margin: "2rem 0 1rem 0",
+  })}
+
   ${Mobile({
     fontSize: "3.6rem",
     marginTop: "2rem",
@@ -115,6 +147,12 @@ export const TextInfo = styled.p`
   line-height: 1.5;
   width: 80%;
   text-align: center;
+
+  ${Tablets({
+    fontSize: "1.8rem",
+    fontWeight: "700",
+    letterSpacing: "1px",
+  })}
 
   ${Mobile({
     fontSize: "2rem",
