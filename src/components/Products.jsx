@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductItems from "./ProductItems";
 import { getProducts } from "../redux-toolkit/productSlice";
 import Carousel from "react-elastic-carousel";
-import { Mobile, Tablets } from "../responsive";
+import { Desktops, Laptops, Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   max-width: 140rem;
@@ -58,12 +58,22 @@ export const SelectBox = styled.div`
   padding: 3.2rem 6.4rem;
   width: 100%;
 
+  ${Desktops({
+    marginLeft: "4.8rem",
+  })}
+
+  ${Laptops({
+    marginLeft: "3.6rem",
+  })}
+
   ${Tablets({
     justifyContent: "center",
+    marginLeft: "0rem",
   })}
 
   ${Mobile({
     justifyContent: "center",
+    marginLeft: "0rem",
   })}
 
   & select {

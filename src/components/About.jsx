@@ -4,7 +4,7 @@ import image1 from "../assets/image1.jpg";
 import image2 from "../assets/image2.jpg";
 import image3 from "../assets/image3.jpg";
 import image4 from "../assets/image4.jpg";
-import { Mobile, Tablets } from "../responsive";
+import { Mobile, Tablets, Laptops } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 3.6rem;
+  font-size: 4rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -35,8 +35,13 @@ export const Title = styled.h1`
   -webkit-background-clip: text;
   width: 100%;
 
+  ${Laptops({
+    fontSize: "3.8rem",
+    textAlign: "center",
+  })}
+
   ${Tablets({
-    fontSize: "4rem",
+    fontSize: "3.6rem",
     textAlign: "center",
     lineHeight: "1.7",
     padding: "0 6rem",
@@ -103,6 +108,13 @@ export const SubHeading = styled.h2`
   line-height: 1.3;
   letter-spacing: 1px;
 
+  ${Laptops({
+    fontSize: "2.6rem",
+    textAlign: "left",
+    lineHeight: "1.7",
+    letterSpacing: "1.5px",
+  })}
+
   ${Tablets({
     fontSize: "2.3rem",
     textAlign: "center",
@@ -123,6 +135,13 @@ export const Text = styled.p`
   line-height: 1.3;
   letter-spacing: 1px;
   margin: 3rem 0;
+
+  ${Laptops({
+    fontSize: "1.8rem",
+    textAlign: "left",
+    lineHeight: "1.7",
+    letterSpacing: "1.7px",
+  })}
 
   ${Tablets({
     fontSize: "1.6rem",
