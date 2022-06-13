@@ -6,7 +6,7 @@ import { deleteProduct } from "../redux-toolkit/productSlice";
 import StarRating from "./StarRating";
 import { offSpinner, onSpinner } from "../redux-toolkit/spinnerSlice";
 import Spinner from "../components/Spinner";
-import { smallMobile } from "../responsive";
+import { Mobile } from "../responsive";
 
 export const Container = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ export const ImgBox = styled.div`
   cursor: pointer;
   transition: all 0.3s ease-out;
 
-  ${smallMobile({
+  ${Mobile({
     width: "35rem",
     // height: "40rem",
   })}

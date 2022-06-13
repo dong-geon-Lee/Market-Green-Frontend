@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Carousel from "react-elastic-carousel";
 import { userData } from "../data/productDummy";
-import { smallMobile } from "../responsive";
+import { Mobile } from "../responsive";
 
 export const Container = styled.div`
   max-width: 100rem;
@@ -22,7 +22,7 @@ export const Content = styled.div`
   display: flex;
   justify-content: center;
 
-  ${smallMobile({
+  ${Mobile({
     flexDirection: "column",
     padding: "1.6rem 3.2rem",
   })}
@@ -48,18 +48,18 @@ export const UserBox = styled.div`
   border-bottom-right-radius: 0;
 
   & .rec .rec-arrow-left {
-    ${smallMobile({ marginLeft: "2rem" })}
+    ${Mobile({ marginLeft: "2rem" })}
   }
 
   & .rec .rec-arrow-right {
-    ${smallMobile({ marginRight: "2rem" })}
+    ${Mobile({ marginRight: "2rem" })}
   }
 
   & .rec-carousel-wrapper {
     width: 74rem;
     margin: 2rem 0 0 0;
 
-    ${smallMobile({
+    ${Mobile({
       maxWidth: "45rem",
     })}
 
@@ -74,7 +74,7 @@ export const UserInfo = styled.div`
   gap: 4.2rem;
   padding: 2rem 2rem;
 
-  ${smallMobile({
+  ${Mobile({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",

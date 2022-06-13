@@ -3,14 +3,14 @@ import styled from "styled-components";
 import { FaBook } from "react-icons/fa";
 import { FaSeedling } from "react-icons/fa";
 import { FaHandHoldingWater } from "react-icons/fa";
-import { smallMobile } from "../responsive";
+import { Mobile } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
   padding: 25rem 3.2rem 15rem 3.2rem;
   margin: 0 auto;
 
-  ${smallMobile({
+  ${Mobile({
     padding: "15rem 3.2rem 15rem 3.2rem",
   })}
 `;
@@ -33,7 +33,7 @@ export const Title = styled.h1`
   letter-spacing: 1px;
   margin-bottom: 3.2rem;
 
-  ${smallMobile({
+  ${Mobile({
     textAlign: "center",
     fontSize: "4rem",
     fontWeight: "700",
@@ -48,7 +48,7 @@ export const Text = styled.h1`
   letter-spacing: 0.75px;
   color: #69db7c;
 
-  ${smallMobile({
+  ${Mobile({
     textAlign: "center",
     fontSize: "2.4rem",
     fontWeight: "700",
@@ -72,12 +72,12 @@ export const ContentBox = styled.div`
     color: #2f9e44;
     font-size: 9.8rem;
 
-    ${smallMobile({
+    ${Mobile({
       fontSize: "12rem",
     })}
   }
 
-  ${smallMobile({
+  ${Mobile({
     flexDirection: "column",
     padding: "0 4.8rem",
   })}
@@ -89,7 +89,7 @@ export const IconInfoBox = styled.div`
   align-items: center;
   justify-content: center;
 
-  ${smallMobile({
+  ${Mobile({
     marginBottom: "6rem",
   })}
 `;
@@ -101,7 +101,7 @@ export const TitleInfo = styled.h1`
   color: #212529;
   margin: 0.8rem 0;
 
-  ${smallMobile({
+  ${Mobile({
     fontSize: "3.6rem",
     marginTop: "2rem",
     letterSpacing: "1px",
@@ -116,7 +116,7 @@ export const TextInfo = styled.p`
   width: 80%;
   text-align: center;
 
-  ${smallMobile({
+  ${Mobile({
     fontSize: "2rem",
     letterSpacing: "0.5px",
   })}

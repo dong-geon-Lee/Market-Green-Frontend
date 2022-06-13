@@ -23,6 +23,7 @@ import { FaNetworkWired } from "react-icons/fa";
 import { SiWebhint } from "react-icons/si";
 import { FaEnvira } from "react-icons/fa";
 import { FaPhotoVideo } from "react-icons/fa";
+import { Mobile } from "../responsive";
 
 export const Container = styled.nav`
   display: flex;
@@ -135,6 +136,10 @@ export const Navbar = styled.div`
   align-items: center;
   width: 100%;
   margin-right: 2rem;
+
+  ${Mobile({
+    marginRight: "0rem",
+  })}
 `;
 
 export const LinkTag = styled(Link)`
@@ -188,10 +193,6 @@ export const Toggle = styled.li`
   justify-content: center;
   align-items: center;
   font-size: 3rem;
-
-  /* & svg {
-    margin-right: 5rem;
-  } */
 `;
 
 export const Content = styled.div`

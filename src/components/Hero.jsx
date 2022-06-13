@@ -1,14 +1,6 @@
 import React from "react";
-import { GrEbay } from "react-icons/gr";
 import styled from "styled-components";
-import {
-  desktops,
-  Mobile,
-  smallDesktops,
-  smallTablets,
-  Tablets,
-  smallMobile,
-} from "../responsive";
+import { Mobile } from "../responsive";
 
 export const Container = styled.div`
   display: flex;
@@ -27,7 +19,7 @@ export const Wrapper = styled.div`
   background-position: center;
   background-repeat: no-repeat;
 
-  ${smallMobile({
+  ${Mobile({
     backgroundPosition: "top left",
   })}
 `;
@@ -47,11 +39,7 @@ export const Title = styled.h1`
   margin-bottom: 1.6rem;
   letter-spacing: 2px;
 
-  ${smallDesktops({ fontSize: "6rem" })}
-  ${smallTablets({ fontSize: "4.8rem" })}
-  ${Mobile({ fontSize: "3rem" })}
-
-  ${smallMobile({
+  ${Mobile({
     textAlign: "center",
     fontSize: "5rem",
     letterSpacing: "2.5px",
@@ -68,12 +56,7 @@ export const Text = styled.p`
   width: 75%;
   text-align: center;
 
-  ${smallDesktops({ fontSize: "2.4rem" })}
-  ${smallTablets({ fontSize: "2rem" })}
-  ${Mobile({ fontSize: "1.8rem", width: "60%" })}
-  
-
-  ${smallMobile({
+  ${Mobile({
     width: "100%",
     textAlign: "center",
     fontSize: "2rem",
@@ -102,10 +85,7 @@ export const Button = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
 
-  ${smallDesktops({ fontSize: "2rem" })}
-  ${Mobile({ fontSize: "1.6rem" })}
-
-  ${smallMobile({
+  ${Mobile({
     fontSize: "2.4rem",
     fontWeight: "500",
     padding: "1.4rem 1.8rem",

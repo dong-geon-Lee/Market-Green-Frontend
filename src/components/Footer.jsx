@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BsTwitter } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
-import { smallMobile } from "../responsive";
+import { Mobile } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   padding: 6rem 0rem;
 
-  ${smallMobile({
+  ${Mobile({
     flexDirection: "column",
     alignItems: "center",
   })}
@@ -28,7 +28,7 @@ export const LogoGroup = styled.div`
   gap: 2rem;
   flex: 1.3;
 
-  ${smallMobile({
+  ${Mobile({
     flex: "1",
     alignItems: "center",
     justifyContent: "center",
@@ -44,7 +44,7 @@ export const ContactGroup = styled.div`
   gap: 2rem;
   flex: 1;
 
-  ${smallMobile({ marginTop: "3rem", textAlign: "center" })}
+  ${Mobile({ marginTop: "3rem", textAlign: "center" })}
 `;
 
 export const AccountGroup = styled.div`
@@ -55,7 +55,7 @@ export const AccountGroup = styled.div`
   gap: 2rem;
   flex: 1;
 
-  ${smallMobile({
+  ${Mobile({
     display: "none",
   })}
 `;
@@ -68,7 +68,7 @@ export const CompanyGroup = styled.div`
   gap: 2rem;
   flex: 1;
 
-  ${smallMobile({
+  ${Mobile({
     display: "none",
   })}
 `;
@@ -81,7 +81,7 @@ export const ResourceGroup = styled.div`
   gap: 2rem;
   flex: 1;
 
-  ${smallMobile({
+  ${Mobile({
     display: "none",
   })}
 `;
@@ -91,6 +91,7 @@ export const Title = styled.h1`
   font-weight: 800;
   letter-spacing: 1.5px;
   color: #7ed56f;
+  line-height: 1.5;
 `;
 
 export const ContactTitle = styled.h1`
@@ -140,7 +141,7 @@ export const Small = styled.small`
   line-height: 1.8;
   width: 75%;
 
-  ${smallMobile({
+  ${Mobile({
     textAlign: "center",
   })}
 `;

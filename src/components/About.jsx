@@ -4,14 +4,14 @@ import image1 from "../assets/image1.jpg";
 import image2 from "../assets/image2.jpg";
 import image3 from "../assets/image3.jpg";
 import image4 from "../assets/image4.jpg";
-import { smallMobile } from "../responsive";
+import { Mobile } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
   padding: 25rem 3.2rem;
   margin: 0 auto;
 
-  ${smallMobile({
+  ${Mobile({
     padding: "12rem 3.2rem",
   })}
 `;
@@ -35,7 +35,7 @@ export const Title = styled.h1`
   -webkit-background-clip: text;
   width: 100%;
 
-  ${smallMobile({
+  ${Mobile({
     fontSize: "3rem",
     textAlign: "left",
     lineHeight: "1.7",
@@ -48,7 +48,7 @@ export const Title = styled.h1`
 export const Section = styled.section`
   display: flex;
 
-  ${smallMobile({
+  ${Mobile({
     flexDirection: "column",
   })}
 `;
@@ -58,7 +58,7 @@ export const Left = styled.div`
   display: flex;
   align-items: center;
 
-  ${smallMobile({
+  ${Mobile({
     flex: "1",
     textAlign: "center",
   })}
@@ -68,7 +68,7 @@ export const Right = styled.div`
   flex: 0.6;
   margin: 0 0 0 6rem;
 
-  ${smallMobile({
+  ${Mobile({
     flex: "1",
     margin: "0",
   })}
@@ -80,7 +80,7 @@ export const AboutBox = styled.div`
     margin-right: 3.6rem;
     font-weight: 700;
 
-    ${smallMobile({
+    ${Mobile({
       width: "100%",
       margin: "2rem 0",
     })}
@@ -94,7 +94,7 @@ export const SubHeading = styled.h2`
   line-height: 1.3;
   letter-spacing: 1px;
 
-  ${smallMobile({
+  ${Mobile({
     fontSize: "2.2rem",
     padding: "0 3rem",
     lineHeight: "1.5",
@@ -108,7 +108,7 @@ export const Text = styled.p`
   letter-spacing: 1px;
   margin: 3rem 0;
 
-  ${smallMobile({
+  ${Mobile({
     padding: "0 8rem",
     lineHeight: "1.6",
     letterSpacing: "1.5px",
@@ -122,7 +122,7 @@ export const ImageBox = styled.div`
   grid-template-rows: repeat(2, 1fr);
   gap: 1rem;
 
-  ${smallMobile({
+  ${Mobile({
     gridTemplateColumns: "repeat(1,1fr)",
     gridTemplateRows: "repeat(1,1fr)",
     gap: "4rem",
@@ -145,7 +145,7 @@ export const Image = styled.img`
     box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.2);
     z-index: 20;
 
-    ${smallMobile({
+    ${Mobile({
       outline: "none",
       transform: "scale(1.03) translateY(-0.2rem)",
       boxShadow: "0 0 0 rgba(0,0,0,0)",
@@ -153,7 +153,7 @@ export const Image = styled.img`
     })}
   }
 
-  ${smallMobile({
+  ${Mobile({
     padding: "0 4rem",
     height: "30rem",
   })}

@@ -36,28 +36,10 @@ export const smallTablets = (props) => {
   `;
 };
 
-//  672px
+//  576px
 export const Mobile = (props) => {
   return css`
-    @media only screen and (max-width: 42rem) {
-      ${props}
-    }
-  `;
-};
-
-//  600px
-export const normalMobile = (props) => {
-  return css`
-    @media only screen and (max-width: 37.5rem) {
-      ${props}
-    }
-  `;
-};
-
-//  500px
-export const smallMobile = (props) => {
-  return css`
-    @media only screen and (max-width: 31.25rem) {
+    @media only screen and (max-width: 36rem) {
       ${props}
     }
   `;
