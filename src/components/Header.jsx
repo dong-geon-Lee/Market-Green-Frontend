@@ -23,6 +23,7 @@ import { FaNetworkWired } from "react-icons/fa";
 import { SiWebhint } from "react-icons/si";
 import { FaEnvira } from "react-icons/fa";
 import { FaPhotoVideo } from "react-icons/fa";
+import { BsFillImageFill } from "react-icons/bs";
 
 export const Container = styled.nav`
   display: flex;
@@ -41,6 +42,10 @@ export const Container = styled.nav`
     text-decoration: none;
     color: #212529;
   }
+`;
+
+export const LogoHome = styled.div`
+  cursor: pointer;
 `;
 
 export const LogoBox = styled.div`
@@ -64,7 +69,6 @@ export const NavList = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 4.8rem;
   transition: all 0.3s ease;
 `;
 
@@ -82,19 +86,38 @@ export const ItemLink = styled.a`
 `;
 
 export const Button = styled.button`
-  background-color: #4ba87d;
-  color: #fff;
+  width: 100%;
+  background-color: transparent;
+  color: black;
   font-family: inherit;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 500;
-  padding: 1rem 1.2rem;
+  padding: 1.4rem 1.2rem;
   border: none;
   border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, 0.1, 0.75, 1.5);
+  text-transform: uppercase;
+  background-size: 220%;
+
+  &:hover {
+    background-image: linear-gradient(
+      120deg,
+      #ebfbee 20%,
+      #fff 30%,
+      #69db7c 50%
+    );
+    background-position: 100%;
+    background-color: #40c057;
+  }
 `;
 
 export const BtnBox = styled.div`
-  display: flex;
-  align-items: center;
+  width: 100%;
+  height: 100%;
 
   &:last-child button {
     margin-left: 1.2rem;
@@ -102,16 +125,19 @@ export const BtnBox = styled.div`
 `;
 
 export const CartBox = styled.div`
+  width: 100%;
   position: relative;
   display: flex;
   align-items: center;
   cursor: pointer;
   justify-content: center;
+  background-color: transparent;
+  border-radius: 9px;
 
   & svg {
     width: 2.4rem;
     height: 2.4rem;
-    /* margin: 0 0rem 0 1.5rem; */
+    fill: black;
   }
 `;
 
@@ -120,12 +146,20 @@ export const CartText = styled.span`
   font-weight: 500;
   font-size: 1.5rem;
   position: absolute;
-  top: 0%;
-  right: -28%;
+  top: 25%;
+  left: 42%;
   transform: translate(-50%, -50%);
   background-color: beige;
   padding: 0.5rem 0.6rem;
   border-radius: 50%;
+`;
+
+export const CartSubText = styled.p`
+  color: black;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-left: 0.5rem;
 `;
 
 export const Navbar = styled.div`
@@ -145,12 +179,31 @@ export const LinkTag = styled(Link)`
 `;
 
 export const LinkStyle = styled(Link)`
+  width: 100%;
   color: #333;
   font-size: 1.8rem;
   font-weight: 500;
+  line-height: 1.5;
   display: flex;
   align-items: center;
-  line-height: 1.5;
+  justify-content: center;
+  border-radius: 9px;
+  padding: 1.4rem 0;
+
+  transition: all 0.25s cubic-bezier(0.68, 0.1, 0.75, 1.5);
+  text-transform: uppercase;
+  background-size: 220%;
+
+  &:hover {
+    background-image: linear-gradient(
+      120deg,
+      #ebfbee 20%,
+      #fff 30%,
+      #69db7c 50%
+    );
+    background-position: 100%;
+    background-color: #40c057;
+  }
 `;
 
 export const NavText = styled.a`
@@ -161,6 +214,25 @@ export const NavText = styled.a`
   align-items: center;
   line-height: 1.5;
   cursor: pointer;
+  padding: 1.4rem 0;
+  width: 100%;
+  border-radius: 9px;
+  justify-content: center;
+
+  transition: all 0.25s cubic-bezier(0.68, 0.1, 0.75, 1.5);
+  text-transform: uppercase;
+  background-size: 220%;
+
+  &:hover {
+    background-image: linear-gradient(
+      120deg,
+      #ebfbee 20%,
+      #fff 30%,
+      #69db7c 50%
+    );
+    background-position: 100%;
+    background-color: #40c057;
+  }
 `;
 
 export const Nav = styled.nav`
@@ -194,17 +266,34 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2.4rem;
 `;
 
 export const AdminBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.4rem;
+
+  & .cartLink {
+    padding: 1.4rem 0;
+
+    transition: all 0.25s cubic-bezier(0.68, 0.1, 0.75, 1.5);
+    text-transform: uppercase;
+    background-size: 220%;
+
+    &:hover {
+      background-image: linear-gradient(
+        120deg,
+        #ebfbee 20%,
+        #fff 30%,
+        #69db7c 50%
+      );
+      background-position: 100%;
+      background-color: #40c057;
+    }
+  }
 `;
 
-const Header = (props) => {
+const Header = () => {
   const [sidebar, setSidebar] = useState(false);
 
   const user = useSelector((state) => state.user.user);
@@ -232,14 +321,38 @@ const Header = (props) => {
 
   const { cartItems } = useSelector((state) => state.cart);
 
+  const adminLink = () => {
+    navigate("/admin");
+  };
+
+  const loginLink = () => {
+    navigate("/login");
+  };
+
+  const registerLink = () => {
+    navigate("/register");
+  };
+
+  const homeLink = () => {
+    navigate("/");
+  };
+
+  const profileLink = () => {
+    navigate("/profile");
+  };
+
+  const cartLink = () => {
+    navigate("/cart");
+  };
+
   return (
     <Container>
-      <Link to="/">
+      <LogoHome onClick={() => homeLink()}>
         <LogoBox>
           <Logo src={logo} alt="logo-img" />
           <LogoTitle>MarketGreen</LogoTitle>
         </LogoBox>
-      </Link>
+      </LogoHome>
       <NavList>
         <Navbar>
           <LinkTag to="#">
@@ -256,52 +369,58 @@ const Header = (props) => {
             </Toggle>
 
             <Content>
-              <LinkStyle to="/">
+              <Button onClick={() => homeLink()}>
                 <BsFillHouseFill style={{ marginRight: "1rem" }} />
                 Home
-              </LinkStyle>
+              </Button>
 
               <BtnBox>
                 {user && token ? (
                   <AdminBox>
                     {admin && (
-                      <LinkStyle to="/admin">
+                      <Button onClick={() => adminLink()}>
                         <FaUserAlt style={{ marginRight: "1rem" }} />
                         Admin
-                      </LinkStyle>
+                      </Button>
                     )}
-
-                    <LinkStyle to="/profile">
+                    <Button onClick={() => profileLink()}>
                       <BsFillFileEarmarkPersonFill
-                        style={{ marginRight: "1rem" }}
+                        style={{ marginRight: "1rem", fontSize: "2.3rem" }}
                       />
                       Profile
-                    </LinkStyle>
+                    </Button>
 
+                    <CartBox
+                      className="cartLink"
+                      onClick={() => cartLink()}
+                      style={{ marginRight: "1rem" }}
+                    >
+                      <BsFillCartFill style={{ marginRight: "1rem" }} />
+
+                      <CartText>{cartItems ? cartItems?.length : 0}</CartText>
+                      <CartSubText>Cart</CartSubText>
+                    </CartBox>
                     <LinkStyle to="/" onClick={() => logout()}>
                       <BsDoorOpenFill style={{ marginRight: "1rem" }} />
                       Logout
                     </LinkStyle>
-
-                    <LinkStyle to={`/cart`}>
-                      <CartBox style={{ marginRight: "1rem" }}>
-                        <BsFillCartFill style={{ marginRight: "1rem" }} />
-                        <CartText>{cartItems ? cartItems?.length : 0}</CartText>
-                      </CartBox>
-                      Cart
-                    </LinkStyle>
                   </AdminBox>
                 ) : (
                   <>
-                    <Link to="/login">
+                    <div onClick={() => loginLink()}>
                       <Button>로그인</Button>
-                    </Link>
-                    <Link to="/register">
+                    </div>
+                    <div onClick={() => registerLink()}>
                       <Button>회원가입</Button>
-                    </Link>
+                    </div>
                   </>
                 )}
               </BtnBox>
+
+              <NavText href="#" onClick={showSidebar}>
+                <BsFillImageFill style={{ marginRight: "1rem" }} />
+                Hero
+              </NavText>
 
               <NavText href="#intro" onClick={showSidebar}>
                 <FaNetworkWired style={{ marginRight: "1rem" }} />
@@ -323,7 +442,7 @@ const Header = (props) => {
                 Testimonials
               </NavText>
 
-              <NavText href="#promotion" onClick={showSidebar}>
+              <NavText href="#information" onClick={showSidebar}>
                 <SiWebhint style={{ marginRight: "1rem" }} />
                 Promotion
               </NavText>

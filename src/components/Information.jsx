@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Mobile, Tablets } from "../responsive";
+import { Laptops, Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   max-width: 130rem;
@@ -28,8 +28,16 @@ export const Wrapper = styled.div`
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
   padding: 20rem 0;
   display: flex;
+  background-repeat: no-repeat;
 
-  ${Mobile({ backgroundPosition: "top center", flexDirection: "column" })}
+  ${Laptops({ width: "90%" })}
+  ${Tablets({ width: "90%" })}
+  ${Mobile({
+    width: "80%",
+    flexDirection: "column",
+    backgroundSize: "cover",
+    backgroundPosition: "top left",
+  })}
 `;
 
 export const Content = styled.div`
@@ -47,19 +55,21 @@ export const InformationBox = styled.div`
 export const Title = styled.h1`
   font-size: 6.4rem;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.7px;
   color: #f76707;
   width: 100%;
   text-align: center;
 
+  ${Laptops({ fontSize: "6rem", marginRight: "2rem", letterSpacing: "2px" })}
+
   ${Tablets({
-    fontSize: "6rem",
+    fontSize: "5.6rem",
     letterSpacing: "2px",
     lineHeight: "1.5",
   })}
 
   ${Mobile({
-    fontSize: "5.6rem",
+    fontSize: "4rem",
     letterSpacing: "2px",
     lineHeight: "1.5",
   })}
@@ -85,23 +95,66 @@ export const Button = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
   margin: 6rem 0 3rem 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 3;
+
+  ${Tablets({
+    fontSize: "2.6rem",
+    padding: "1.6rem 2rem",
+    letterSpacing: "2px",
+    lineHeight: "1.5",
+  })}
+
+  ${Mobile({
+    fontSize: "2rem",
+    padding: "1.4rem 1.6rem",
+    letterSpacing: "2px",
+    lineHeight: "1.5",
+  })}
+
+    &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 0%;
+    background-color: #fff;
+    transition: all 0.4s ease-in;
+    opacity: 0;
+  }
+
+  &:hover::before {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    background-color: #82c91e;
+    z-index: -1;
+  }
 `;
+
+export const Div = styled.div``;
 
 export const LinkBtn = styled.a``;
 
 const Information = () => {
   const navigate = useNavigate();
 
+  const notFoundLink = () => {
+    navigate("/notFound");
+  };
+
   return (
-    <Container id="promotion">
+    <Container id="information">
       <MainText>Promotion</MainText>
       <Wrapper>
         <Content></Content>
         <InformationBox>
           <Title>Get More plants</Title>
-          <Link to="/notFound">
+          <Div onClick={() => notFoundLink()}>
             <Button>More Information</Button>
-          </Link>
+          </Div>
         </InformationBox>
       </Wrapper>
     </Container>

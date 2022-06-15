@@ -62,7 +62,7 @@ export const Text = styled.p`
   font-size: 3rem;
   font-weight: 400;
   margin: 2.4rem 0 6.4rem 0;
-  line-height: 1.5;
+  line-height: 1.8;
   letter-spacing: 1px;
   width: 75%;
   text-align: center;
@@ -92,7 +92,16 @@ export const BtnBox = styled.div`
   justify-content: center;
 `;
 
+export const Atag = styled.a`
+  scroll-behavior: smooth;
+
+  & + a {
+    margin-left: 2rem;
+  }
+`;
+
 export const Button = styled.button`
+  width: 100%;
   border: none;
   padding: 1.6rem 2rem;
   font-family: inherit;
@@ -102,7 +111,9 @@ export const Button = styled.button`
   color: #f4fce3;
   border-radius: 9px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
 
   ${Mobile({
     fontSize: "2.4rem",
@@ -110,10 +121,29 @@ export const Button = styled.button`
     padding: "1.4rem 1.8rem",
   })}
 
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 40%;
+    background-color: #fff;
+    transition: all 0.4s ease-in;
+    opacity: 0;
+  }
+
+  &:hover::before {
+    width: 150rem;
+    height: 60rem;
+    opacity: 1;
+    background-color: #82c91e;
+  }
+
   &:hover {
     background-color: #2f9e44;
-    opacity: 0.8;
-    transform: scale(1.05);
+    transform: translateY(-0.2rem);
   }
 
   & + button {
@@ -122,14 +152,36 @@ export const Button = styled.button`
 
     &:hover {
       background-color: #82c91e;
-      opacity: 0.9;
     }
   }
 `;
 
 const Hero = () => {
+  const allLinks = document.querySelectorAll("a:link");
+
+  allLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const href = link.getAttribute("href");
+
+      if (href === "#") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+
+      if (href !== "#" && href.startsWith("#")) {
+        const sectionEl = document.querySelector(href);
+
+        sectionEl.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+
   return (
-    <Container>
+    <Container id="hero">
       <Wrapper>
         <InfoBox>
           <Title>Freshen the Air in Your House</Title>
@@ -140,8 +192,13 @@ const Hero = () => {
           </Text>
 
           <BtnBox>
-            <Button>Start find plant</Button>
-            <Button>Learn more</Button>
+            <Atag href="#products">
+              <Button>Start find plant</Button>
+            </Atag>
+
+            <Atag href="#information">
+              <Button>Learn more</Button>
+            </Atag>
           </BtnBox>
         </InfoBox>
       </Wrapper>
