@@ -22,6 +22,7 @@ import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
 import OrderScreen from "./pages/OrderScreen";
 import PaymentResult from "./pages/PaymentResult";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   const user = useSelector((state) => state.user.user?.accessToken);
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/cart" element={<Carts></Carts>}></Route>
         <Route path="/shipping" element={<Shipping></Shipping>}></Route>
         <Route path="/payment" element={<Payment></Payment>}></Route>
+        <Route path="/notFound" element={<NotFound />}></Route>
         <Route
           path="/placeorder"
           element={user ? <PlaceOrder /> : <Navigate replace to="/" />}

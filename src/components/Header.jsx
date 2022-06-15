@@ -23,14 +23,13 @@ import { FaNetworkWired } from "react-icons/fa";
 import { SiWebhint } from "react-icons/si";
 import { FaEnvira } from "react-icons/fa";
 import { FaPhotoVideo } from "react-icons/fa";
-import { Mobile, Tablets } from "../responsive";
 
 export const Container = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  height: 8vh;
+  height: 9vh;
   padding: 0 3.2rem;
   position: fixed;
   top: 0;

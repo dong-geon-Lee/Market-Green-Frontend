@@ -22,7 +22,7 @@ import {
   deleteStorage,
 } from "../redux-toolkit/cartSlice";
 import { createOrder, createOrderReset } from "../redux-toolkit/orderSlice.js";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Container = styled.div`
   width: 100%;

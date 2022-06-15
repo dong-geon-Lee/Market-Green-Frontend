@@ -105,7 +105,7 @@ export const SubHeading = styled.h2`
   font-size: 2.4rem;
   font-weight: 800;
   font-style: italic;
-  line-height: 1.3;
+  line-height: 1.7;
   letter-spacing: 1px;
 
   ${Laptops({
@@ -132,8 +132,8 @@ export const SubHeading = styled.h2`
 export const Text = styled.p`
   font-size: 1.6rem;
   font-weight: 400;
-  line-height: 1.3;
-  letter-spacing: 1px;
+  line-height: 1.7;
+  letter-spacing: 1.2px;
   margin: 3rem 0;
 
   ${Laptops({
@@ -164,6 +164,10 @@ export const ImageBox = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 1rem;
+
+  ${Laptops({
+    gap: "2rem",
+  })}
 
   ${Tablets({
     gap: "2rem",

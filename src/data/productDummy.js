@@ -203,8 +203,7 @@ export const plantsData = [
   {
     id: 12,
     name: "소엽풍란",
-    image:
-      "https://m.simpol.co.kr/data/shopimages/product/302420207/202205/0070030000000091682.jpg",
+    image: img6,
   },
   {
     id: 13,

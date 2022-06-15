@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Mobile, Tablets } from "../responsive";
 
@@ -86,7 +87,11 @@ export const Button = styled.button`
   margin: 6rem 0 3rem 0;
 `;
 
+export const LinkBtn = styled.a``;
+
 const Information = () => {
+  const navigate = useNavigate();
+
   return (
     <Container id="promotion">
       <MainText>Promotion</MainText>
@@ -94,7 +99,9 @@ const Information = () => {
         <Content></Content>
         <InformationBox>
           <Title>Get More plants</Title>
-          <Button>Go to Shopping</Button>
+          <Link to="/notFound">
+            <Button>More Information</Button>
+          </Link>
         </InformationBox>
       </Wrapper>
     </Container>

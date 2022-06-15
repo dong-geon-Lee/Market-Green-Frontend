@@ -201,10 +201,18 @@ const Footer = () => {
         <ContactGroup>
           <ContactTitle>Contact us</ContactTitle>
           <TextBox>
-            <TextLink href="https://github.com/dong-geon-Lee/Market-Green-Frontend">
+            <TextLink
+              href="https://github.com/dong-geon-Lee/Market-Green-Frontend/tree/dev"
+              target="_blank"
+            >
+              <strong>Front-end</strong> <br></br>
               https://github.com/dong-geon-Lee/Market-Green-Frontend
             </TextLink>
-            <TextLink href="https://github.com/dong-geon-Lee/Market-Green-Backend">
+            <TextLink
+              href="https://github.com/dong-geon-Lee/Market-Green-Backend/tree/dev"
+              target="_blank"
+            >
+              <strong>Back-end</strong> <br></br>
               https://github.com/dong-geon-Lee/Market-Green-Backend
             </TextLink>
           </TextBox>
