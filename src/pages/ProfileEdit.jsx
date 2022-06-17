@@ -180,10 +180,10 @@ const ProfileEdit = () => {
             />
           </Box>
           <BtnBox>
-            <Button type="submit">변경하기</Button>
             <Button type="button" onClick={() => navigate(-1)}>
               뒤로가기
             </Button>
+            <Button type="submit">변경하기</Button>
           </BtnBox>
         </Form>
       </Wrapper>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Mobile, Tablets } from "../responsive";
+import { Laptops, Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   display: flex;
@@ -37,11 +37,17 @@ export const InfoBox = styled.div`
 
 export const Title = styled.h1`
   color: #edf2ff;
-  font-size: 7.4rem;
+  font-size: 7.6rem;
   font-weight: 700;
   line-height: 1.5;
   margin-bottom: 1.6rem;
   letter-spacing: 2px;
+  width: 70%;
+  text-align: center;
+
+  ${Laptops({
+    fontSize: "7rem",
+  })}
 
   ${Tablets({
     fontSize: "6rem",

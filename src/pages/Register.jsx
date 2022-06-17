@@ -113,7 +113,7 @@ export const Box = styled.div`
 
 export const Label = styled.label`
   display: block;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 900;
   margin-bottom: 1.2rem;
   color: #4ba87d;

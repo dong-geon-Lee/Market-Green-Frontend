@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserOrders } from "../redux-toolkit/orderSlice";
+import { Mobile } from "../responsive";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -20,7 +21,7 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   max-width: 120rem;
-  padding: 0 3.2rem;
+  padding: 0;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -32,7 +33,7 @@ export const Wrapper = styled.div`
     font-size: 3rem;
     font-weight: 700;
     line-height: 1.5;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     margin: 3rem 0;
     color: blue;
   }
@@ -40,6 +41,10 @@ export const Wrapper = styled.div`
   & #customers {
     width: 100%;
     border-collapse: collapse;
+
+    ${Mobile({
+      width: "48vw",
+    })}
 
     & td,
     & th {
@@ -51,6 +56,10 @@ export const Wrapper = styled.div`
       border: 1px solid black;
       padding: 1.2rem 1.6rem;
       text-align: center;
+
+      ${Mobile({
+        padding: "1.2rem",
+      })}
     }
 
     & td:nth-child(even) {

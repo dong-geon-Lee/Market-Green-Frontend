@@ -43,9 +43,9 @@ export const Box = styled.div`
 
 export const Label = styled.label`
   display: block;
-  font-size: 2rem;
+  font-size: 2.6rem;
   font-weight: 900;
-  color: #4ba87d;
+  color: #5f3dc4;
   letter-spacing: 1px;
 `;
 
@@ -61,7 +61,7 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 800;
   font-family: inherit;
   margin: 1.2rem 0;
   color: #fff;
@@ -70,6 +70,10 @@ const Button = styled.button`
   width: 100%;
   background-color: #fa5252;
   border-radius: 9px;
+
+  &:hover {
+    background-color: #f03e3e;
+  }
 `;
 
 export const LinkBox = styled.div`
@@ -83,18 +87,31 @@ export const LinkBox = styled.div`
   width: 100%;
   border-radius: 9px;
 
+  & + div {
+    background-color: #1c7ed6;
+
+    &:hover {
+      background-color: #228be6;
+    }
+  }
+
   & a {
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: 800;
     font-family: inherit;
     text-decoration: none;
     letter-spacing: 1.75px;
     color: #fff;
   }
+
+  &:hover {
+    background-color: #40c057;
+  }
 `;
 
 export const UserText = styled.p`
   font-size: 3rem;
+  font-weight: 500;
   color: #343a40;
   height: 100%;
 `;
