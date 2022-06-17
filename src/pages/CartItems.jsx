@@ -2,13 +2,15 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { removeFromCart } from "../redux-toolkit/cartSlice";
+import { Mobile, Tablets } from "../responsive";
 
 export const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   max-width: 130rem;
   margin: 0 auto;
   padding: 1.6rem 3.2rem;
-
+  width: 100%;
   overflow: hidden;
 `;
 
@@ -21,18 +23,31 @@ export const ProductGroup = styled.div`
 
 export const ImgBox = styled.div`
   flex: 0.3;
-  padding: 3rem;
+  width: 35vw;
+  height: 20vh;
+  margin: 2rem;
+
+  ${Tablets({
+    width: "30vw",
+    height: "15vh",
+  })}
+
+  ${Mobile({
+    width: "25vw",
+    height: "10vh",
+  })}
 `;
 
 export const InfoBox = styled.div`
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 3rem;
+  padding: 1rem;
 `;
 
 export const Image = styled.img`
+  border-radius: 1rem;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -49,6 +64,10 @@ export const Title = styled.p`
     color: #212529;
     font-weight: 700;
   }
+
+  ${Mobile({
+    fontSize: "1.4rem",
+  })}
 `;
 
 export const Price = styled.p`
@@ -62,6 +81,10 @@ export const Price = styled.p`
     color: #212529;
     font-weight: 700;
   }
+
+  ${Mobile({
+    fontSize: "1.4rem",
+  })}
 `;
 
 export const Stock = styled.p`
@@ -75,6 +98,10 @@ export const Stock = styled.p`
     color: #212529;
     font-weight: 700;
   }
+
+  ${Mobile({
+    fontSize: "1.4rem",
+  })}
 `;
 
 export const CartBtnBox = styled.div`
@@ -107,7 +134,7 @@ export const OrderBtnBox = styled.div`
 export const OrderBtn = styled.button`
   border: none;
   background-color: #ff6b6b;
-  padding: 0.8rem;
+  padding: 1rem;
   border-radius: 50%;
   letter-spacing: 1px;
   font-family: inherit;
@@ -117,13 +144,18 @@ export const OrderBtn = styled.button`
   cursor: pointer;
   display: flex;
   position: absolute;
-  left: -1%;
-  top: -2%;
+  left: -1.5%;
+  top: -5%;
   transform: translate(2%, 5%);
 
   & + button {
     background-color: #8ce99a;
     color: #343a40;
+  }
+
+  &:hover {
+    background-color: red;
+    font-weight: 800;
   }
 `;
 
@@ -166,6 +198,11 @@ const CartItems = ({ product, title, price, img, qty }) => {
     dispatch(removeFromCart(product));
   };
 
+  let prices = price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  let total = (price * qty)
+    .toString()
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
   return (
     <Wrapper>
       <ProductGroup>
@@ -185,7 +222,11 @@ const CartItems = ({ product, title, price, img, qty }) => {
           </StockBox>
           <PriceBox>
             <Price>Price</Price>
-            <Price>{price}</Price>
+            <Price>{prices}</Price>
+          </PriceBox>
+          <PriceBox>
+            <Price>Total</Price>
+            <Price>{total}</Price>
           </PriceBox>
         </InfoBox>
       </ProductGroup>

@@ -31,7 +31,7 @@ export const Container = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  height: 9vh;
+  height: 9rem;
   padding: 0 3.2rem;
   position: fixed;
   top: 0;
@@ -69,14 +69,14 @@ export const LogoBox = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 5rem;
-  height: 5rem;
+  width: 5.5rem;
+  height: 5.5rem;
 `;
 
 export const LogoTitle = styled.p`
-  font-size: 2.4rem;
+  font-size: 2.6rem;
   font-weight: 400;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   margin-left: 1rem;
 `;
 
@@ -137,7 +137,7 @@ export const Button = styled.button`
   }
 
   ${Mobile({
-    fontSize: "3rem",
+    fontSize: "2.8rem",
     letterSpacing: "2px",
     color: "#40c057",
   })}
@@ -205,7 +205,7 @@ export const CartText = styled.span`
 
   ${Mobile({
     fontSize: "2.8rem",
-    left: "44.7%",
+    left: "35%",
   })}
 `;
 
@@ -249,7 +249,7 @@ export const LinkStyle = styled(Link)`
   width: 100%;
   color: #333;
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.5;
   display: flex;
   align-items: center;
@@ -287,7 +287,7 @@ export const LinkStyle = styled(Link)`
 export const NavText = styled.a`
   color: #333;
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 400;
   display: flex;
   align-items: center;
   line-height: 1.3;
@@ -317,7 +317,7 @@ export const NavText = styled.a`
   }
 
   ${Mobile({
-    fontSize: "3rem",
+    fontSize: "2.8rem",
     letterSpacing: "1.5px",
   })}
 `;
@@ -408,10 +408,6 @@ export const AdminBox = styled.div`
       })}
     }
   }
-
-  ${Mobile({
-    width: "100vw",
-  })}
 `;
 
 const Header = () => {

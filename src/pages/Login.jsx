@@ -5,6 +5,7 @@ import { loginUser } from "../redux-toolkit/userSlice";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { offSpinner, onSpinner } from "../redux-toolkit/spinnerSlice";
+import { Laptops, Mobile } from "../responsive";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -20,6 +21,16 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 2;
+
+  ${Laptops({
+    backgroundPosition: "revert",
+  })}
+
+  ${Mobile({
+    backgroundPosition: "revert",
+    backgroundSize: "200% 100%",
+    backgroundRepeat: "no-repeat",
+  })}
 `;
 
 export const Wrapper = styled.div`

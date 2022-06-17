@@ -5,6 +5,7 @@ import { registerUser } from "../redux-toolkit/userSlice";
 import { useNavigate } from "react-router-dom";
 import { offSpinner, onSpinner } from "../redux-toolkit/spinnerSlice";
 import Spinner from "../components/Spinner";
+import { Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -19,6 +20,12 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${Mobile({
+    backgroundPosition: "center",
+    backgroundSize: "cotain",
+    backgroundRepeat: "no-repeat",
+  })}
 `;
 
 export const Wrapper = styled.div`
@@ -33,12 +40,21 @@ export const Form = styled.form`
   column-gap: 3.2rem;
   row-gap: 4.8rem;
   width: 60rem;
+
+  ${Tablets({
+    gridTemplateColumns: "repeat(1, 1fr)",
+    justifyItems: "center",
+  })}
 `;
 
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+
+  ${Tablets({
+    width: "70%",
+  })}
 
   & .nameInput {
     border: ${(props) =>
@@ -97,7 +113,7 @@ export const Box = styled.div`
 
 export const Label = styled.label`
   display: block;
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: 900;
   margin-bottom: 1.2rem;
   color: #4ba87d;
@@ -106,8 +122,8 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   width: 100%;
-  padding: 1.2rem;
-  font-size: 1.6rem;
+  padding: 1.4rem;
+  font-size: 1.8rem;
   font-family: inherit;
   border: 1px solid #9f9f9f;
   border-radius: 9px;
@@ -143,13 +159,18 @@ const Button = styled.button`
     border-color: #ccc;
     color: #292929;
   }
+
+  ${Tablets({
+    width: "70%",
+  })}
 `;
 
 export const Message = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 500;
   letter-spacing: 0.5px;
   color: #f03e3e;
+  margin-top: 0.3rem;
 `;
 
 const Register = () => {

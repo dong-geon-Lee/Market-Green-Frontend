@@ -4,6 +4,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { addToCart } from "../redux-toolkit/cartSlice";
 import CartItems from "./CartItems";
 import styled from "styled-components";
+import { Laptops, Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ export const Container = styled.div`
   justify-content: center;
   height: 100%;
   padding: 9.6rem 3.2rem;
-  margin-top: auto;
+  margin: 4rem 0;
 `;
 
 export const Group = styled.div`
@@ -24,23 +25,6 @@ export const Wrapper = styled.div`
   display: flex;
   width: 100%;
   padding: 3.2rem 3.2rem;
-
-  & p {
-    font-size: 2.4rem;
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin-bottom: 2rem;
-    line-height: 1.5;
-  }
-
-  & span {
-    font-size: 2.4rem;
-    font-weight: 700;
-    margin-left: 1rem;
-    letter-spacing: 0.3px;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
 `;
 
 export const TotalBox = styled.div`
@@ -48,6 +32,8 @@ export const TotalBox = styled.div`
   justify-content: flex-end;
   border-bottom: 2px solid #eee;
   width: 100%;
+  align-items: center;
+  padding: 1rem 0;
 `;
 
 export const TotalCartItem = styled.div`
@@ -68,9 +54,9 @@ export const CartButtonGroup = styled.div`
 
 export const CartLink = styled(Link)`
   display: inline-block;
-  width: 35%;
+  width: 50%;
   padding: 2.4rem;
-  margin: 2.4rem 4rem 2.4rem 4rem;
+  margin: 2.4rem 4rem;
   cursor: pointer;
   background-color: #212529;
   color: #fff;
@@ -79,10 +65,57 @@ export const CartLink = styled(Link)`
   text-decoration: none;
   letter-spacing: 1px;
   text-align: center;
+  border-radius: 9px;
 
   & + a {
     background-color: #2f9e44;
   }
+
+  &:hover {
+    background-color: grey;
+    transform: scale(1.03);
+    font-weight: 800;
+  }
+
+  & + a:hover {
+    background-color: green;
+    transform: scale(1.03);
+    font-weight: 800;
+  }
+
+  ${Laptops({
+    width: "44%",
+    margin: "2.4rem 2rem",
+  })}
+
+  ${Tablets({
+    width: "43%",
+    margin: "2.4rem 2rem",
+  })}
+
+  ${Mobile({
+    width: "45%",
+    margin: "2.4rem 2rem",
+  })}
+`;
+
+export const TotalText = styled.p`
+  display: inline-block;
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-left: 1rem;
+  letter-spacing: 1.5px;
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+  color: #ff6b6b;
+`;
+
+export const Total = styled.p`
+  font-size: 2.4rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  color: blue;
 `;
 
 const Carts = () => {
@@ -125,15 +158,16 @@ const Carts = () => {
 
             <Wrapper>
               <TotalBox>
-                <p>TOTAL:</p>
-                <span>
-                  <strong>
-                    {cartItems?.reduce((acc, item) => {
+                <Total>TOTAL :</Total>
+                <TotalText>
+                  {cartItems
+                    ?.reduce((acc, item) => {
                       return acc + item.quantity * item.price;
-                    }, 0)}
-                    원
-                  </strong>
-                </span>
+                    }, 0)
+                    .toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+                  원
+                </TotalText>
               </TotalBox>
             </Wrapper>
 

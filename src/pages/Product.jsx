@@ -192,11 +192,6 @@ export const SubWrapper = styled.div`
 
 export const ReviewGroup = styled.div`
   margin: 12.8rem 0;
-  /* display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  width: 100%; */
 `;
 
 export const Review = styled.div`

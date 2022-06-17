@@ -188,8 +188,9 @@ export const Image = styled.img`
   width: 100%;
   height: 22rem;
   object-fit: cover;
-  transition: all 0.2s ease;
   outline-offset: 1.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
 
   &:hover {
     outline: 1rem solid #55c57a;
