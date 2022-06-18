@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { updateProduct } from "../../redux-toolkit/productSlice";
 import Spinner from "../../components/Spinner";
 import { offSpinner, onSpinner } from "../../redux-toolkit/spinnerSlice";
+import { Mobile } from "../../responsive.js";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -31,14 +32,24 @@ export const Form = styled.form`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 3.2rem;
-  row-gap: 4.8rem;
+  row-gap: 3.6rem;
   width: 60rem;
+
+  ${Mobile({
+    display: "flex",
+    flexDirection: "column",
+  })}
 `;
 
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+
+  ${Mobile({
+    width: "100%",
+    alignItems: "center",
+  })}
 
   & .imgInput {
     border: ${(props) =>
@@ -111,6 +122,11 @@ export const Label = styled.label`
   margin-bottom: 1.2rem;
   color: #4ba87d;
   letter-spacing: 1px;
+
+  ${Mobile({
+    width: "65%",
+    textAlign: "left",
+  })}
 `;
 
 export const Input = styled.input`
@@ -120,6 +136,11 @@ export const Input = styled.input`
   font-family: inherit;
   border: 1px solid #9f9f9f;
   border-radius: 9px;
+
+  ${Mobile({
+    width: "65%",
+    alignItems: "center",
+  })}
 `;
 
 const Button = styled.button`
@@ -137,6 +158,22 @@ const Button = styled.button`
   text-transform: uppercase;
   letter-spacing: 1.75px;
   border-radius: 9px;
+  width: 100%;
+
+  ${Mobile({
+    width: "65%",
+    margin: "2.4rem auto 0rem auto",
+  })}
+
+  &:nth-of-type(2) {
+    ${Mobile({
+      marginTop: "0rem",
+    })}
+  }
+
+  &:hover {
+    background-color: #f03e3e;
+  }
 
   & + button {
     grid-row: 4 / 5;

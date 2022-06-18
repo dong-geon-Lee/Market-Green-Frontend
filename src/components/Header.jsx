@@ -52,6 +52,7 @@ export const Container = styled.nav`
       ${Mobile({
         color: "#343a40",
         fontSize: "3.6rem",
+        marginRight: "1rem",
       })}
     }
 

@@ -16,6 +16,10 @@ export const Container = styled.div`
     letter-spacing: 1px;
     color: #7ed56f;
   }
+
+  ${Mobile({
+    padding: "10rem 3.2rem",
+  })}
 `;
 
 export const Wrapper = styled.div`

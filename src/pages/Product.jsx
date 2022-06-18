@@ -13,6 +13,7 @@ import SubStarRating from "../components/SubStarRating";
 import { offSpinner, onSpinner } from "../redux-toolkit/spinnerSlice";
 import Spinner from "../components/Spinner";
 import StarReviews from "../components/StarReviews";
+import { Laptops, Mobile, Tablets } from "../responsive.js";
 
 export const Container = styled.div`
   display: flex;
@@ -26,6 +27,11 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   gap: 4.8rem;
   padding: 0 2.4rem;
+
+  ${Laptops({
+    display: "flex",
+    gap: "4rem",
+  })}
 `;
 
 export const Left = styled.div`
@@ -35,6 +41,18 @@ export const Left = styled.div`
 
 export const ImgBox = styled.div`
   height: 70rem;
+
+  ${Laptops({
+    height: "51rem",
+  })}
+
+  ${Tablets({
+    height: "41rem",
+  })}
+
+  ${Mobile({
+    height: "31rem",
+  })}
 `;
 
 export const Image = styled.img`
@@ -63,8 +81,17 @@ export const Title = styled.h1`
 export const Desc = styled.p`
   font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 1rem;
   letter-spacing: 1px;
+  margin-bottom: 1rem;
+  width: 75%;
+
+  ${Tablets({
+    width: "90%",
+  })}
+
+  ${Mobile({
+    width: "100%",
+  })}
 `;
 
 export const TableBox = styled.div`
@@ -72,6 +99,19 @@ export const TableBox = styled.div`
   border-bottom: none;
   margin-top: 3.6rem;
   width: 60%;
+
+  ${Laptops({
+    width: "65%",
+  })}
+
+  ${Tablets({
+    width: "75%",
+  })}
+
+  ${Mobile({
+    width: "88%",
+    margin: "5rem 0",
+  })}
 `;
 
 export const PriceBox = styled.div`
@@ -86,6 +126,14 @@ export const Price = styled.p`
   font-weight: 700;
   color: #343a40;
   padding: 1.2rem 1.6rem;
+
+  ${Tablets({
+    fontSize: "1.8rem",
+  })}
+
+  ${Mobile({
+    fontSize: "1.6rem",
+  })}
 `;
 
 export const Stock = styled.p`
@@ -93,6 +141,14 @@ export const Stock = styled.p`
   padding: 1.2rem 1.6rem;
   font-weight: 700;
   color: #343a40;
+
+  ${Tablets({
+    fontSize: "1.8rem",
+  })}
+
+  ${Mobile({
+    fontSize: "1.6rem",
+  })}
 `;
 
 export const CartBtnBox = styled.div`
@@ -124,6 +180,14 @@ export const CartText = styled.span`
   display: inline-block;
   font-size: 2rem;
   font-weight: 700;
+
+  ${Tablets({
+    fontSize: "1.8rem",
+  })}
+
+  ${Mobile({
+    fontSize: "1.6rem",
+  })}
 `;
 
 export const OrderBtnBox = styled.div`
@@ -147,6 +211,10 @@ export const OrderBtn = styled.button`
   & + button {
     background-color: #8ce99a;
     color: #343a40;
+  }
+
+  &:hover {
+    background-color: #96f2d7;
   }
 `;
 
@@ -177,6 +245,14 @@ export const Rating = styled.div`
   font-weight: 700;
   padding: 1.2rem 1.6rem;
 
+  ${Tablets({
+    fontSize: "1.8rem",
+  })}
+
+  ${Mobile({
+    fontSize: "1.6rem",
+  })}
+
   & svg {
     fill: #ebb450;
   }
@@ -202,7 +278,7 @@ export const ReviewText = styled.h3`
   font-size: 1.6rem;
   font-weight: 500;
   text-transform: uppercase;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.6rem;
   letter-spacing: 1px;
 
   & strong {
@@ -212,11 +288,12 @@ export const ReviewText = styled.h3`
 `;
 
 export const ReviewDate = styled.p`
+  font-size: 1.2rem;
   margin-bottom: 1.2rem;
 `;
 
 export const ReviewUser = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 0.4px;
 `;
@@ -224,6 +301,15 @@ export const ReviewUser = styled.p`
 export const ReviewBox = styled.div`
   background-color: #eee;
   padding: 1.6rem 1.6rem;
+
+  ${Mobile({
+    display: "flex",
+    flexDirection: "column",
+
+    justifyContent: "center",
+    height: "20rem",
+    marginTop: "2rem",
+  })}
 `;
 
 export const ReviewTest = styled.p`
@@ -258,10 +344,25 @@ export const SelectInfo = styled.div`
 
 export const CommentTitle = styled(ReviewText)`
   margin-bottom: 2rem;
+  font-weight: 800;
+
+  ${Laptops({
+    marginTop: "10rem",
+  })}
+
+  ${Tablets({
+    fontSize: "1.4rem",
+    marginTop: "7rem",
+  })}
+
+  ${Mobile({
+    fontSize: "1.2rem",
+    marginTop: "0rem",
+  })}
 `;
 
 export const CommentRating = styled(ReviewTest)`
-  margin-bottom: 1rem;
+  margin-bottom: 1.6rem;
 `;
 
 export const CommentSelect = styled.select`
@@ -274,7 +375,7 @@ export const CommentSelect = styled.select`
 `;
 
 export const CommentText = styled(ReviewTest)`
-  margin-bottom: 1rem;
+  margin-bottom: 1.6rem;
 `;
 
 export const TextArea = styled.textarea`
@@ -284,19 +385,49 @@ export const TextArea = styled.textarea`
   outline: none;
   padding: 1rem;
   margin-bottom: 2rem;
+
+  ${Tablets({
+    height: "15rem",
+  })};
+
+  ${Mobile({
+    height: "10rem",
+  })};
 `;
 
 export const CommentInfo = styled.div``;
 
 export const SubmitButton = styled(OrderBtn)`
   width: 80%;
+
+  ${Tablets({
+    marginBottom: "1.8rem",
+  })}
+
+  ${Mobile({
+    marginBottom: "3rem",
+  })}
 `;
 
 export const Button = styled(OrderBtn)`
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   padding: 0.8rem 1rem;
   cursor: pointer;
   width: 5%;
+
+  ${Laptops({
+    padding: "1rem 1.4rem",
+    fontSize: "1.6rem",
+  })}
+
+  ${Tablets({
+    padding: "1rem 1.2rem",
+  })}
+
+  ${Mobile({
+    fontSize: "1.4rem",
+  })}
 `;
 
 export const ReviewInfo = styled.div`

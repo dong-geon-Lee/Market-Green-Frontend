@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Laptops, Mobile, Tablets } from "../responsive";
 
@@ -7,6 +7,10 @@ export const Container = styled.div`
   max-width: 130rem;
   padding: 20rem 3.2rem;
   margin: 0 auto;
+
+  ${Mobile({
+    padding: "10rem 3.2rem",
+  })}
 `;
 
 export const MainText = styled.h1`

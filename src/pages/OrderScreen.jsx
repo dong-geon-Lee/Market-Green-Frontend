@@ -14,24 +14,16 @@ import {
   Title,
 } from "./CartItems";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteStorage } from "../redux-toolkit/cartSlice";
 import {
-  cartItemPrice,
-  cartShippingPrice,
-  cartTaxPrice,
-  cartTotalPrice,
-  deleteStorage,
-} from "../redux-toolkit/cartSlice";
-import {
-  createOrder,
-  createOrderReset,
   getOrderDetails,
-  orderItemsPrice,
   orderPayReset,
   payOrder,
 } from "../redux-toolkit/orderSlice.js";
 import { useParams } from "react-router-dom";
 import { PayPalButton } from "react-paypal-button-v2";
 import axios from "axios";
+import { Laptops, Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   width: 100%;
@@ -41,7 +33,15 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 5rem 0;
+  margin: 11rem 0 0rem 0;
+
+  ${Tablets({
+    alignItems: "center",
+  })}
+
+  ${Mobile({
+    alignItems: "center",
+  })}
 `;
 
 export const OrderGroup = styled.div`
@@ -49,6 +49,23 @@ export const OrderGroup = styled.div`
   justify-content: space-between;
   background-color: #e5fee9;
   padding: 3.2rem;
+  border-radius: 1rem;
+  width: 100%;
+  align-items: center;
+
+  ${Tablets({
+    flexDirection: "column",
+    width: "80%",
+  })}
+
+  ${Mobile({
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "1.6rem",
+    justifyContent: "center",
+    width: "80%",
+    marginBottom: "3.6rem",
+  })}
 `;
 
 export const OrderBox = styled.div`
@@ -61,6 +78,17 @@ export const OrderBox = styled.div`
     width: 3rem;
     height: 3rem;
   }
+
+  ${Tablets({
+    width: "100%",
+    marginLeft: "20rem",
+  })}
+
+  ${Mobile({
+    width: "100%",
+    marginLeft: "12rem",
+    marginRight: "0rem",
+  })}
 `;
 
 export const Circle = styled.div`
@@ -113,6 +141,19 @@ export const Center = styled.div`
   display: flex;
   padding: 3rem;
   border-bottom: 1px solid black;
+  width: 100%;
+
+  ${Tablets({
+    width: "100%",
+    padding: "3rem",
+    justifyContent: "center",
+  })}
+
+  ${Mobile({
+    flexDirection: "column",
+    marginBottom: "5.2rem",
+    padding: "1rem",
+  })}
 `;
 
 export const ProductGroup = styled.div`
@@ -128,6 +169,17 @@ export const TotalGroup = styled.div`
   flex-direction: column;
   width: 30%;
   margin-left: auto;
+  margin-top: 5rem;
+
+  ${Tablets({
+    margin: "5rem auto 3rem auto",
+    width: "70%",
+  })}
+
+  ${Mobile({
+    margin: "0 auto",
+    width: "80%",
+  })}
 `;
 
 export const TotalBox = styled.div`
@@ -142,7 +194,24 @@ export const TotalBox = styled.div`
 `;
 
 export const ImgBox = styled.div`
-  width: 15%;
+  width: 16vw;
+  height: 17vh;
+
+  ${Laptops({
+    width: "25%",
+    height: "15vh",
+  })}
+
+  ${Tablets({
+    width: "35%",
+    height: "15vh",
+  })}
+
+   ${Mobile({
+    width: "100%",
+    height: "25rem",
+    marginBottom: ".6rem",
+  })};
 `;
 
 export const Button = styled.button`
@@ -155,6 +224,10 @@ export const Button = styled.button`
   font-style: inherit;
   font-size: 2rem;
   border-radius: 5px;
+
+  &:hover {
+    background-color: #099268;
+  }
 `;
 
 export const TotalLabel = styled.label`
@@ -166,6 +239,28 @@ export const TotalSpan = styled.span`
   font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: 1px;
+`;
+
+export const InfoListBox = styled(InfoBox)`
+  ${Tablets({
+    width: "85%",
+    justifyContent: "space-between",
+  })}
+`;
+
+export const TitleText = styled(Title)`
+  ${Tablets({
+    marginBottom: "3rem",
+  })};
+`;
+
+export const CenterWrapper = styled.div`
+  width: 100%;
+
+  ${Tablets({
+    display: "flex",
+    justifyContent: "center",
+  })}
 `;
 
 const OrderScreen = () => {
@@ -308,28 +403,28 @@ const OrderScreen = () => {
 
         <ProductGroup>
           {orderDetails?.orderItems?.map((item) => (
-            <div key={item.product}>
+            <CenterWrapper key={item.product}>
               <Center>
                 <ImgBox>
                   <Image src={`http://localhost:5000/${item.img}`} alt="make" />
                 </ImgBox>
 
-                <InfoBox>
+                <InfoListBox>
                   <TitleBox>
-                    <Title>product</Title>
+                    <TitleText>product</TitleText>
                     <Title>{item.title}</Title>
                   </TitleBox>
                   <StockBox>
-                    <Stock>Quantity</Stock>
+                    <TitleText>Quantity</TitleText>
                     <Stock>{item.quantity}</Stock>
                   </StockBox>
                   <PriceBox>
-                    <Price>Price</Price>
+                    <TitleText>Price</TitleText>
                     <Price>{item.price}</Price>
                   </PriceBox>
-                </InfoBox>
+                </InfoListBox>
               </Center>
-            </div>
+            </CenterWrapper>
           ))}
         </ProductGroup>
       </Wrapper>

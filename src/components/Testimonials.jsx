@@ -8,6 +8,10 @@ export const Container = styled.div`
   max-width: 100rem;
   padding: 25rem 3.2rem 15rem 3.2rem;
   margin: 0 auto;
+
+  ${Mobile({
+    padding: "10rem 3.2rem 10rem 3.2rem",
+  })}
 `;
 
 export const Wrapper = styled.div`
@@ -61,6 +65,7 @@ export const UserBox = styled.div`
 
     ${Mobile({
       maxWidth: "45rem",
+      height: "45rem",
     })}
 
     .ilevYi {

@@ -152,7 +152,7 @@ const ControlMenu = ({ value, onChange, optionList }) => {
 
 const Products = () => {
   const { products } = useSelector((state) => state.product);
-  const productList = useSelector((state) => state.product.products);
+  const productList = useSelector((state) => state.product?.products);
 
   const [filter, setFilter] = useState("all");
   const [price, setPrice] = useState("all");

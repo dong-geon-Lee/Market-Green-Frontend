@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addShippingInfo } from "../redux-toolkit/cartSlice.js";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { Laptops, Mobile, Tablets } from "../responsive";
 
 export const Container = styled.div`
   display: flex;
@@ -22,6 +23,18 @@ export const Group = styled.div`
   padding: 2rem 4rem;
   width: 40%;
   box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.2);
+
+  ${Laptops({
+    width: "43%",
+  })}
+
+  ${Tablets({
+    width: "54%",
+  })}
+
+  ${Mobile({
+    width: "60%",
+  })}
 `;
 
 export const Form = styled.form``;
