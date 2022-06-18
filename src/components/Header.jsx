@@ -45,11 +45,13 @@ export const Container = styled.nav`
 
     ${Mobile({
       color: "#40c057",
+      width: "100vw",
     })}
 
     & svg {
       ${Mobile({
         color: "#343a40",
+        fontSize: "3.6rem",
       })}
     }
 
@@ -106,6 +108,7 @@ export const Button = styled.button`
   color: black;
   font-family: inherit;
   font-size: 1.6rem;
+  line-height: 1.5;
   font-weight: 400;
   padding: 1.4rem 1.2rem;
   border: none;
@@ -130,7 +133,6 @@ export const Button = styled.button`
 
     ${Mobile({
       color: "#fff",
-      marginLeft: "2rem",
     })}
 
     transform: scale(1.05);
@@ -142,9 +144,18 @@ export const Button = styled.button`
     color: "#40c057",
   })}
 
+  &:hover {
+    ${Mobile({
+      marginLeft: "2rem",
+    })}
+  }
+
   & svg {
     ${Mobile({
       color: "#343a40",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     })}
   }
 `;
@@ -197,7 +208,7 @@ export const CartText = styled.span`
   font-size: 1.5rem;
   position: absolute;
   top: 25%;
-  left: 43%;
+  left: 41%;
   transform: translate(-50%, -50%);
   background-color: beige;
   padding: 0.5rem 0.6rem;
@@ -205,7 +216,7 @@ export const CartText = styled.span`
 
   ${Mobile({
     fontSize: "2.8rem",
-    left: "35%",
+    left: "43.5%",
   })}
 `;
 
@@ -320,6 +331,18 @@ export const NavText = styled.a`
     fontSize: "2.8rem",
     letterSpacing: "1.5px",
   })}
+
+  &:nth-of-type(3) {
+    ${Mobile({
+      display: "none",
+    })}
+  }
+
+  &:nth-of-type(7) {
+    ${Mobile({
+      display: "none",
+    })}
+  }
 `;
 
 export const Nav = styled.nav`
@@ -382,7 +405,7 @@ export const AdminBox = styled.div`
   align-items: center;
 
   & .cartLink {
-    padding: 1.4rem 0;
+    padding: 1.4rem 0rem;
     transition: all 0.25s cubic-bezier(0.68, 0.1, 0.75, 1.5);
     text-transform: uppercase;
     background-size: 220%;
@@ -396,6 +419,12 @@ export const AdminBox = styled.div`
       );
       background-position: 100%;
       background-color: #40c057;
+
+      & p {
+        ${Mobile({
+          color: "#fff",
+        })}
+      }
     }
   }
 
@@ -487,7 +516,7 @@ const Header = () => {
 
             <Content>
               <Button onClick={() => homeLink()}>
-                <BsFillHouseFill style={{ marginRight: "1rem" }} />
+                <BsFillHouseFill style={{ marginRight: "2rem" }} />
                 Home
               </Button>
 
@@ -496,7 +525,7 @@ const Header = () => {
                   <AdminBox>
                     {admin && (
                       <Button onClick={() => adminLink()}>
-                        <FaUserAlt style={{ marginRight: "1rem" }} />
+                        <FaUserAlt style={{ marginRight: "2rem" }} />
                         Admin
                       </Button>
                     )}
@@ -505,7 +534,7 @@ const Header = () => {
                       className="profile-svg"
                     >
                       <BsFillFileEarmarkPersonFill
-                        style={{ marginRight: "1rem" }}
+                        style={{ marginRight: "2rem" }}
                       />
                       Profile
                     </Button>
@@ -513,15 +542,15 @@ const Header = () => {
                     <CartBox
                       className="cartLink"
                       onClick={() => cartLink()}
-                      style={{ marginRight: "1rem" }}
+                      style={{ marginRight: "2rem" }}
                     >
-                      <BsFillCartFill style={{ marginRight: "1rem" }} />
+                      <BsFillCartFill style={{ marginRight: "2rem" }} />
 
                       <CartText>{cartItems ? cartItems?.length : 0}</CartText>
                       <CartSubText>Cart</CartSubText>
                     </CartBox>
                     <LinkStyle to="/" onClick={() => logout()}>
-                      <BsDoorOpenFill style={{ marginRight: "1rem" }} />
+                      <BsDoorOpenFill style={{ marginRight: "2rem" }} />
                       Logout
                     </LinkStyle>
                   </AdminBox>
@@ -538,42 +567,42 @@ const Header = () => {
               </BtnBox>
 
               <NavText href="#" onClick={showSidebar}>
-                <BsFillImageFill style={{ marginRight: "1rem" }} />
+                <BsFillImageFill style={{ marginRight: "2rem" }} />
                 Hero
               </NavText>
 
               <NavText href="#intro" onClick={showSidebar}>
-                <FaNetworkWired style={{ marginRight: "1rem" }} />
+                <FaNetworkWired style={{ marginRight: "2rem" }} />
                 Introduce
               </NavText>
 
               <NavText href="#about" onClick={showSidebar}>
-                <FaInfoCircle style={{ marginRight: "1rem" }} />
+                <FaInfoCircle style={{ marginRight: "2rem" }} />
                 About
               </NavText>
 
               <NavText href="#products" onClick={showSidebar}>
-                <GrProductHunt style={{ marginRight: "1rem" }} />
+                <GrProductHunt style={{ marginRight: "2rem" }} />
                 Product
               </NavText>
 
               <NavText href="#testimonials" onClick={showSidebar}>
-                <HiSpeakerphone style={{ marginRight: "1rem" }} />
+                <HiSpeakerphone style={{ marginRight: "2rem" }} />
                 Testimonials
               </NavText>
 
               <NavText href="#information" onClick={showSidebar}>
-                <SiWebhint style={{ marginRight: "1rem" }} />
+                <SiWebhint style={{ marginRight: "2rem" }} />
                 Promotion
               </NavText>
 
               <NavText href="#gallery" onClick={showSidebar}>
-                <FaPhotoVideo style={{ marginRight: "1rem" }} />
+                <FaPhotoVideo style={{ marginRight: "2rem" }} />
                 Gallery
               </NavText>
 
               <NavText href="#footer" onClick={showSidebar}>
-                <FaEnvira style={{ marginRight: "1rem" }} />
+                <FaEnvira style={{ marginRight: "2rem" }} />
                 Footer
               </NavText>
             </Content>
