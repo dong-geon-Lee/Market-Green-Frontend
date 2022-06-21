@@ -11,7 +11,8 @@ export const registerUser = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.messsage);
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -51,7 +52,7 @@ export const updateUser = createAsyncThunk(
       console.log(response.data);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -97,6 +98,7 @@ const userToken = JSON.parse(localStorage.getItem("user"))
 const initialState = {
   user: userToken,
   isLoading: false,
+  isSuccess: false,
   error: false,
 };
 
@@ -108,6 +110,11 @@ const userSlice = createSlice({
       state.user = null;
       state.isLoading = false;
       state.error = false;
+      state.isSuccess = false;
+    },
+    tryAuth: (state) => {
+      state.error = false;
+      state.isSuccess = false;
     },
   },
   extraReducers: {
@@ -117,6 +124,7 @@ const userSlice = createSlice({
     [registerUser.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.user = action.payload;
+      state.error = false;
     },
     [registerUser.rejected]: (state, action) => {
       state.isLoading = false;
@@ -128,11 +136,13 @@ const userSlice = createSlice({
     [loginUser.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.user = action.payload;
+      state.isSuccess = true;
       state.error = false;
     },
     [loginUser.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+      state.isSuccess = false;
     },
     [updateUser.pending]: (state) => {
       state.isLoading = true;
@@ -140,11 +150,15 @@ const userSlice = createSlice({
     [updateUser.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.user = action.payload;
+      state.isSuccess = true;
+      state.error = false;
+
       localStorage.setItem("user", JSON.stringify(action.payload));
     },
     [updateUser.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+      state.isSuccess = false;
     },
     [deleteUser.pending]: (state) => {
       state.isLoading = true;
@@ -176,6 +190,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { reset } = userSlice.actions;
+export const { reset, tryAuth } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

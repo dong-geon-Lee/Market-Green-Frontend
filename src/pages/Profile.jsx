@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { deleteUser } from "../redux-toolkit/userSlice";
+import { deleteUser, tryAuth } from "../redux-toolkit/userSlice";
+import { useEffect } from "react";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -121,6 +122,10 @@ const Profile = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(tryAuth());
+  }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();

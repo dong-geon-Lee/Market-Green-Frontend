@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../redux-toolkit/userSlice";
+import { registerUser, reset } from "../redux-toolkit/userSlice";
 import { useNavigate } from "react-router-dom";
 import { offSpinner, onSpinner } from "../redux-toolkit/spinnerSlice";
 import Spinner from "../components/Spinner";
@@ -166,15 +166,23 @@ const Button = styled.button`
 `;
 
 export const Message = styled.p`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 0.5px;
   color: #f03e3e;
   margin-top: 0.3rem;
 `;
 
+export const MessageResult = styled(Message)`
+  font-size: 1.4rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  margin-top: -3rem;
+`;
+
 const Register = () => {
   const isLoading = useSelector((state) => state.spinner.isLoading);
+  const { error, user } = useSelector((state) => state.user);
 
   const [userData, setUserData] = useState({
     name: "",
@@ -233,13 +241,25 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        dispatch(reset());
+      }, 5000);
+    }
+
+    if (user) {
+      navigate("/login");
+    }
+  }, [dispatch, navigate, user, error]);
+
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!formIsValid) {
-      alert("Form Invalid!");
-      return;
-    }
+    // if (!formIsValid) {
+    //   alert("Form Invalid!");
+    //   return;
+    // }
 
     const newUser = {
       name,
@@ -265,7 +285,6 @@ const Register = () => {
 
     setTimeout(() => {
       dispatch(offSpinner(false));
-      navigate("/login");
     }, 1500);
   };
 
@@ -285,7 +304,7 @@ const Register = () => {
               placeholder="Enter name..."
               className="nameInput"
             />
-            {nameInputIsInvalid && <Message>Name must not be empty</Message>}
+            {nameInputIsInvalid && <Message>이름을 입력하세요</Message>}
           </Box>
           <Box inValidEmail={emailInputIsInvalid}>
             <Label>E-mail</Label>
@@ -299,9 +318,15 @@ const Register = () => {
               className="emailInput"
             />
             {emailInputIsInvalid ? (
-              <Message>email empty</Message>
+              <Message>이메일을 입력하세요</Message>
             ) : (
-              email && !emailIsValid && <Message>'@' not includes</Message>
+              email &&
+              !emailIsValid && (
+                <Message>
+                  이메일에 <strong style={{ fontSize: "1.6rem" }}>'@'</strong>을
+                  입력하세요
+                </Message>
+              )
             )}
           </Box>
           <Box inValidPassword={passwordInputIsInvalid}>
@@ -316,10 +341,12 @@ const Register = () => {
               className="passwordInput"
             />
             {passwordInputIsInvalid ? (
-              <Message>password must not be empty.</Message>
+              <Message>비밀번호를 입력하세요</Message>
             ) : (
               password &&
-              !passwordIsValid && <Message>password length 3 more </Message>
+              !passwordIsValid && (
+                <Message>비밀번호는 4자 이상 입력하세요 </Message>
+              )
             )}
           </Box>
           <Box inValidPassword2={password2InputIsInvalid}>
@@ -334,16 +361,20 @@ const Register = () => {
               className="password2Input"
             />
             {password2InputIsInvalid ? (
-              <Message>password2 must not be empty.</Message>
+              <Message>비밀번호를 입력하세요</Message>
             ) : (
               passwordIsValid &&
-              !password2IsValid && <Message>password not correct</Message>
+              !password2IsValid && (
+                <Message>비밀번호가 일치하지 않습니다</Message>
+              )
             )}
           </Box>
 
           <Button type="submit" disabled={!formIsValid}>
             회원가입
           </Button>
+
+          {error && <MessageResult>{error}</MessageResult>}
         </Form>
       </Wrapper>
     </Container>

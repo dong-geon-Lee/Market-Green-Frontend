@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../redux-toolkit/userSlice";
+import { loginUser, reset } from "../redux-toolkit/userSlice";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { offSpinner, onSpinner } from "../redux-toolkit/spinnerSlice";
@@ -145,7 +145,7 @@ export const MessageResult = styled(Message)`
 
 const Login = () => {
   const isLoading = useSelector((state) => state.spinner.isLoading);
-  const { error, user } = useSelector((state) => state.user);
+  const { error, user, isSuccess } = useSelector((state) => state.user);
 
   const [userData, setUserData] = useState({
     email: "",
@@ -189,10 +189,12 @@ const Login = () => {
 
   useEffect(() => {
     if (error) {
-      return;
+      setTimeout(() => {
+        dispatch(reset());
+      }, 5000);
     }
 
-    if (user) {
+    if (user && isSuccess) {
       navigate("/");
     }
   }, [dispatch, navigate, user, error]);
@@ -200,10 +202,10 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!formIsValid) {
-      alert("Form Invalid!");
-      return;
-    }
+    // if (!formIsValid) {
+    //   alert("Form Invalid!");
+    //   return;
+    // }
 
     const newUser = {
       email,
@@ -280,7 +282,7 @@ const Login = () => {
             로그인
           </Button>
 
-          {!formIsValid && error && <MessageResult>{error}</MessageResult>}
+          {error && <MessageResult>{error}</MessageResult>}
         </Form>
       </Wrapper>
     </Container>
