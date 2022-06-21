@@ -3,14 +3,6 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5000/api/users";
 
-// const TOKEN = JSON.parse(localStorage.getItem("user"))?.accessToken;
-
-// const config = {
-//   headers: {
-//     Authorization: `Bearer ${TOKEN}`,
-//   },
-// };
-
 export const registerUser = createAsyncThunk(
   "user/register",
   async (payload, thunkAPI) => {
@@ -29,12 +21,11 @@ export const loginUser = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await axios.post(API_URL + "/login", payload);
-
       localStorage.setItem("user", JSON.stringify(response.data));
 
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -137,6 +128,7 @@ const userSlice = createSlice({
     [loginUser.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.user = action.payload;
+      state.error = false;
     },
     [loginUser.rejected]: (state, action) => {
       state.isLoading = false;

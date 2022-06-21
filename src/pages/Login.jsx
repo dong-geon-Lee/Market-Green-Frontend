@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux-toolkit/userSlice";
@@ -107,7 +107,7 @@ const Button = styled.button`
   font-size: 2rem;
   font-weight: 700;
   font-family: inherit;
-  margin: 3.6rem 0;
+  margin: 3.6rem 0 1.8rem 0;
   color: #fff;
   background-color: #4ba87d;
   text-transform: uppercase;
@@ -137,8 +137,15 @@ export const Message = styled.p`
   color: #f03e3e;
 `;
 
+export const MessageResult = styled(Message)`
+  font-size: 1.4rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+`;
+
 const Login = () => {
   const isLoading = useSelector((state) => state.spinner.isLoading);
+  const { error, user } = useSelector((state) => state.user);
 
   const [userData, setUserData] = useState({
     email: "",
@@ -180,6 +187,16 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (error) {
+      return;
+    }
+
+    if (user) {
+      navigate("/");
+    }
+  }, [dispatch, navigate, user, error]);
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -207,7 +224,6 @@ const Login = () => {
 
     setTimeout(() => {
       dispatch(offSpinner(false));
-      navigate("/");
     }, 1500);
   };
 
@@ -229,9 +245,15 @@ const Login = () => {
             />
           </Box>
           {emailInputIsInvalid ? (
-            <Message>email empty</Message>
+            <Message>이메일을 작성해주세요</Message>
           ) : (
-            email && !emailIsValid && <Message>'@' not includes</Message>
+            email &&
+            !emailIsValid && (
+              <Message>
+                이메일에 <strong style={{ fontSize: "1.6rem" }}>'@'</strong>을
+                포함시켜주세요
+              </Message>
+            )
           )}
 
           <Box inValidPassword={passwordInputIsInvalid}>
@@ -247,15 +269,18 @@ const Login = () => {
             />
           </Box>
           {passwordInputIsInvalid ? (
-            <Message>password must not be empty.</Message>
+            <Message>비밀번호를 입력해주세요</Message>
           ) : (
             password &&
-            !passwordIsValid && <Message>password length 3 more </Message>
+            !passwordIsValid && (
+              <Message>비밀번호는 4자 이상 적어주세요</Message>
+            )
           )}
-
           <Button type="submit" disabled={!formIsValid}>
             로그인
           </Button>
+
+          {!formIsValid && error && <MessageResult>{error}</MessageResult>}
         </Form>
       </Wrapper>
     </Container>
