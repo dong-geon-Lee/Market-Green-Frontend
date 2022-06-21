@@ -16,7 +16,6 @@ export const createOrder = createAsyncThunk(
 
     try {
       const { data } = await axios.post(API_URL, payload, config);
-      console.log(data);
 
       return data;
     } catch (error) {
@@ -29,7 +28,7 @@ export const getOrderDetails = createAsyncThunk(
   "Get/order",
   async (payload, thunkAPI) => {
     const { id } = payload;
-    console.log(id, "slice id order ");
+
     const TOKEN = thunkAPI.getState().user.user?.accessToken;
 
     const config = {
@@ -39,10 +38,8 @@ export const getOrderDetails = createAsyncThunk(
     };
 
     try {
-      console.log(id, "id?");
       const { data } = await axios.get(API_URL + `/${id}`, config);
 
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -70,7 +67,6 @@ export const payOrder = createAsyncThunk(
         config
       );
 
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -90,7 +86,7 @@ export const getUserOrders = createAsyncThunk(
     };
 
     const { data } = await axios.get(API_URL, config);
-    console.log(data);
+
     return data;
   }
 );
@@ -128,7 +124,6 @@ const orderSlice = createSlice({
       state.loading = false;
     },
     [createOrder.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.loading = false;
       state.order = action.payload;
       state.success = true;

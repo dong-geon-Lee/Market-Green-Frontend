@@ -143,6 +143,7 @@ export const LinkBtn = styled(Link)`
 
 const ProductItems = ({ _id, title, desc, price, img, inStock, rating }) => {
   const isLoading = useSelector((state) => state.spinner.isLoading);
+  const adminUser = useSelector((state) => state.user.user?.isAdmin);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -158,43 +159,51 @@ const ProductItems = ({ _id, title, desc, price, img, inStock, rating }) => {
       <Card>
         {isLoading && <Spinner></Spinner>}
         <ImgBox onClick={() => onClick(_id)}>
-          <Image src={`http://localhost:5000/${img}`} alt="image" />
+          <Image src={`http://localhost:5000/${img}`} alt={img} />
         </ImgBox>
 
         <InfoBox>
           <Title>{title}</Title>
           <Text>{prices}원</Text>
           <StarRating value={rating}></StarRating>
-          <OptionBox>
-            <Button
-              onClick={() => {
-                dispatch(deleteProduct({ id: _id }));
-                dispatch(onSpinner(true));
 
-                setTimeout(() => {
-                  dispatch(offSpinner(false));
-                }, 1500);
-              }}
-            >
-              삭제
+          <OptionBox>
+            {adminUser && (
+              <Button
+                onClick={() => {
+                  dispatch(deleteProduct({ id: _id }));
+                  dispatch(onSpinner(true));
+
+                  setTimeout(() => {
+                    dispatch(offSpinner(false));
+                  }, 1500);
+                }}
+              >
+                삭제
+              </Button>
+            )}
+            <Button onClick={() => onClick(_id)}>
+              {adminUser ? "자세히" : "자세히 보기"}
             </Button>
-            <Button onClick={() => onClick(_id)}>자세히</Button>
-            <Button
-              onClick={() =>
-                navigate("/productEdit", {
-                  state: {
-                    id: _id,
-                    title,
-                    desc,
-                    price,
-                    inStock,
-                    img,
-                  },
-                })
-              }
-            >
-              수정
-            </Button>
+
+            {adminUser && (
+              <Button
+                onClick={() =>
+                  navigate("/productEdit", {
+                    state: {
+                      id: _id,
+                      title,
+                      desc,
+                      price,
+                      inStock,
+                      img,
+                    },
+                  })
+                }
+              >
+                수정
+              </Button>
+            )}
           </OptionBox>
         </InfoBox>
         {rating >= 4.5 ? <CardLabel>Best Product</CardLabel> : <></>}

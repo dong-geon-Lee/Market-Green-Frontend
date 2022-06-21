@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserOrders } from "../redux-toolkit/orderSlice";
 import { Mobile } from "../responsive";
+import moment from "moment";
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -116,10 +117,23 @@ const PaymentResult = () => {
                 <td>{data._id}</td>
                 <td>{data.orderItems[0].title}</td>
                 <td>{data.user.name}</td>
-                <td>{data.paidAt.split("T")[0]}</td>
-                <td>{data.totalPrice} 원</td>
                 <td>
-                  {data.paymentResult.status ? "결제완료" : "결제 대기 중"}
+                  {data.paidAt
+                    ? data.paidAt?.split("T")[0]
+                    : moment().format()?.split("T")[0]}
+                </td>
+                <td>
+                  {data.totalPrice
+                    .toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                  원
+                </td>
+                <td>
+                  {data.paymentResult?.status ? (
+                    "결제완료"
+                  ) : (
+                    <strong style={{ color: "blue" }}>결제 대기 중</strong>
+                  )}
                 </td>
               </tr>
             ))}

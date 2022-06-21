@@ -410,6 +410,7 @@ export const SubmitButton = styled(OrderBtn)`
 `;
 
 export const Button = styled(OrderBtn)`
+  /* display: ${(props) => (props.reviewId ? "flex" : "none")}; */
   display: flex;
   justify-content: center;
   padding: 0.8rem 1rem;
@@ -420,14 +421,12 @@ export const Button = styled(OrderBtn)`
     padding: "1rem 1.4rem",
     fontSize: "1.6rem",
   })}
-
   ${Tablets({
     padding: "1rem 1.2rem",
   })}
-
-  ${Mobile({
+    ${Mobile({
     fontSize: "1.4rem",
-  })}
+  })};
 `;
 
 export const ReviewInfo = styled.div`
@@ -437,13 +436,36 @@ export const ReviewInfo = styled.div`
   justify-content: space-between;
 `;
 
+export const Message = styled.p`
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #f03e3e;
+  margin-top: 0.3rem;
+`;
+
+export const MessageResult = styled(Message)`
+  font-size: 1.4rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  margin: -2rem 0 1.5rem 0;
+`;
+
 const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
-  const userData = useSelector((state) => state.product);
-  const { loading, error, product } = userData;
+  const productData = useSelector((state) => state.product);
+  const { product, message } = productData;
+
+  const userId = useSelector((state) => state.user.user);
+
+  // const findReviewId = product?.reviews
+  //   ?.map((data) => data)
+  //   ?.filter((f) => f.user === userId._id);
+
+  // const reviewId = findReviewId?.map((n) => n.user)?.join("") === userId._id;
 
   const isLoading = useSelector((state) => state.spinner.isLoading);
 
@@ -459,14 +481,18 @@ const Product = () => {
     if (id || product._id) {
       dispatch(getProduct(id));
     }
-  }, [dispatch, id, product._id, product?.img]);
+
+    if (message) {
+      setTimeout(() => {
+        dispatch(reviewReset());
+      }, 4000);
+    }
+  }, [dispatch, id, product._id, product?.img, message]);
 
   const isStockNum = [...Array(product?.inStock).keys()];
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    dispatch(reviewReset());
 
     dispatch(onSpinner(true));
 
@@ -475,6 +501,7 @@ const Product = () => {
     }, 1500);
 
     dispatch(addReview({ id, rating, comment }));
+
     setRating("");
     setComment("");
   };
@@ -602,6 +629,7 @@ const Product = () => {
             </SelectInfo>
 
             <CommentInfo>
+              {message && <MessageResult>{message}</MessageResult>}
               <CommentText>Comment</CommentText>
               <TextArea
                 rows="10"

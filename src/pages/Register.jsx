@@ -256,11 +256,6 @@ const Register = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    // if (!formIsValid) {
-    //   alert("Form Invalid!");
-    //   return;
-    // }
-
     const newUser = {
       name,
       email,

@@ -216,7 +216,7 @@ const ProductForm = () => {
     inStock: "",
   });
 
-  const { img, title, desc, price, categories, inStock } = userData;
+  const { img, title, desc, price, inStock } = userData;
 
   const [imgTouched, setImgTouched] = useState(false);
   const [titleTouched, setTitleTouched] = useState(false);
@@ -288,7 +288,6 @@ const ProductForm = () => {
     formData.append("desc", desc);
     formData.append("price", price);
     formData.append("inStock", inStock);
-    // formData.append("categories", categories);
 
     dispatch(setProduct(formData));
 
@@ -304,7 +303,6 @@ const ProductForm = () => {
       desc: "",
       price: "",
       inStock: "",
-      // categories: "",
     });
   };
 
@@ -330,7 +328,7 @@ const ProductForm = () => {
               onBlur={imgInputBlurHandler}
               className="imgInput"
             />
-            {imgInputIsInvalid && <Message>Name must not be empty </Message>}
+            {imgInputIsInvalid && <Message>이미지를 선택하세요</Message>}
           </Box>
 
           <Box inValidTitle={titleInputIsInvalid}>
@@ -344,7 +342,7 @@ const ProductForm = () => {
               placeholder="Add title"
               className="titleInput"
             />
-            {titleInputIsInvalid && <Message>Title must not be empty</Message>}
+            {titleInputIsInvalid && <Message>상품명을 입력하세요</Message>}
           </Box>
 
           <Box inValidDesc={descInputIsInvalid}>
@@ -358,7 +356,7 @@ const ProductForm = () => {
               placeholder="Add desc"
               className="descInput"
             />
-            {descInputIsInvalid && <Message>Desc must not be empty</Message>}
+            {descInputIsInvalid && <Message>설명을 입력하세요</Message>}
           </Box>
 
           <Box inValidPrice={priceInputIsInvalid}>
@@ -372,18 +370,9 @@ const ProductForm = () => {
               placeholder="Add price"
               className="priceInput"
             />
-            {priceInputIsInvalid && <Message>Price must not be empty</Message>}
+            {priceInputIsInvalid && <Message>가격을 입력하세요</Message>}
           </Box>
-          {/* <Box>
-            <Label>분류</Label>
-            <Input
-              type="text"
-              name="categories"
-              value={categories}
-              onChange={onChange}
-              placeholder="Add categories"
-            />
-          </Box> */}
+
           <Box inValidInStock={inStockInputIsInvalid}>
             <Label>재고</Label>
             <Input
@@ -398,9 +387,10 @@ const ProductForm = () => {
               max={5}
             />
             {inStockInputIsInvalid ? (
-              <Message>Instock must not be empty</Message>
+              <Message>재고를 입력하세요</Message>
             ) : (
-              inStock && !inStockIsValid && <Message>inStock 0 more</Message>
+              inStock &&
+              !inStockIsValid && <Message>재고는 2개 이상 입력하세요</Message>
             )}
           </Box>
 

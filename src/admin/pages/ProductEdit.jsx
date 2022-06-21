@@ -202,6 +202,14 @@ export const Message = styled.p`
   font-weight: 500;
   letter-spacing: 0.5px;
   color: #f03e3e;
+  margin-top: 0.3rem;
+`;
+
+export const MessageResult = styled(Message)`
+  font-size: 1.4rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  margin-top: -3rem;
 `;
 
 const ProductEdit = () => {
@@ -211,7 +219,7 @@ const ProductEdit = () => {
 
   const [userData, setUserData] = useState(state);
 
-  const { id, title, desc, price, categories, inStock, img } = userData;
+  const { id, title, desc, price, inStock, img } = userData;
 
   const [imgTouched, setImgTouched] = useState(false);
   const [titleTouched, setTitleTouched] = useState(false);
@@ -234,7 +242,6 @@ const ProductEdit = () => {
   let formIsValid = false;
 
   if (
-    imgTouched &&
     imgIsValid &&
     titleIsValid &&
     descIsValid &&
@@ -284,7 +291,6 @@ const ProductEdit = () => {
     formData.append("desc", desc);
     formData.append("price", price);
     formData.append("inStock", inStock);
-    // formData.append("categories", categories);
 
     dispatch(updateProduct({ id, formData }));
 
@@ -318,7 +324,7 @@ const ProductEdit = () => {
               onBlur={imgInputBlurHandler}
               className="imgInput"
             />
-            {imgInputIsInvalid && <Message>Name must not be empty </Message>}
+            {imgInputIsInvalid && <Message>이미지를 선택하세요</Message>}
           </Box>
 
           <Box inValidTitle={titleInputIsInvalid}>
@@ -332,7 +338,7 @@ const ProductEdit = () => {
               placeholder="Add title"
               className="titleInput"
             />
-            {titleInputIsInvalid && <Message>Title must not be empty</Message>}
+            {titleInputIsInvalid && <Message>상품명을 입력하세요</Message>}
           </Box>
 
           <Box inValidDesc={descInputIsInvalid}>
@@ -346,7 +352,7 @@ const ProductEdit = () => {
               placeholder="Add desc"
               className="descInput"
             />
-            {descInputIsInvalid && <Message>Desc must not be empty</Message>}
+            {descInputIsInvalid && <Message>설명을 입력하세요</Message>}
           </Box>
 
           <Box inValidPrice={priceInputIsInvalid}>
@@ -360,18 +366,9 @@ const ProductEdit = () => {
               placeholder="Add price"
               className="priceInput"
             />
-            {priceInputIsInvalid && <Message>Price must not be empty</Message>}
+            {priceInputIsInvalid && <Message>가격을 입력하세요</Message>}
           </Box>
-          {/* <Box>
-            <Label>분류</Label>
-            <Input
-              type="text"
-              name="categories"
-              value={categories}
-              onChange={onChange}
-              placeholder="Add categories"
-            />
-          </Box> */}
+
           <Box inValidInStock={inStockInputIsInvalid}>
             <Label>재고</Label>
             <Input
@@ -386,9 +383,10 @@ const ProductEdit = () => {
               max={5}
             />
             {inStockInputIsInvalid ? (
-              <Message>Instock must not be empty</Message>
+              <Message>재고를 입력하세요</Message>
             ) : (
-              inStock && !inStockIsValid && <Message>inStock 0 more</Message>
+              inStock &&
+              !inStockIsValid && <Message>재고는 2개 이상 입력하세요</Message>
             )}
           </Box>
 

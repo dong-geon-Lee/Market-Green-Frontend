@@ -73,7 +73,7 @@ export const deleteUser = createAsyncThunk(
     try {
       await axios.delete(API_URL + `/${id}`, config);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -86,7 +86,7 @@ export const getUsers = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );

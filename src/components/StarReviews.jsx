@@ -11,7 +11,6 @@ export const RatingBox = styled.div`
 export const Rating = styled.div`
   font-size: 2rem;
   font-weight: 700;
-  
 
   & svg {
     fill: #ebb450;
@@ -70,7 +69,7 @@ const StarReviews = ({ value }) => {
         )}
       </Rating>
 
-      <ReviewNum>({value.toFixed(1)})</ReviewNum>
+      <ReviewNum>({value?.toFixed(1)})</ReviewNum>
     </RatingBox>
   );
 };

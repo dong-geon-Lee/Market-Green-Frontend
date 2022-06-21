@@ -11,7 +11,7 @@ export const getProducts = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -27,9 +27,12 @@ export const getProduct = createAsyncThunk(
         Authorization: `Bearer ${TOKEN}`,
       },
     };
-
-    const { data } = await axios.get(API_URL + `/${productId}`, config);
-    return data;
+    try {
+      const { data } = await axios.get(API_URL + `/${productId}`, config);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
   }
 );
 
@@ -49,7 +52,7 @@ export const setProduct = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.messsage);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -72,7 +75,7 @@ export const updateProduct = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -95,7 +98,7 @@ export const deleteProduct = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -123,9 +126,15 @@ export const addReview = createAsyncThunk(
     };
 
     try {
-      await axios.post(API_URL + `/${id}/review`, ratingData, config);
+      const { data } = await axios.post(
+        API_URL + `/${id}/review`,
+        ratingData,
+        config
+      );
+
+      return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -153,7 +162,7 @@ export const deleteReview = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -168,7 +177,7 @@ export const getReviews = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -191,7 +200,7 @@ const productSlice = createSlice({
       state.error = false;
     },
     reviewReset: (state) => {
-      state.product = {};
+      state.message = false;
     },
   },
   extraReducers: {
@@ -237,8 +246,7 @@ const productSlice = createSlice({
       state.isLoading = true;
     },
     [updateProduct.fulfilled]: (state, action) => {
-      const { id, title, desc, price, categories, inStock, img } =
-        action.payload;
+      const { id, title, desc, price, inStock, img } = action.payload;
 
       state.isLoading = false;
       state.products &&
@@ -248,7 +256,6 @@ const productSlice = createSlice({
             data.title = title;
             data.desc = desc;
             data.price = price;
-            data.categories = categories;
             data.inStock = inStock;
           }
         });
@@ -275,13 +282,27 @@ const productSlice = createSlice({
     [addReview.pending]: (state) => {
       state.isLoading = true;
     },
-    [addReview.fulfilled]: (state) => {
+    [addReview.fulfilled]: (state, action) => {
+      console.log(action.payload, "review ");
+
       state.isLoading = false;
+      state.product = [action.payload].map((data) => data);
+
+      //      state.products.map((data) => {
+      //   if (data._id === id) {
+      //     data.img = img;
+      //     data.title = title;
+      //     data.desc = desc;
+      //     data.price = price;
+      //     data.inStock = inStock;
+      //   }
+      // });
       state.error = false;
     },
     [addReview.rejected]: (state, action) => {
       state.isLoading = true;
-      state.error = action.payload;
+      state.message = action.payload;
+      state.error = false;
     },
     [deleteReview.pending]: (state) => {
       state.isLoading = true;
