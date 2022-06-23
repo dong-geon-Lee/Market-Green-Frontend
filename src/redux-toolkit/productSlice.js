@@ -20,15 +20,9 @@ export const getProduct = createAsyncThunk(
   "product/GET",
   async (payload, thunkAPI) => {
     const productId = payload;
-    const TOKEN = thunkAPI.getState().user.user?.accessToken;
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-      },
-    };
     try {
-      const { data } = await axios.get(API_URL + `/${productId}`, config);
+      const { data } = await axios.get(API_URL + `/${productId}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);

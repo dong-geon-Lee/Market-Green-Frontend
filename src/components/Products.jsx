@@ -128,7 +128,7 @@ const breakPoints = [
 
 const filterOptionList = [
   { value: "all", name: "평점" },
-  { value: "good", name: "별4개이상" },
+  { value: "good", name: "별4개 이상" },
   { value: "bad", name: "별4개 미만" },
 ];
 

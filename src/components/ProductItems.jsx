@@ -23,11 +23,11 @@ export const CardLabel = styled.div`
   position: absolute;
   top: 0%;
   left: 0%;
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   color: #333;
   background-color: #ffd43b;
-  padding: 0.8rem 1.2rem;
+  padding: 1.2rem 1.2rem 0.9rem 1.2rem;
   transform: rotate(0deg);
 `;
 

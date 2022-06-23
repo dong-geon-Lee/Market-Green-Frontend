@@ -459,7 +459,7 @@ const Product = () => {
   const productData = useSelector((state) => state.product);
   const { product, message } = productData;
 
-  const userId = useSelector((state) => state.user.user);
+  // const userId = useSelector((state) => state.user.user);
 
   // const findReviewId = product?.reviews
   //   ?.map((data) => data)
@@ -478,7 +478,7 @@ const Product = () => {
   };
 
   useEffect(() => {
-    if (id || product._id) {
+    if (id || product?._id) {
       dispatch(getProduct(id));
     }
 
@@ -487,18 +487,18 @@ const Product = () => {
         dispatch(reviewReset());
       }, 4000);
     }
-  }, [dispatch, id, product._id, product?.img, message]);
+  }, [dispatch, id, product?._id, product?.img, message]);
 
   const isStockNum = [...Array(product?.inStock).keys()];
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    dispatch(onSpinner(true));
+    // dispatch(onSpinner(true));
 
-    setTimeout(() => {
-      dispatch(offSpinner(false));
-    }, 1500);
+    // setTimeout(() => {
+    //   dispatch(offSpinner(false));
+    // }, 1500);
 
     dispatch(addReview({ id, rating, comment }));
 
@@ -563,12 +563,7 @@ const Product = () => {
         <ProductGroup>
           <InfoBox>
             <Title>{product?.title}</Title>
-            <Desc>
-              {product?.desc} Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Molestiae dolores quam fuga excepturi, cupiditate blanditiis
-              culpa architecto qui error provident omnis deleniti facilis quas
-              et placeat rem nemo distinctio labore.
-            </Desc>
+            <Desc>{product?.desc}</Desc>
           </InfoBox>
 
           <TableBox>

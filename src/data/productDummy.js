@@ -68,12 +68,12 @@ export const productDummy = [
 export const userData = [
   {
     id: 1,
-    name: "Lance Jarvis",
+    name: "브랜든",
     location: "London, UK",
-    designation: "General Manager ",
+    designation: "개발자",
     avatar: "https://testimonialapi.toolcarton.com/avatar/1.jpg",
     message:
-      "We have been using product for last one year, and I have to say that it has transformed the way we do business. Thank you for awesome service.",
+      "우리회사는 지난 1년 동안 다양한 식물들을 구입하여 사용해 왔으며 이것이 우리의 집중력을 향상시켜주었습니다. 귀사의 멋진 서비스에 감사드립니다.",
     lorem:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non fringilla leo. Phasellus dui erat, ultrices sollicitudin ante quis, convallis varius odio. Quisque sed tristique ante.",
     rating: 4.8,
@@ -81,12 +81,12 @@ export const userData = [
   },
   {
     id: 2,
-    name: "Juliet Wright",
+    name: "줄리아",
     location: "Sweden",
-    designation: "Technical Director",
+    designation: "마케터",
     avatar: "https://testimonialapi.toolcarton.com/avatar/2.jpg",
     message:
-      "It has changed the way I used the website. Product lets you create anything you envision and it does it so easy and flawless. I can't imagine not working with the service.",
+      "마켓그린의 제품들은 품질이 뛰어나고 저렴한 가격으로 고객을 감동시키는 회사입니다. 최근에 유행하는 식물(몬스테라)을 구입해서 딸에게 선물해주었습니다. 정말 만족합니다! ",
     lorem:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non fringilla leo. Phasellus dui erat, ultrices sollicitudin ante quis, convallis varius odio. Quisque sed tristique ante.",
     rating: 4.4,
@@ -94,12 +94,12 @@ export const userData = [
   },
   {
     id: 3,
-    name: "Michael D.",
+    name: "김지혜",
     location: "Austin, Texas",
-    designation: "Investor",
+    designation: "연예인",
     avatar: pic3,
     message:
-      "Insights from service drove 30% lift in our conversions, this product service is essential for your company growth strategy.",
+      "우연히 마켓그린을 알게되었는데 다양한 식물들이 이목을 끌었어요! 작고 예쁜 식물들을 많이 있어서 고르는 재미가 있었습니다.",
     lorem:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non fringilla leo. Phasellus dui erat, ultrices sollicitudin ante quis, convallis varius odio. Quisque sed tristique ante.",
     rating: 4.5,
@@ -107,12 +107,12 @@ export const userData = [
   },
   {
     id: 4,
-    name: "Kylie Lutz",
+    name: "카일리 루츠",
     location: "Paris, France",
-    designation: "Freelancer",
+    designation: "프리랜서",
     avatar: pic1,
     message:
-      "The company really helped with my personal branding - everything from conception to execution was amazing and super professional. Looking forwards for upgradation.",
+      "마켓그린은 내 개인 브랜딩에 정말 도움이 되었습니다. 판촉교육에서 실행에 이르기까지 모든 것이 놀랍고 매우 전문적이었습니다.",
     lorem:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non fringilla leo. Phasellus dui erat, ultrices sollicitudin ante quis, convallis varius odio. Quisque sed tristique ante.",
     rating: 5,
@@ -120,12 +120,12 @@ export const userData = [
   },
   {
     id: 5,
-    name: "Mark Twin",
+    name: "에일리",
     location: "Berlin, Germany",
-    designation: "Developer",
+    designation: "식물학자",
     avatar: pic2,
     message:
-      "Best company I have ever deal with online! Quick delivery and excellent customer service. Will definetly upgrade the service.",
+      "내가 온라인으로 거래한 최고의 회사! 빠른 배송과 우수한 고객 서비스. 서비스를 확실히 업그레이드합니다.",
     lorem:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non fringilla leo. Phasellus dui erat, ultrices sollicitudin ante quis, convallis varius odio. Quisque sed tristique ante.",
     rating: 4.5,
@@ -209,7 +209,7 @@ export const plantsData = [
     id: 13,
     name: "골든애니버셔리",
     image:
-      "https://m.simpol.co.kr/data/shopimages/product/302420505/202204/0030110000000311912.jpg",
+      "https://m.simpol.co.kr/data/shopimages/product/302419990/201905/0050020000001782372.jpg",
   },
   {
     id: 14,

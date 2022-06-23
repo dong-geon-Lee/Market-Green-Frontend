@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { removeFromCart } from "../redux-toolkit/cartSlice";
-import { Mobile, Tablets } from "../responsive";
+import { Laptops, Mobile, Tablets } from "../responsive";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -24,17 +24,24 @@ export const ProductGroup = styled.div`
 export const ImgBox = styled.div`
   flex: 0.3;
   width: 35vw;
-  height: 20vh;
+  height: 100%;
   margin: 2rem;
+  display: flex;
+  align-items: center;
+
+  ${Laptops({
+    width: "35vw",
+    height: "13vh",
+  })}
 
   ${Tablets({
-    width: "30vw",
-    height: "15vh",
+    width: "33vw",
+    height: "11vh",
   })}
 
   ${Mobile({
-    width: "25vw",
-    height: "10vh",
+    width: "33vw",
+    height: "9vh",
   })}
 `;
 

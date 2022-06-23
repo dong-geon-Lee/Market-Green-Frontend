@@ -132,6 +132,7 @@ const Profile = () => {
 
     dispatch(deleteUser({ id: _id }));
 
+    alert("회원탈퇴 완료");
     navigate("/");
   };
 

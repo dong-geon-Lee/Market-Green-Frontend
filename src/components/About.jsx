@@ -34,6 +34,7 @@ export const Title = styled.h1`
   color: transparent;
   -webkit-background-clip: text;
   width: 100%;
+  text-align: center;
 
   ${Laptops({
     fontSize: "3.8rem",
@@ -51,7 +52,7 @@ export const Title = styled.h1`
 
   ${Mobile({
     fontSize: "3rem",
-    textAlign: "left",
+    textAlign: "center",
     lineHeight: "1.7",
     padding: "0 4rem",
     marginBottom: "4rem",
@@ -220,22 +221,20 @@ const About = () => {
   return (
     <Container id="about">
       <Wrapper>
-        <Title>Create your own beautiful and exciting garden!</Title>
+        <Title>당신이 선택한 식물로 집안을 아름답게 꾸며보세요!</Title>
 
         <Section>
           <Left>
             <AboutBox>
-              <SubHeading>
-                "Come with us how to grow your plants to be better and
-                healthier"
-              </SubHeading>
+              <SubHeading>"여러분의 정원사 마켓그린입니다"</SubHeading>
+
               <Text>
-                We have a variety of products for your own garden! <br></br>
-                Market green has hundreds of rare and eco-friendly plants. We
-                want you to feel joy and peace!
+                당신을 위한 다양한 제품이 준비되어 있습니다. 마켓 그린에는 수백
+                종의 희귀하고 친환경적인 식물이 있습니다. 우리는 당신이 기쁨과
+                평화를 느끼기를 바랍니다!
               </Text>
 
-              <Text>- MarketGreen</Text>
+              <Text>- 마켓그린</Text>
             </AboutBox>
           </Left>
 

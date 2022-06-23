@@ -193,8 +193,8 @@ const Hero = () => {
           <Title>Freshen the Air in Your House</Title>
 
           <Text>
-            we help realize your dreams in making a garden, let's start with
-            small things that can change the world
+            정원 만들기의 꿈을 실현할 수 있도록 도와드립니다. 세상을 바꿀 수
+            있는 작은 것부터 시작합시다.
           </Text>
 
           <BtnBox>

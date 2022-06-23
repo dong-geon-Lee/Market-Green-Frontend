@@ -178,9 +178,9 @@ const Introduce = () => {
     <Container id="intro">
       <Wrapper>
         <IntroBox>
-          <Title>Start creating your own garden!</Title>
+          <Title>당신의 정원을 만들어보세요!</Title>
           <Text>
-            "Order what you want at <Strong>MarketGreen</Strong>"
+            "<Strong>마켓그린에서</Strong> 여러분의 식물을 얻으세요"
           </Text>
         </IntroBox>
 
@@ -189,23 +189,21 @@ const Introduce = () => {
             <FaBook></FaBook>
             <TitleInfo>Infomation</TitleInfo>
             <TextInfo>
-              We provide educational content about various rare plants.
+              다양한 희귀식물에 대한 교육 콘텐츠를 제공합니다.
             </TextInfo>
           </IconInfoBox>
 
           <IconInfoBox>
             <FaSeedling></FaSeedling>
             <TitleInfo>Product</TitleInfo>
-            <TextInfo>
-              We provide the best experience with beautiful and pretty plants.
-            </TextInfo>
+            <TextInfo>아름답고 예쁜 식물로 최고의 경험을 선사합니다.</TextInfo>
           </IconInfoBox>
 
           <IconInfoBox>
             <FaHandHoldingWater></FaHandHoldingWater>
             <TitleInfo>Advice</TitleInfo>
             <TextInfo>
-              We provide expert advice on how to grow and design plants.
+              식물을 키우는 데 필요한 전문가의 조언을 제공합니다.
             </TextInfo>
           </IconInfoBox>
         </ContentBox>

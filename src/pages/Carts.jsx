@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
-import { addToCart } from "../redux-toolkit/cartSlice";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { addToCart, deleteStorage } from "../redux-toolkit/cartSlice";
 import CartItems from "./CartItems";
 import styled from "styled-components";
 import { Laptops, Mobile, Tablets } from "../responsive";
@@ -67,19 +67,47 @@ export const CartLink = styled(Link)`
   text-align: center;
   border-radius: 9px;
 
-  & + a {
-    background-color: #2f9e44;
-  }
-
   &:hover {
     background-color: grey;
-    transform: scale(1.03);
+    transform: scale(1.02);
     font-weight: 800;
   }
 
-  & + a:hover {
+  ${Laptops({
+    width: "44%",
+    margin: "2.4rem 2rem",
+  })}
+
+  ${Tablets({
+    width: "43%",
+    margin: "2.4rem 2rem",
+  })}
+
+  ${Mobile({
+    width: "45%",
+    margin: "2.4rem 2rem",
+  })}
+`;
+
+export const Button = styled.button`
+  display: inline-block;
+  width: 50%;
+  padding: 2.4rem;
+  margin: 2.4rem 4rem;
+  cursor: pointer;
+  background-color: #2f9e44;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-align: center;
+  border-radius: 9px;
+  border: none;
+
+  &:hover {
     background-color: green;
-    transform: scale(1.03);
+    transform: scale(1.02);
     font-weight: 800;
   }
 
@@ -124,15 +152,30 @@ const Carts = () => {
 
   const id = useParams();
   const location = useLocation();
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const quantity = location.search ? Number(location.search.split("=")[1]) : 1;
+  const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
     if (id && location.search) {
       dispatch(addToCart({ id, quantity }));
     }
   }, [dispatch, id, quantity]);
+
+  const onClickHandler = () => {
+    if (user === null) {
+      alert("로그인 해주세요");
+      navigate("/login");
+
+      localStorage.removeItem("cartItems");
+      dispatch(deleteStorage());
+    } else {
+      navigate("/shipping");
+    }
+  };
 
   return (
     <Container>
@@ -173,7 +216,7 @@ const Carts = () => {
 
             <CartButtonGroup>
               <CartLink to="/">쇼핑하기</CartLink>
-              <CartLink to="/shipping">결제하기</CartLink>
+              <Button onClick={() => onClickHandler()}>결제하기</Button>
             </CartButtonGroup>
           </>
         )}

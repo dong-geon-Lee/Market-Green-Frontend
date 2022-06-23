@@ -378,7 +378,7 @@ const PlaceOrder = () => {
                 <Label>
                   <strong>상세주소:</strong>
                 </Label>
-                <Span>계양구 리덕스 아파트</Span>
+                <Span>{shippingAddress.address}</Span>
               </div>
             </Info>
           </OrderBox>

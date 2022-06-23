@@ -249,6 +249,7 @@ const Register = () => {
     }
 
     if (user) {
+      alert("회원가입 되었습니다");
       navigate("/login");
     }
   }, [dispatch, navigate, user, error]);

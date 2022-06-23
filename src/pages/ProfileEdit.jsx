@@ -252,11 +252,6 @@ const ProfileEdit = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    // if (password !== password2) {
-    //   alert("password not correct!");
-    //   return;
-    // }
-
     const newUser = {
       id: _id,
       name,
@@ -283,8 +278,6 @@ const ProfileEdit = () => {
     setTimeout(() => {
       dispatch(offSpinner(false));
     }, 1500);
-
-    // navigate("/profile");
   };
 
   return (
