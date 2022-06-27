@@ -1,13 +1,29 @@
 {
   "files": {
-    "main.css": "/Market-Green-Frontend/static/css/main.28df568f.css",
-    "main.js": "/Market-Green-Frontend/static/js/main.8b4f4f19.js",
+    "main.css": "/Market-Green-Frontend/static/css/main.6575caa4.css",
+    "main.js": "/Market-Green-Frontend/static/js/main.7e7a2590.js",
+    "static/media/img4.jpg": "/Market-Green-Frontend/static/media/img4.0cbebd01d070f042ec49.jpg",
+    "static/media/img5.jpg": "/Market-Green-Frontend/static/media/img5.f82d023117ad1516e863.jpg",
+    "static/media/img2.jpg": "/Market-Green-Frontend/static/media/img2.5a2b303b9145a2b4e7d7.jpg",
+    "static/media/img6.jpg": "/Market-Green-Frontend/static/media/img6.06b588057f8398a1de42.jpg",
+    "static/media/pic1.jpg": "/Market-Green-Frontend/static/media/pic1.516e6bd6d8f29fe387b2.jpg",
+    "static/media/img7.jpg": "/Market-Green-Frontend/static/media/img7.3d19ac368f77fc526404.jpg",
+    "static/media/pic2.jpg": "/Market-Green-Frontend/static/media/pic2.8996623a72e28945a6c2.jpg",
+    "static/media/img3.jpg": "/Market-Green-Frontend/static/media/img3.9a916f0f1a718c70d715.jpg",
+    "static/media/spinner.gif": "/Market-Green-Frontend/static/media/spinner.fb1944a76cdccfebadeb.gif",
+    "static/media/background.png": "/Market-Green-Frontend/static/media/background.3305cf0c11de128686f2.png",
+    "static/media/image3.jpg": "/Market-Green-Frontend/static/media/image3.4860a21eaf0ec9f2da70.jpg",
+    "static/media/image2.jpg": "/Market-Green-Frontend/static/media/image2.a65667463b369a09f71d.jpg",
+    "static/media/image4.jpg": "/Market-Green-Frontend/static/media/image4.095d1425df77407fc320.jpg",
+    "static/media/image1.jpg": "/Market-Green-Frontend/static/media/image1.77656438acf47b7e098f.jpg",
+    "static/media/pic3.jpg": "/Market-Green-Frontend/static/media/pic3.f317dfbe724883a86312.jpg",
+    "static/media/logo2.png": "/Market-Green-Frontend/static/media/logo2.2608f26ac46fbd8708e5.png",
     "index.html": "/Market-Green-Frontend/index.html",
-    "main.28df568f.css.map": "/Market-Green-Frontend/static/css/main.28df568f.css.map",
-    "main.8b4f4f19.js.map": "/Market-Green-Frontend/static/js/main.8b4f4f19.js.map"
+    "main.6575caa4.css.map": "/Market-Green-Frontend/static/css/main.6575caa4.css.map",
+    "main.7e7a2590.js.map": "/Market-Green-Frontend/static/js/main.7e7a2590.js.map"
   },
   "entrypoints": [
-    "static/css/main.28df568f.css",
-    "static/js/main.8b4f4f19.js"
+    "static/css/main.6575caa4.css",
+    "static/js/main.7e7a2590.js"
   ]
 }
