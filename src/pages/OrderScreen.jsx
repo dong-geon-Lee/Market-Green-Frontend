@@ -319,7 +319,7 @@ const OrderScreen = () => {
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult, "결과");
     dispatch(payOrder({ orderId, paymentResult }));
-    // dispatch(createOrderReset());
+
     alert("결제 완료 ");
 
     setTimeout(() => {
