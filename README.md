@@ -19,4 +19,4 @@
    > Hamburger Menu를 클릭해서 회원가입과 로그인 절차를 진행해주세요.  
    > 회원은 식물 구입과 리뷰 작성이 가능해요.
 
-# **Used Tech Stack**
+# **Tech Stack**
