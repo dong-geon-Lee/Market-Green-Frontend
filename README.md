@@ -1,6 +1,6 @@
 ![](https://market-green-app.herokuapp.com/static/media/logo2.2608f26ac46fbd8708e5.png)
 
-# **Service Intro**
+# :star: **Service Intro**
 
 ## 당신의 집안을 아름다운 식물로 꾸며보세요.
 
@@ -20,5 +20,5 @@
    > 회원은 식물 구입과 리뷰 작성이 가능해요.  
 
 # :gift: **Tech Stack**. 
-
+file:///Users/dong-geon/Downloads/html5.svg
 ![React](https://img.shields.io/badge/react-444444?style=for-the-badge&logo=react)
