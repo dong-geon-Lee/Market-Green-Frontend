@@ -22,7 +22,7 @@
 # :gift: **Tech Stack**. 
 https://img.shields.io/badge/{보여질이름}-{배경컬러}?style=for-the-badge&logo={로고이름}&logoColor={로고컬러}
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=fff)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=fff)
 ![CSS3](https://img.shields.io/badge/HTML5-1572B6?style=for-the-badge&logo=fff)
 ![React](https://img.shields.io/badge/React-444444?style=for-the-badge&logo=React)
 
