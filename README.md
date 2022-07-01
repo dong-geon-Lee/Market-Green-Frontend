@@ -24,4 +24,4 @@ https://img.shields.io/badge/{보여질이름}-{배경컬러}?style=for-the-badg
 
 ![React](https://img.shields.io/badge/react-444444?style=for-the-badge&logo=react)
 
-![TypeScript](https://img.shields.io/badge/TYPESCRIPT-3178C6?style=for-the-badge&logo=typescript)
+![TypeScript](https://img.shields.io/badge/TYPESCRIPT-3178C6?style=for-the-badge&logo=ts)
