@@ -19,4 +19,6 @@
    > Hamburger Menu를 클릭해서 회원가입과 로그인 절차를 진행해주세요.  
    > 회원은 식물 구입과 리뷰 작성이 가능해요.  
 
-# :gift: **Tech Stack**
+# :gift: **Tech Stack**. 
+
+![React](https://img.shields.io/badge/react-444444?style=for-the-badge&logo=react)
