@@ -1,9 +1,3 @@
-// SPACING SYSTEM (px)
-// 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+![](https://market-green-app.herokuapp.com/static/media/logo2.2608f26ac46fbd8708e5.png)
 
-// FONT SIZE SYSTEM (px)
-// 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
-
-"homepage": "https://dong-geon-lee.github.io/Market-Green-Frontend/",
-"predeploy": "npm run build",
-"deploy": "gh-pages -d build"
+# **Service Intro**
