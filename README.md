@@ -25,17 +25,23 @@
     친환경적이고 아름다운 식물로 당신의 공간을 채워보세요!
         
 # :wrench: **Tech Stack**. 
-
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=fff)
+- ### **Front-end**
+      
+  ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=fff)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=fff)
 ![JAVASCRIPT](https://img.shields.io/badge/JavaScript-343a40?style=for-the-badge&logo=JavaScript&logoColor=F7DF1E)
 ![styled-components](https://img.shields.io/badge/styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=fff)  
 ![React](https://img.shields.io/badge/React-444444?style=for-the-badge&logo=React)
 ![Redux](https://img.shields.io/badge/REDUX--TOOLKIT-764ABC?style=for-the-badge&logo=Redux&logoColor=fff)
-![React-router](https://img.shields.io/badge/REACT--ROUTER--DOM-343a40?style=for-the-badge&logo=ReactRouter&logoColor=CA4245)  
-![Node.js](https://img.shields.io/badge/NODE.JS-339933?style=for-the-badge&logo=Node.js&logoColor=fff)
+![React-router](https://img.shields.io/badge/REACT--ROUTER--DOM-343a40?style=for-the-badge&logo=ReactRouter&logoColor=CA4245)
+
+- ### **Back-end**
+  
+  ![Node.js](https://img.shields.io/badge/NODE.JS-339933?style=for-the-badge&logo=Node.js&logoColor=fff)
 ![Express](https://img.shields.io/badge/EXPRESS-000000?style=for-the-badge&logo=Express&logoColor=fff)
 ![MongoDB](https://img.shields.io/badge/MONGODB-47A248?style=for-the-badge&logo=MONGODB&logoColor=fff)
-![Heroku](https://img.shields.io/badge/HEROKU-430098?style=for-the-badge&logo=HEROKU&logoColor=fff)
+
+- ### **Deploy**
+  ![Heroku](https://img.shields.io/badge/HEROKU-430098?style=for-the-badge&logo=HEROKU&logoColor=fff)
 
 
