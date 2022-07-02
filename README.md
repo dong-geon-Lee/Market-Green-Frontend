@@ -14,19 +14,27 @@
 
    > 제품에 대한 리뷰와 평점을 확인 할 수 있어요.
 
-- 식물을 구입하고 싶으면 [ 회원 가입 ] 해주세요.
+- 식물을 구입하고 싶으면 [ 회원 가입 ] 해주세요.  
 
    > Hamburger Menu를 클릭해서 회원가입과 로그인 절차를 진행해주세요.  
-   > 회원은 식물 구입과 리뷰 작성이 가능해요.  
+   > 회원은 식물 구입과 리뷰 작성이 가능해요.
+
+
+
+        
 
 # :gift: **Tech Stack**. 
-https://img.shields.io/badge/{보여질이름}-{배경컬러}?style=for-the-badge&logo={로고이름}&logoColor={로고컬러}
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=fff)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=fff)
 ![JAVASCRIPT](https://img.shields.io/badge/JavaScript-343a40?style=for-the-badge&logo=JavaScript&logoColor=F7DF1E)
+![styled-components](https://img.shields.io/badge/styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=fff)  
 ![React](https://img.shields.io/badge/React-444444?style=for-the-badge&logo=React)
-
-![styled-components](https://img.shields.io/badge/styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=fff)
+![Redux](https://img.shields.io/badge/REDUX--TOOLKIT-764ABC?style=for-the-badge&logo=Redux&logoColor=fff)
+![React-router](https://img.shields.io/badge/REACT--ROUTER--DOM-343a40?style=for-the-badge&logo=ReactRouter&logoColor=CA4245)  
+![Node.js](https://img.shields.io/badge/NODE.JS-339933?style=for-the-badge&logo=Node.js&logoColor=fff)
+![Express](https://img.shields.io/badge/EXPRESS-000000?style=for-the-badge&logo=Express&logoColor=fff)
+![MongoDB](https://img.shields.io/badge/MONGODB-47A248?style=for-the-badge&logo=MONGODB&logoColor=fff)
+![Heroku](https://img.shields.io/badge/HEROKU-430098?style=for-the-badge&logo=HEROKU&logoColor=fff)
 
 
