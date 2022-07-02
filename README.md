@@ -20,12 +20,11 @@
    > 회원은 식물 구입과 리뷰 작성이 가능해요.    
     
 # 🔎 **Service Purpose**
-`MarketGreen 서비스는 식물을 사랑하는 사람들을 위해서 필요한 정보와 제품을 제공하기위해 시작되었습니다.`
 
-    리멤버팀은 모든 사람들이 리멤버 서비스를 통해 안타까운 사건 사고들을 한번 더 기억하며
-    앞으로도 이러한 사고들을 잊지 않고 다시는 이러한 일들이 일어나지 않길 바랍니다.
-    
-# :gift: **Tech Stack**. 
+    MarketGreen 서비스는 아름답고 희귀한 식물을 제공합니다. 
+    친환경적이고 아름다운 식물로 당신의 공간을 채워보세요!
+        
+# :wrench: **Tech Stack**. 
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=fff)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=fff)
