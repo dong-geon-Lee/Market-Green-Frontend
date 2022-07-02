@@ -17,12 +17,14 @@
 - 식물을 구입하고 싶으면 [ 회원 가입 ] 해주세요.  
 
    > Hamburger Menu를 클릭해서 회원가입과 로그인 절차를 진행해주세요.  
-   > 회원은 식물 구입과 리뷰 작성이 가능해요.
+   > 회원은 식물 구입과 리뷰 작성이 가능해요.    
+    
+# 🔎 **Service Purpose**
+`MarketGreen 서비스는 식물을 사랑하는 사람들을 위해서 필요한 정보와 제품을 제공하기위해 시작되었습니다.`
 
-
-
-        
-
+    리멤버팀은 모든 사람들이 리멤버 서비스를 통해 안타까운 사건 사고들을 한번 더 기억하며
+    앞으로도 이러한 사고들을 잊지 않고 다시는 이러한 일들이 일어나지 않길 바랍니다.
+    
 # :gift: **Tech Stack**. 
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=fff)
