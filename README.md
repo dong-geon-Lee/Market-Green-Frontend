@@ -44,4 +44,11 @@
 - ### **Deploy**
   ![Heroku](https://img.shields.io/badge/HEROKU-430098?style=for-the-badge&logo=HEROKU&logoColor=fff)
 
+---
+
+# :chart: **Flow Chart**
+
+## **Client Side**
+![Frame 2](https://user-images.githubusercontent.com/69576865/178131853-2da93776-6ea7-417d-819a-3c847d5af970.png)
+
 
