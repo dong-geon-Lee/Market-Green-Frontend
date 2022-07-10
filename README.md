@@ -49,6 +49,9 @@
 # :chart: **Flow Chart**
 
 ## **Client Side**
-![Frame 2](https://user-images.githubusercontent.com/69576865/178131853-2da93776-6ea7-417d-819a-3c847d5af970.png)
+![Frame 2](https://user-images.githubusercontent.com/69576865/178134944-eabd93aa-cd1b-4128-82c8-ca5e46258abc.png)
+## **Server Side**
+![Frame 3](https://user-images.githubusercontent.com/69576865/178137859-d1198190-9db1-490e-b78c-84990ece83fa.png)
+
 
 
