@@ -63,145 +63,18 @@
 <img width="600" alt=""
  src="https://user-images.githubusercontent.com/77320847/126103431-73768d41-250d-4f8f-b304-df34136b6ddd.gif
 ">
+
+https://user-images.githubusercontent.com/69576865/179359664-c7a33e94-5ebd-47da-b527-561505a21eb2.mov
+
+
 </details>
+
+
 <details>
 <summary>랜딩페이지 스크롤</summary>
 <div markdown="1">
 </div>
 <img width="600" alt=""
  src="https://user-images.githubusercontent.com/77320847/126103513-288a3bf5-2b03-47d1-86b9-7b4a19e10b13.gif
-">
-</details>
-<details>
-<summary>이미지 슬라이더</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126106045-c4ec2783-e397-40b4-93fc-bff26a185a5d.gif
-">
-</details>
-<details>
-<summary>일반 로그인</summary>
-<div markdown="1">
-</div>
-<img width="600" alt="" src="https://user-images.githubusercontent.com/77320847/126102171-0a68aa1c-e10a-4d3e-98ab-8b30ad089915.gif">
-</details>
-<details>
-<summary>소셜 로그인</summary>
-<div markdown="1">
-</div>
-<img width="600" alt="" src="https://user-images.githubusercontent.com/77320847/126102274-362a181e-a11f-41c2-be9b-6e3b9e7eb7ec.gif
-">
-</details>
-<details>
-<summary>로그아웃</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126102467-67a13dfb-41b5-499c-b459-9dfa56ea6104.gif
-">
-</details>
-<details>
-<summary>내정보 수정</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126102596-f9708d81-dcc8-457c-91b5-9470cf7dc610.gif
-">
-</details>
-<details>
-<summary>회원가입 메일 인증</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103140-02a25ec4-8df0-4131-9423-f2f06eefc6cf.gif
-">
-</details>
-<details>
-<summary>회원가입</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103226-6216d6af-73cd-4239-9695-fd91b7c8b57b.gif
-">
-</details>
-<details>
-<summary>회원탈퇴</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103294-6582bf8f-9efe-422d-a887-7ea053fa3a31.gif
-">
-</details>
-<details>
-<summary>햄버거 메뉴</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103627-c54331af-57f2-4f5e-8017-6c7c3a0c9549.gif
-">
-</details>
-<details>
-<summary>퀴즈</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103663-0daa75a4-3407-4d00-988c-e02bf857ad1d.gif
-">
-</details>
-<details>
-<summary>사건사고 리스트</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103761-f3273d46-a374-4d76-86bc-2993555cc44e.gif
-">
-</details>
-<details>
-<summary>사건사고 자세히보기</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103738-5348e5b6-c15d-489c-ae34-b33356e00c03.gif
-">
-</details>
-<details>
-<summary>사건사고 공유하기</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103742-9429199a-f4dd-47a4-8cb4-350681169359.gif
-">
-</details>
-<details>
-<summary>후원하기</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103795-b520f90b-d987-467e-bb87-11fbbd2fd6ca.gif
-">
-</details>
-<details>
-<summary>후원완료 메일</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103792-3a6926b5-c491-4121-a4e6-e44335519ec1.gif
-">
-</details>
-<details>
-<summary>후원내역 확인</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103785-92d6ec57-88f8-4218-9daa-75eb2c05df7d.gif
-">
-</details>
-<details>
-<summary>영수증 확인</summary>
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103778-4f25bad0-762a-4e0d-bc4f-7adaf223398c.gif
 ">
 </details>
