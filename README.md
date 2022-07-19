@@ -64,6 +64,13 @@
  src="https://user-images.githubusercontent.com/69576865/179656477-f1b9a286-2f71-4ff7-a694-7f4abeee15c7.gif">
 </details>
 
+<details>
+<summary>랜딩페이지 네비게이션</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179657550-50f8098b-23a4-41d7-9246-d2cc325aefbb.gif">
+</details>
 
 <details>
 <summary>회원가입 & 로그인</summary>  
@@ -73,5 +80,50 @@
  src="https://user-images.githubusercontent.com/69576865/179654758-d6fbbc3f-93d5-4b80-9213-3e997cc04201.gif">
 </details>
 
+<details>
+<summary>프로필 변경</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179675029-ef7a9e15-2722-4bfa-89a8-7a3b30e5893c.gif">
+</details>
 
+<details>
+<summary>회원탈퇴</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179675814-2a95f969-ae22-4039-8b32-fb5253493777.gif">
+</details>
 
+<details>
+<summary>캐로셀</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179664781-6a422e4d-f9d9-4e74-905a-ad7bcfdc3d42.gif">
+</details>
+
+<details>
+<summary>제품 추가</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179668578-4518f516-84f6-4591-8e16-a276b285a7e4.gif">
+</details>
+
+<details>
+<summary>제품 삭제</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179669668-a5d95608-99d5-4a3b-8506-902421359cb9.gif">
+</details>
+
+<details>
+<summary>제품 수정</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179671445-47e4a9e4-dbe5-4c62-a7c8-02432d1143fa.gif">
+</details>
