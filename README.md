@@ -97,14 +97,6 @@
 </details>
 
 <details>
-<summary>캐로셀</summary>  
-<div markdown="1">
-</div>
-<img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/179664781-6a422e4d-f9d9-4e74-905a-ad7bcfdc3d42.gif">
-</details>
-
-<details>
 <summary>제품 추가</summary>  
 <div markdown="1">
 </div>
@@ -126,4 +118,44 @@
 </div>
 <img width="600" alt=""
  src="https://user-images.githubusercontent.com/69576865/179671445-47e4a9e4-dbe5-4c62-a7c8-02432d1143fa.gif">
+</details>
+
+<details>
+<summary>리뷰 쓰기</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179677720-a95f70d9-53fd-4eba-856c-2f69dbfd627f.gif">
+</details>
+
+<details>
+<summary>리뷰 삭제</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179679353-de96b4dc-ff77-4c57-bd01-d580cb5f78c3.gif">
+</details>
+
+<details>
+<summary>장바구니 담기</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179685775-af0b0044-09bd-48f5-b182-fc54848f9378.gif">
+</details>
+
+<details>
+<summary>장바구니 비우기</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179688429-334a9363-8607-4660-ae89-2d01688b8b28.gif">
+</details>
+
+<details>
+<summary>캐로셀</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179664781-6a422e4d-f9d9-4e74-905a-ad7bcfdc3d42.gif">
 </details>
