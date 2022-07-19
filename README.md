@@ -54,27 +54,24 @@
 ![Frame 3](https://user-images.githubusercontent.com/69576865/178137859-d1198190-9db1-490e-b78c-84990ece83fa.png)
 
 # Web View
-+ 토클을 클릭하여 확인해 주세요
++ 토클을 클릭하여 확인해 주세요  
 
 <details>
-<summary>랜딩페이지</summary>
+<summary>랜딩페이지</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103431-73768d41-250d-4f8f-b304-df34136b6ddd.gif
-">
-
-https://user-images.githubusercontent.com/69576865/179359664-c7a33e94-5ebd-47da-b527-561505a21eb2.mov
-
-
+ src="https://user-images.githubusercontent.com/69576865/179656477-f1b9a286-2f71-4ff7-a694-7f4abeee15c7.gif">
 </details>
 
 
 <details>
-<summary>랜딩페이지 스크롤</summary>
+<summary>회원가입 & 로그인</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/77320847/126103513-288a3bf5-2b03-47d1-86b9-7b4a19e10b13.gif
-">
+ src="https://user-images.githubusercontent.com/69576865/179654758-d6fbbc3f-93d5-4b80-9213-3e997cc04201.gif">
 </details>
+
+
+
