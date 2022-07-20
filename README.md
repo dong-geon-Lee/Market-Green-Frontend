@@ -153,9 +153,41 @@
 </details>
 
 <details>
+<summary>유효성 검사</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179877137-2a5cd07d-09fc-464b-8b65-e74085811d83.gif">
+</details>
+
+<details>
+<summary>결제하기</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179878999-67a46a2c-d62b-4b3b-8fda-72422bb7dbae.gif">
+</details>
+
+<details>
 <summary>캐로셀</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""
  src="https://user-images.githubusercontent.com/69576865/179664781-6a422e4d-f9d9-4e74-905a-ad7bcfdc3d42.gif">
+</details>
+
+<details>
+<summary>호버 효과</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179882186-bf260e32-5d5e-454b-8bd8-d9e433579ddf.gif">
+</details>
+
+<details>
+<summary>미디어쿼리</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179882186-bf260e32-5d5e-454b-8bd8-d9e433579ddf.gif">
 </details>
