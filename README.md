@@ -191,3 +191,27 @@
 <img width="600" alt=""
  src="https://user-images.githubusercontent.com/69576865/179885453-de76400b-e192-4ad4-b5e6-83cd4b2cf354.gif">
 </details>
+
+# **About Us**
+
+
+### **Period**
+
+- 2021.04.17 - 2021.06.29
+
+
+### **Link**
+
+- [https://market-green-app.herokuapp.com/](https://market-green-app.herokuapp.com/)
+
+
+### **Repository**
+
+- [Client repository](https://github.com/dong-geon-Lee/Market-Green-Frontend)
+- [Server repository](https://github.com/dong-geon-Lee/Market-Green-Backend)
+
+### **OPTIMIZED CREW (OC)**
+
+Crew | Role | GitHub
+----- | ----- | -----
+💻이동건 | Full-stack	| https://github.com/dong-geon-Lee
