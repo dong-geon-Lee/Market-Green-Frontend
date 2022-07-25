@@ -34,7 +34,7 @@
 
 ### **Link**
 
-- [https://market-green-app.herokuapp.com/](https://market-green-app.herokuapp.com)
+- [https://market-green-app.herokuapp.com](https://market-green-app.herokuapp.com)
 
 
 ### **Repository**
