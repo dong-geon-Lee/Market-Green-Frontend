@@ -64,7 +64,7 @@ Crew | Role | GitHub
 ![MongoDB](https://img.shields.io/badge/MONGODB-47A248?style=for-the-badge&logo=MONGODB&logoColor=fff)
 
 - ### **Deploy**
-  ![Heroku](https://img.shields.io/badge/HEROKU-430098?style=for-the-badge&logo=HEROKU&logoColor=fff)
+  ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=HEROKU&logoColor=fff)
 
 ---
 
