@@ -1,6 +1,6 @@
-# :star: **Service Intro**
+##  :star: **Service Intro**
 
-## 당신의 집안을 아름다운 식물로 꾸며보세요.
+### 당신의 집안을 아름다운 식물로 꾸며보세요.
 
 `MarketGreen은 다양하고 예쁜 식물을 제공해드리는 서비스입니다. `
 
@@ -16,13 +16,17 @@
 
    > Hamburger Menu를 클릭해서 회원가입과 로그인 절차를 진행해주세요.  
    > 회원은 식물 구입과 리뷰 작성이 가능해요.    
-    
-# 🔎 **Service Purpose**
+
+</br>
+
+## 🔎 **Service Purpose**
 
     MarketGreen 서비스는 아름답고 희귀한 식물을 제공합니다. 
     친환경적이고 아름다운 식물로 당신의 공간을 채워보세요!
 
-# :bust_in_silhouette: **About Us**
+</br>
+
+## :bust_in_silhouette: **About Us**
 
 
 ### **Period**
@@ -32,7 +36,7 @@
 
 ### **Link**
 
-- [https://market-green-app.herokuapp.com](https://market-green-app.herokuapp.com)
+- https://market-green-frontend-app.onrender.com
 
 
 ### **Repository**
@@ -46,7 +50,9 @@ Crew | Role | GitHub
 ----- | ----- | -----
 💻이동건 | Full-stack	| https://github.com/dong-geon-Lee
 
-# :wrench: **Tech Stack**. 
+</br>
+
+## :wrench: **Tech Stack**. 
 - ### **Front-end**
       
   ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=fff)
@@ -65,18 +71,16 @@ Crew | Role | GitHub
 
 - ### **Deploy**
   ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=HEROKU&logoColor=fff)
+</br>
 
----
+## :chart: **Flow Chart**
 
-# :chart: **Flow Chart**
-
-## **Client Side**
+### **Client Side**
 ![Frame 2](https://user-images.githubusercontent.com/69576865/178134944-eabd93aa-cd1b-4128-82c8-ca5e46258abc.png)
-## **Server Side**
+### **Server Side**
 ![Frame 3](https://user-images.githubusercontent.com/69576865/178137859-d1198190-9db1-490e-b78c-84990ece83fa.png)
 
-# :eyes: Web View
-+ 토클을 클릭하여 확인해 주세요  
+## :eyes: Web View
 
 <details>
 <summary>랜딩페이지</summary>  
